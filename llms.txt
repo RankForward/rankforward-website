@@ -1,0 +1,22 @@
+# RankForward
+> RankForward is an AI search optimization (GEO) agency based in Prescott, Arizona.
+
+## What We Do
+RankForward helps local and regional businesses improve their visibility in AI-generated search answers from ChatGPT, Perplexity, Gemini, and Claude. We audit, optimize, and build citations so businesses get recommended by AI engines.
+
+## Services
+- GEO Audit ($750): Full AI visibility assessment across 3 AI models, citation gap analysis, scored 1-10
+- Monthly Management ($2,000/mo): Ongoing content optimization, citation building, monthly reporting
+- Full Service ($3,500+/mo): Complete AI visibility management including community seeding
+
+## Our Process
+Based on Generative Engine Optimization research (Princeton/ACM KDD 2024). We apply 9 content optimization methods proven to increase AI citation rates by up to 40%.
+
+## Contact
+Email: hello@rankforward.ai
+Phone: (307) 303-0611
+Website: https://rankforward.ai
+Location: Prescott, Arizona — serving all of Arizona
+
+## Target Clients
+Local and regional Arizona businesses seeking visibility in AI-powered search engines.
