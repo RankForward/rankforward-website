@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+  <!-- Navy Rounded Square -->
+  <rect x="0" y="0" width="52" height="52" rx="8" fill="#1A3A5C"/>
+  <!-- White Ascending Bars -->
+  <rect x="8" y="30" width="8" height="14" rx="2" fill="#FFFFFF"/>
+  <rect x="19" y="22" width="8" height="22" rx="2" fill="#FFFFFF"/>
+  <rect x="30" y="12" width="8" height="32" rx="2" fill="#FFFFFF"/>
+  <!-- White Forward Arrow -->
+  <polygon points="42,26 48,20 48,32" fill="#FFFFFF"/>
+</svg>
