@@ -803,41 +803,9 @@ window.QUEUE_DATA = [
   }
 ];
 
-window.LEADS_DATA = [
-  {
-    id: 'lead_001',
-    businessName: 'Desert Solar Pros',
-    firstName: 'Marcus',
-    industry: 'Solar Installation',
-    market: 'Phoenix, AZ',
-    website: 'https://desertsolarpros.com',
-    geoScore: 3,
-    dateReceived: '2026-03-22',
-    status: 'New'
-  },
-  {
-    id: 'lead_002',
-    businessName: 'Summit Trail Guides',
-    firstName: 'Rachel',
-    industry: 'Adventure Tourism',
-    market: 'Sedona, AZ',
-    website: 'https://summittrailguides.com',
-    geoScore: 5,
-    dateReceived: '2026-03-20',
-    status: 'Contacted'
-  },
-  {
-    id: 'lead_003',
-    businessName: 'Valley Auto Detailing',
-    firstName: 'James',
-    industry: 'Automotive Services',
-    market: 'Scottsdale, AZ',
-    website: 'https://valleyautodetail.com',
-    geoScore: 8,
-    dateReceived: '2026-03-18',
-    status: 'Audit Ordered'
-  }
-];
+window.LEADS_DATA = [];
+// Leads populate from system/pipeline/leads/leads_log.csv
+// Empty state shown until first free score form submission
 
 window.CLIENTS_DATA = [
   {
@@ -1151,7 +1119,10 @@ window.SYSTEM_DATA = {
     }
 
     if (filtered.length === 0) {
-      container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-user-slash"></i><p>No leads match this filter.</p></div>';
+      container.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i>' +
+        '<p style="font-size:1.1rem;margin-bottom:8px;">No leads yet</p>' +
+        '<p style="color:#85929E;font-size:.9rem;">Leads appear here when visitors submit the free AI visibility score form at rankforward.ai.<br>' +
+        'Share the form link or run outreach from advertising/outreach/cold_email_sequence.md</p></div>';
       return;
     }
 
