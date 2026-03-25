@@ -232,7 +232,7 @@ body {
 <script>
 // ── Auth ──────────────────────────────────────────────────────────
 // Access code hash (SHA-256 hex). Set per client during portal generation.
-const ACCESS_HASH = "b5a39bae38d2fc257bcc61d0990e038f76de85e71ec2de76444f3afaf200cf9a";
+const ACCESS_HASH = "a73b3585bdae36261a4aeaa2d7748481fbaa0e595ebe36e2241ee1c6b0837bb8";
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
