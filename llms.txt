@@ -14,7 +14,6 @@ Based on Generative Engine Optimization research (Princeton/ACM KDD 2024). We ap
 
 ## Contact
 Email: hello@rankforward.ai
-Phone: (307) 303-0611
 Website: https://rankforward.ai
 Location: Prescott, Arizona — serving all of Arizona
 
