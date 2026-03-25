@@ -1,0 +1,13 @@
+{
+  "score": 0,
+  "label": "Post-Launch Baseline",
+  "date": "2026-03-25",
+  "next_update": "2026-03-27",
+  "chatgpt": "ChatGPT fabricated a generic SEO description without real knowledge of RankForward.",
+  "claude": "Claude only knows RankForward from local project context, not public data.",
+  "grok": "Grok explicitly states it has no information about RankForward.",
+  "verdict": "Zero AI engines have genuine public knowledge of RankForward. Citation building is required.",
+  "history": [
+    {"date": "2026-03-25", "score": 0, "label": "Post-Launch Baseline"}
+  ]
+}

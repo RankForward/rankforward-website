@@ -20,6 +20,16 @@
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
 
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Basic-Auth = "rankforward:RankForwardAdmin2026"
+
+[[headers]]
+  for = "/portal/*"
+  [headers.values]
+    Basic-Auth = "rankforward:RF2026portal"
+
 [[redirects]]
   from = "https://www.rankforward.ai/*"
   to = "https://rankforward.ai/:splat"
