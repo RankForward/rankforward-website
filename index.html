@@ -48,7 +48,31 @@
         "addressRegion": "AZ",
         "addressCountry": "US"
       },
-      "sameAs": []
+      "sameAs": ["https://www.linkedin.com/company/rankforward"],
+      "founder": {"@type": "Person", "name": "Jamie"},
+      "areaServed": [
+        {"@type": "City", "name": "Prescott", "containedInPlace": {"@type": "State", "name": "Arizona"}},
+        {"@type": "City", "name": "Scottsdale", "containedInPlace": {"@type": "State", "name": "Arizona"}},
+        {"@type": "City", "name": "Phoenix", "containedInPlace": {"@type": "State", "name": "Arizona"}},
+        {"@type": "City", "name": "Flagstaff", "containedInPlace": {"@type": "State", "name": "Arizona"}}
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "RankForward",
+      "url": "https://rankforward.ai",
+      "email": "hello@rankforward.ai",
+      "description": "AI search optimization agency specializing in Generative Engine Optimization (GEO). We help businesses get cited and recommended by ChatGPT, Perplexity, Gemini, and other AI search engines.",
+      "serviceType": ["AI Search Optimization", "Generative Engine Optimization", "GEO Audit", "AI Visibility Management"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "GEO Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Free AI Visibility Score", "description": "AI visibility baseline across 4 major AI engines"}, "price": "0", "priceCurrency": "USD"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Monthly AI Visibility Management", "description": "Monthly re-scanning, citation building, and PDF progress reporting"}, "price": "1500", "priceCurrency": "USD"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Full Service GEO", "description": "Complete AI search optimization including content and citation building"}, "price": "2500", "priceCurrency": "USD"}
+        ]
+      }
     },
     {
       "@type": "LocalBusiness",
