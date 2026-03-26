@@ -1,13 +1,13 @@
 {
-  "score": 2,
+  "score": 1,
   "label": "Minimal AI Awareness",
   "date": "2026-03-25",
   "next_update": "2026-03-27",
-  "chatgpt": "ChatGPT has minimal awareness of RankForward with limited accuracy.",
+  "chatgpt": "ChatGPT returned no response (API error or timeout).",
   "claude": "Claude has moderate knowledge of RankForward with some accurate details.",
   "grok": "Grok explicitly states it has no information about RankForward.",
   "perplexity": "Perplexity explicitly states it has no information about RankForward.",
-  "verdict": "2 of 4 AI engines show awareness of RankForward.",
+  "verdict": "1 of 4 AI engines show awareness of RankForward.",
   "history": [
     {
       "date": "2026-03-25",
@@ -32,6 +32,11 @@
     {
       "date": "2026-03-25",
       "score": 2,
+      "label": "Minimal AI Awareness"
+    },
+    {
+      "date": "2026-03-25",
+      "score": 1,
       "label": "Minimal AI Awareness"
     }
   ]
