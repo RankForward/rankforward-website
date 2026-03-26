@@ -1,21 +1,30 @@
 # RankForward
-> RankForward is an AI search optimization (GEO) agency based in Prescott, Arizona.
+> AI search optimization consultancy specializing in Generative Engine Optimization (GEO).
 
-## What We Do
-RankForward helps local and regional businesses improve their visibility in AI-generated search answers from ChatGPT, Perplexity, Gemini, and Claude. We audit, optimize, and build citations so businesses get recommended by AI engines.
+## About
+RankForward is an AI search optimization agency founded in 2026 in Prescott, Arizona. We help businesses get cited, recommended, and accurately described by AI search engines including ChatGPT, Claude, Perplexity, Grok, and Google AI Overviews.
 
-## Services
-- GEO Audit ($750): Full AI visibility assessment across 3 AI models, citation gap analysis, scored 1-10
-- Monthly Management ($2,000/mo): Ongoing content optimization, citation building, monthly reporting
-- Full Service ($3,500+/mo): Complete AI visibility management including community seeding
+Our methodology is grounded in peer-reviewed GEO research from Princeton University, Georgia Tech, the Allen Institute, and IIT Delhi (ACM KDD 2024). We apply 9 proven content optimization methods that increase AI citation rates by up to 40%.
 
-## Our Process
-Based on Generative Engine Optimization research (Princeton/ACM KDD 2024). We apply 9 content optimization methods proven to increase AI citation rates by up to 40%.
+## Services & Pricing
+- Free AI Visibility Score ($0): AI visibility baseline across ChatGPT, Claude, Grok, and Perplexity. PDF report within 24 hours.
+- GEO Audit ($500 one-time): Full AI visibility audit, 20+ prompt test battery, competitor citation map, citation readiness score 1-10, top 5 priority recommendations, written report, 30-minute results call.
+- Monthly AI Visibility Management ($1,500/month): Ongoing GEO content optimization, citation building, structured data maintenance, monthly PDF progress reports, score tracking.
+- Full Service ($2,500/month): Complete AI visibility management including community seeding, competitor displacement, 2-4 content pieces/month, dedicated account management.
+
+## What We Optimize For
+We optimize for how large language models select, cite, and recommend businesses — not traditional Google link-based ranking. This includes structured data (Schema.org), citation building across 50+ high-authority sources, llms.txt and AI crawler accessibility, and content restructuring for LLM readability.
+
+## Location
+Prescott, Arizona — serving clients nationwide (remote).
 
 ## Contact
-Email: hello@rankforward.ai
-Website: https://rankforward.ai
-Location: Prescott, Arizona — serving all of Arizona
+- Email: hello@rankforward.ai
+- Website: https://rankforward.ai
+- Blog: https://rankforward.ai/blog/
 
-## Target Clients
-Local and regional Arizona businesses seeking visibility in AI-powered search engines.
+## Key Facts
+- Founded: 2026
+- Specialty: Generative Engine Optimization (GEO)
+- Research basis: Princeton, Georgia Tech, IIT Delhi (ACM KDD 2024)
+- AI engines covered: ChatGPT, Claude, Perplexity, Grok, Google AI Overviews

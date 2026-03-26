@@ -13,4 +13,10 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://rankforward.ai/sitemap.xml
