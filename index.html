@@ -69,6 +69,7 @@
         "name": "GEO Services",
         "itemListElement": [
           {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Free AI Visibility Score", "description": "AI visibility baseline across 4 major AI engines"}, "price": "0", "priceCurrency": "USD"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "GEO Audit", "description": "Full AI visibility audit across ChatGPT, Claude, Grok, Perplexity with 20+ prompt tests, competitor map, and priority recommendations"}, "price": "500", "priceCurrency": "USD"},
           {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Monthly AI Visibility Management", "description": "Monthly re-scanning, citation building, and PDF progress reporting"}, "price": "1500", "priceCurrency": "USD"},
           {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Full Service GEO", "description": "Complete AI search optimization including content and citation building"}, "price": "2500", "priceCurrency": "USD"}
         ]
@@ -99,6 +100,13 @@
       "provider": {"@type": "Organization", "name": "RankForward"},
       "description": "Free AI visibility baseline score across ChatGPT, Claude, Grok, and Perplexity. Delivered within 24 hours as a PDF report.",
       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    },
+    {
+      "@type": "Service",
+      "name": "GEO Audit",
+      "provider": {"@type": "Organization", "name": "RankForward"},
+      "description": "Full AI visibility audit across ChatGPT, Claude, Grok, and Perplexity. Includes 20+ prompt test battery, competitor citation source map, citation readiness score with reasoning, top 5 priority recommendations, written report, and 30-minute results call.",
+      "offers": {"@type": "Offer", "price": "500", "priceCurrency": "USD"}
     },
     {
       "@type": "Service",
@@ -178,7 +186,7 @@
           "name": "How much does AI search optimization cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "RankForward offers a free AI visibility score, Monthly Management at $1,500/month, and Full Service at $2,500/month. We recommend starting with the free score to establish your baseline."
+            "text": "RankForward offers a free AI visibility score, a one-time GEO Audit for $500, Monthly Management at $1,500/month, and Full Service at $2,500/month. We recommend starting with the free score, then the $500 audit to get your detailed roadmap."
           }
         },
         {
@@ -398,13 +406,15 @@ a:hover { color: var(--navy); }
 .deliverable-card p { color: var(--gray-600); font-size: .92rem; margin-bottom: 0; }
 
 /* Pricing */
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
 .pricing-card {
   background: var(--white); border-radius: var(--radius); padding: 40px 32px; border: 2px solid var(--gray-100);
   transition: all var(--transition); position: relative; display: flex; flex-direction: column;
 }
 .pricing-card:hover { border-color: var(--blue); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .pricing-card.featured { border-color: var(--blue); }
+.pricing-card.starter { border-color: var(--gold, #E67E22); }
+.pricing-card.starter .pricing-badge { background: var(--gold, #E67E22); }
 .pricing-badge {
   position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
   background: var(--blue); color: var(--white); padding: 6px 20px; border-radius: 20px;
@@ -485,6 +495,9 @@ a:hover { color: var(--navy); }
 .footer-legal-links a:hover { color: var(--white); }
 
 /* Responsive */
+@media (max-width: 1100px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 900px) {
   .nav { display: none; }
   .hamburger { display: block; }
@@ -711,12 +724,30 @@ a:hover { color: var(--navy); }
         </ul>
         <a href="#contact" class="btn btn-outline">Get Free Score &rarr;</a>
       </div>
+      <div class="pricing-card starter reveal">
+        <span class="pricing-badge">Start Here</span>
+        <div class="pricing-name">GEO Audit</div>
+        <div class="pricing-price">$500</div>
+        <div class="pricing-desc">Your complete AI visibility roadmap. One-time deep dive.</div>
+        <ul class="pricing-features">
+          <li>Full AI visibility audit across ChatGPT, Claude, Grok, Perplexity</li>
+          <li>20+ prompt test battery</li>
+          <li>Competitor citation source map</li>
+          <li>Citation readiness score (1&ndash;10) with detailed reasoning</li>
+          <li>Top 5 priority recommendations with specific action steps</li>
+          <li>Written audit report delivered within 7 days</li>
+          <li>30-minute results call included</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Order Audit &mdash; $500 &rarr;</a>
+        <p style="font-size:.8rem;color:var(--gray-400);text-align:center;margin-top:8px;">One-time payment. No subscription required.</p>
+      </div>
       <div class="pricing-card featured reveal">
         <span class="pricing-badge">Most Popular</span>
         <div class="pricing-name">Monthly Management</div>
         <div class="pricing-price">$1,500 <span>/month</span></div>
         <div class="pricing-desc">Ongoing optimization and monitoring. Watch your score climb.</div>
         <ul class="pricing-features">
+          <li>Builds on your audit findings</li>
           <li>Everything in Free Score (monthly re-scan)</li>
           <li>1&ndash;2 GEO-optimized content pieces per month</li>
           <li>Citation building across platforms AI trusts</li>
@@ -1099,7 +1130,17 @@ a:hover { color: var(--navy); }
       }
 
       if (data.next_update) {
-        nextEl.textContent = 'Next update: ' + data.next_update;
+        var nextText = 'Next update: ' + data.next_update;
+        if (data.score_based_on_N_models && data.score_based_on_N_models < 4) {
+          var timedOutNames = [];
+          if (data.chatgpt_timed_out) timedOutNames.push('ChatGPT');
+          if (data.claude_timed_out) timedOutNames.push('Claude');
+          if (data.grok_timed_out) timedOutNames.push('Grok');
+          if (data.perplexity_timed_out) timedOutNames.push('Perplexity');
+          nextText += ' · Score based on ' + data.score_based_on_N_models + ' of 4 engines';
+          if (timedOutNames.length > 0) nextText += ' — ' + timedOutNames.join(', ') + ' updating shortly';
+        }
+        nextEl.textContent = nextText;
       }
 
       // Model cards
@@ -1107,8 +1148,13 @@ a:hover { color: var(--navy); }
       var html = '';
       models.forEach(function(m) {
         var isPending = /pending|not yet tested|updating shortly/i.test(m.description || '');
+        var isTimedOut = m.timed_out || /timed out on this update cycle/i.test(m.description || '');
         var tagClass, tagText, displayDesc;
-        if (isPending) {
+        if (isTimedOut) {
+          tagClass = 'tag-pending';
+          tagText = 'Updating...';
+          displayDesc = 'Refreshing data — will update on next cycle';
+        } else if (isPending) {
           tagClass = 'tag-pending';
           tagText = 'Pending';
           displayDesc = 'Live web search — updating shortly';
@@ -1175,10 +1221,10 @@ a:hover { color: var(--navy); }
         // Build models array from flat fields (supports 3 or 4 models)
         if (!data.models) {
           data.models = [
-            {name:'ChatGPT', description: data.chatgpt || '', cited: false},
-            {name:'Claude', description: data.claude || '', cited: false},
-            {name:'Grok', description: data.grok || '', cited: false},
-            {name:'Perplexity', description: data.perplexity || '', cited: false}
+            {name:'ChatGPT', description: data.chatgpt || '', cited: false, timed_out: data.chatgpt_timed_out || false},
+            {name:'Claude', description: data.claude || '', cited: false, timed_out: data.claude_timed_out || false},
+            {name:'Grok', description: data.grok || '', cited: false, timed_out: data.grok_timed_out || false},
+            {name:'Perplexity', description: data.perplexity || '', cited: false, timed_out: data.perplexity_timed_out || false}
           ];
           // Mark as cited if description doesn't indicate no knowledge
           var noKnowledge = /don't have|not familiar|no information|not aware|fabricat|hallucin|local project|not public|not yet tested|pending/i;
