@@ -397,6 +397,7 @@ a:hover { color: var(--navy); }
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); }
 .form-group textarea { resize: vertical; min-height: 100px; }
+.field-hint { font-size: 12px; color: #8899aa; margin-top: 4px; display: block; }
 .contact-info h3 { font-size: 1.6rem; color: var(--navy); margin-bottom: 16px; }
 .contact-info p { color: var(--gray-600); margin-bottom: 24px; }
 .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; font-size: 1.05rem; }
@@ -458,6 +459,7 @@ a:hover { color: var(--navy); }
 .model-tag { font-size:.75rem; padding:2px 8px; border-radius:8px; font-weight:600; }
 .tag-no { background:#FDEDEC; color:#E74C3C; }
 .tag-yes { background:#E8F8F0; color:#27AE60; }
+.tag-pending { background:#FEF5E7; color:#F39C12; }
 .score-chart-container { max-width:600px; margin:24px auto; }
 .widget-meta { text-align:center; color:var(--gray-400); font-size:.85rem; margin:16px 0; }
 </style>
@@ -775,7 +777,8 @@ a:hover { color: var(--navy); }
           <div class="form-row">
             <div class="form-group">
               <label for="website">Website URL</label>
-              <input type="url" id="website" name="website" required placeholder="https://...">
+              <input type="text" id="website" name="website" required placeholder="https://yourbusiness.com">
+              <span class="field-hint">Include https:// — e.g. https://yourbusiness.com</span>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -994,12 +997,21 @@ a:hover { color: var(--navy); }
       var models = data.models || [];
       var html = '';
       models.forEach(function(m) {
-        var cited = m.cited ? 'Yes' : 'No';
-        var tagClass = m.cited ? 'tag-yes' : 'tag-no';
+        var isPending = /pending|not yet tested|updating shortly/i.test(m.description || '');
+        var tagClass, tagText, displayDesc;
+        if (isPending) {
+          tagClass = 'tag-pending';
+          tagText = 'Pending';
+          displayDesc = 'Live web search — updating shortly';
+        } else {
+          tagClass = m.cited ? 'tag-yes' : 'tag-no';
+          tagText = m.cited ? 'Cited: Yes' : 'Cited: No';
+          displayDesc = truncate(m.description || '', 180);
+        }
         html += '<div class="model-card">' +
           '<h4>' + (m.name || '') + '</h4>' +
-          '<p>' + truncate(m.description || '', 180) + '</p>' +
-          '<span class="model-tag ' + tagClass + '">Cited: ' + cited + '</span>' +
+          '<p>' + displayDesc + '</p>' +
+          '<span class="model-tag ' + tagClass + '">' + tagText + '</span>' +
           '</div>';
       });
       cardsEl.innerHTML = html;
@@ -1079,6 +1091,14 @@ a:hover { color: var(--navy); }
         labelEl.textContent = 'Score updating...';
       });
   })();
+
+  // ── URL auto-prepend https:// ──
+  document.getElementById('website').addEventListener('blur', function() {
+    var val = this.value.trim();
+    if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
+      this.value = 'https://' + val;
+    }
+  });
 
   // ── Contact form (Netlify Forms) ──
   var form = document.getElementById('contactForm');
