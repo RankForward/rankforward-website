@@ -1,13 +1,13 @@
 {
-  "score": 1,
+  "score": 2,
   "label": "Minimal AI Awareness",
   "date": "2026-03-25",
   "next_update": "2026-03-27",
   "chatgpt": "ChatGPT has minimal awareness of RankForward with limited accuracy.",
-  "claude": "Claude only knows RankForward from local project context, not public data.",
+  "claude": "Claude has moderate knowledge of RankForward with some accurate details.",
   "grok": "Grok explicitly states it has no information about RankForward.",
-  "perplexity": "Perplexity not yet tested \u2014 API key pending.",
-  "verdict": "1 of 3 AI engines shows awareness of RankForward. Citation building is gaining traction.",
+  "perplexity": "Perplexity explicitly states it has no information about RankForward.",
+  "verdict": "2 of 4 AI engines show awareness of RankForward.",
   "history": [
     {
       "date": "2026-03-25",
@@ -27,6 +27,11 @@
     {
       "date": "2026-03-25",
       "score": 1,
+      "label": "Minimal AI Awareness"
+    },
+    {
+      "date": "2026-03-25",
+      "score": 2,
       "label": "Minimal AI Awareness"
     }
   ]
