@@ -1,6 +1,9 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -23,12 +26,12 @@
 [[headers]]
   for = "/admin/*"
   [headers.values]
-    Basic-Auth = "rankforward:RankForwardAdmin2026"
+    Basic-Auth = "rankforward:{env.ADMIN_PASS}"
 
 [[headers]]
   for = "/portal/*"
   [headers.values]
-    Basic-Auth = "rankforward:RF2026portal"
+    Basic-Auth = "rankforward:{env.PORTAL_PASS}"
 
 [[redirects]]
   from = "https://www.rankforward.ai/*"
