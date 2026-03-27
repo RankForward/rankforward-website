@@ -24,5 +24,13 @@
   "chatgpt_timed_out": true,
   "claude_timed_out": false,
   "grok_timed_out": false,
-  "perplexity_timed_out": false
+  "perplexity_timed_out": false,
+  "engines_used": [
+    "Claude",
+    "Grok",
+    "Perplexity"
+  ],
+  "engines_timed_out": [
+    "ChatGPT"
+  ]
 }
