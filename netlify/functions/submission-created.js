@@ -59,9 +59,6 @@ exports.handler = async (event) => {
             <p><strong>Run audit on Mac Mini:</strong></p>
             <pre>cd ~/Projects/ai-seo-biz && source GEO/geo_env/bin/activate && set -a && source .env && set +a && python tools/free_score_report.py "${firstName}" "${businessName}" "${url}" "${industry}" "${market}"</pre>
             <p>Then send report to: ${email}</p>
-            <hr>
-            <p><strong>Raw form data:</strong></p>
-            <pre>${JSON.stringify(data, null, 2)}</pre>
           `,
         }),
       });
