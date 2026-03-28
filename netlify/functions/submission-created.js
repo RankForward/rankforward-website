@@ -11,7 +11,9 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: "Invalid JSON" };
   }
 
-  const data = payload.data || payload.payload || payload;
+  // Netlify Forms sends: { payload: { data: { firstName, bizName, ... } } }
+  // Direct POST sends: { firstName, bizName, ... }
+  const data = (payload.payload && payload.payload.data) || payload.data || payload;
   console.log("Parsed data keys:", Object.keys(data || {}));
 
   // Handle ALL possible field name formats (Netlify Forms, direct POST, etc.)
