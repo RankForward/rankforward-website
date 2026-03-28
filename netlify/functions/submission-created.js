@@ -2,6 +2,8 @@ exports.handler = async (event) => {
   const RESEND_KEY = process.env.RESEND_API_KEY;
   const WEBHOOK_URL = process.env.WEBHOOK_URL;
 
+  console.log("Raw payload:", (event.body || "").slice(0, 500));
+
   let payload;
   try {
     payload = JSON.parse(event.body);
@@ -9,13 +11,26 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: "Invalid JSON" };
   }
 
-  const data = payload.data || payload;
-  const firstName = data.first_name || data["first-name"] || data.firstName || "";
-  const email = data.email || "";
-  const businessName = data.business_name || data["business-name"] || data.businessName || "";
-  const url = data.url || data.website || "";
-  const industry = data.industry || "";
-  const market = data.market || "";
+  const data = payload.data || payload.payload || payload;
+  console.log("Parsed data keys:", Object.keys(data || {}));
+
+  // Handle ALL possible field name formats (Netlify Forms, direct POST, etc.)
+  const firstName =
+    data.firstName || data["first-name"] || data.first_name ||
+    data.name || "";
+  const email =
+    data.email || data["email-address"] || "";
+  const businessName =
+    data.bizName || data["biz-name"] || data.businessName ||
+    data["business-name"] || data.business_name || data.business || "";
+  const url =
+    data.website || data.url || data["website-url"] ||
+    data.website_url || "";
+  const industry =
+    data.industry || data["industry-type"] || "";
+  const market =
+    data.market || data["primary-market"] || data["market-city"] ||
+    data.city || "";
 
   // 1. Send admin notification via Resend
   if (RESEND_KEY && !RESEND_KEY.includes("add")) {
@@ -29,7 +44,7 @@ exports.handler = async (event) => {
         body: JSON.stringify({
           from: "RankForward Pipeline <hello@rankforward.ai>",
           to: ["hello@rankforward.ai"],
-          subject: `New Lead: ${businessName} (${firstName})`,
+          subject: `New Lead: ${businessName || "Unknown Business"} (${firstName || "Unknown Name"})`,
           html: `
             <h2>New Free Score Request</h2>
             <p><strong>Name:</strong> ${firstName}</p>
@@ -42,6 +57,9 @@ exports.handler = async (event) => {
             <p><strong>Run audit on Mac Mini:</strong></p>
             <pre>cd ~/Projects/ai-seo-biz && source GEO/geo_env/bin/activate && set -a && source .env && set +a && python tools/free_score_report.py "${firstName}" "${businessName}" "${url}" "${industry}" "${market}"</pre>
             <p>Then send report to: ${email}</p>
+            <hr>
+            <p><strong>Raw form data:</strong></p>
+            <pre>${JSON.stringify(data, null, 2)}</pre>
           `,
         }),
       });
