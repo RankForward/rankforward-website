@@ -1,13 +1,13 @@
 {
-  "score": 2,
+  "score": 1,
   "label": "Minimal AI Awareness",
-  "date": "2026-03-26",
-  "next_update": "2026-03-28",
+  "date": "2026-03-28",
+  "next_update": "2026-03-30",
   "chatgpt": "ChatGPT timed out on this update cycle. Will retry next update.",
-  "claude": "Claude has moderate knowledge of RankForward with some accurate details.",
+  "claude": "Claude returned no response (API unavailable).",
   "grok": "Grok explicitly states it has no information about RankForward.",
-  "perplexity": "Perplexity explicitly states it has no information about RankForward.",
-  "verdict": "1 of 3 responding AI engines show awareness of RankForward. (ChatGPT updating shortly.)",
+  "perplexity": "Perplexity has minimal awareness of RankForward with limited accuracy.",
+  "verdict": "1 of 2 responding AI engines show awareness of RankForward. (ChatGPT, Claude updating shortly.)",
   "history": [
     {
       "date": "2026-03-25",
@@ -18,19 +18,24 @@
       "date": "2026-03-26",
       "score": 2,
       "label": "Minimal AI Awareness"
+    },
+    {
+      "date": "2026-03-28",
+      "score": 1,
+      "label": "Minimal AI Awareness"
     }
   ],
-  "score_based_on_N_models": 3,
+  "score_based_on_N_models": 2,
   "chatgpt_timed_out": true,
-  "claude_timed_out": false,
+  "claude_timed_out": true,
   "grok_timed_out": false,
   "perplexity_timed_out": false,
   "engines_used": [
-    "Claude",
     "Grok",
     "Perplexity"
   ],
   "engines_timed_out": [
-    "ChatGPT"
+    "ChatGPT",
+    "Claude"
   ]
 }
