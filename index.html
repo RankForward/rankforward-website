@@ -1138,7 +1138,7 @@ a:hover { color: var(--navy); }
           if (data.grok_timed_out) timedOutNames.push('Grok');
           if (data.perplexity_timed_out) timedOutNames.push('Perplexity');
           nextText += ' · Score based on ' + data.score_based_on_N_models + ' of 4 engines';
-          if (timedOutNames.length > 0) nextText += ' — ' + timedOutNames.join(', ') + ' updating shortly';
+          // Don't show "updating shortly" to visitors
         }
         nextEl.textContent = nextText;
       }
@@ -1151,9 +1151,11 @@ a:hover { color: var(--navy); }
         var isTimedOut = m.timed_out || /timed out on this update cycle/i.test(m.description || '');
         var tagClass, tagText, displayDesc;
         if (isTimedOut) {
-          tagClass = 'tag-pending';
-          tagText = 'Updating...';
-          displayDesc = 'Refreshing data — will update on next cycle';
+          tagClass = 'tag-no';
+          tagText = 'Cited: No';
+          displayDesc = m.description && m.description.length > 10
+            ? truncate(m.description, 180)
+            : 'Data temporarily unavailable';
         } else if (isPending) {
           tagClass = 'tag-pending';
           tagText = 'Pending';
