@@ -159,7 +159,7 @@
         <input type="text" id="ci-business" name="business_name" required placeholder="Your company name">
 
         <label for="ci-website">Website URL</label>
-        <input type="url" id="ci-website" name="website_url" required placeholder="https://yourbusiness.com">
+        <input type="text" id="ci-website" name="website_url" required placeholder="yourbusiness.com">
 
         <div class="form-row">
           <div>
@@ -219,30 +219,30 @@
         <h2>Current Online Presence</h2>
         <p class="subtitle">Check all platforms where your business currently has a profile.</p>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="google_business"> Google Business Profile
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-bottom:16px;">
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="google_business" style="width:auto;margin:0;"> Google Business Profile
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="linkedin"> LinkedIn
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="linkedin" style="width:auto;margin:0;"> LinkedIn
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="yelp"> Yelp
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="yelp" style="width:auto;margin:0;"> Yelp
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="facebook"> Facebook
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="facebook" style="width:auto;margin:0;"> Facebook
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="bbb"> Better Business Bureau
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="bbb" style="width:auto;margin:0;"> Better Business Bureau
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="instagram"> Instagram
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="instagram" style="width:auto;margin:0;"> Instagram
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="nextdoor"> Nextdoor
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="nextdoor" style="width:auto;margin:0;"> Nextdoor
           </label>
-          <label style="font-weight:400;display:flex;align-items:center;gap:8px;">
-            <input type="checkbox" name="platforms" value="clutch"> Clutch.co
+          <label style="font-weight:400;display:flex;align-items:center;gap:10px;margin-bottom:0;font-size:0.95rem;cursor:pointer;">
+            <input type="checkbox" name="platforms" value="clutch" style="width:auto;margin:0;"> Clutch.co
           </label>
         </div>
 
@@ -291,5 +291,15 @@
   <div class="footer">
     RankForward &middot; hello@rankforward.ai &middot; rankforward.ai &middot; Prescott, Arizona
   </div>
+
+<script>
+  // Auto-prepend https:// to website URL on blur
+  document.getElementById('ci-website').addEventListener('blur', function() {
+    var val = this.value.trim();
+    if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
+      this.value = 'https://' + val;
+    }
+  });
+</script>
 </body>
 </html>
