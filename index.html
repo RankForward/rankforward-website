@@ -824,14 +824,30 @@ a:hover { color: var(--navy); }
             <select id="industry" name="industry" required>
               <option value="">Select your industry...</option>
               <option value="Commercial Real Estate">Commercial Real Estate</option>
-              <option value="Retail">Retail</option>
-              <option value="Professional Services">Professional Services</option>
-              <option value="Restaurant/Food">Restaurant / Food</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Automotive">Automotive</option>
+              <option value="Residential Real Estate">Residential Real Estate</option>
               <option value="Home Services">Home Services</option>
-              <option value="Other">Other</option>
+              <option value="Plumbing">Plumbing</option>
+              <option value="HVAC">HVAC</option>
+              <option value="Roofing">Roofing</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Dental">Dental</option>
+              <option value="Medical Practice">Medical Practice</option>
+              <option value="Veterinary">Veterinary</option>
+              <option value="Automotive / Auto Dealer">Automotive / Auto Dealer</option>
+              <option value="Restaurant / Food">Restaurant / Food</option>
+              <option value="Professional Services">Professional Services</option>
+              <option value="Legal">Legal</option>
+              <option value="Accounting / Financial">Accounting / Financial</option>
+              <option value="Technology / SaaS">Technology / SaaS</option>
+              <option value="Retail">Retail</option>
+              <option value="Construction">Construction</option>
+              <option value="Fitness / Wellness">Fitness / Wellness</option>
+              <option value="Other">Other (specify below)</option>
             </select>
+            <input type="text" id="industryOther" name="industryOther"
+              placeholder="Please specify your industry..."
+              style="display:none;margin-top:8px;"
+              maxlength="50">
           </div>
           <div class="form-group">
             <label for="market">Primary Market / City</label>
@@ -1096,6 +1112,36 @@ a:hover { color: var(--navy); }
     var val = this.value.trim();
     if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
       this.value = 'https://' + val;
+    }
+  });
+
+  // Industry "Other" — show text field and merge value
+  document.getElementById('industry').addEventListener('change', function() {
+    var otherInput = document.getElementById('industryOther');
+    if (this.value === 'Other') {
+      otherInput.style.display = 'block';
+      otherInput.required = true;
+      otherInput.focus();
+    } else {
+      otherInput.style.display = 'none';
+      otherInput.required = false;
+      otherInput.value = '';
+    }
+  });
+
+  // Before form submit: if "Other" selected, replace value with the text
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    var industrySelect = document.getElementById('industry');
+    var otherInput = document.getElementById('industryOther');
+    if (industrySelect.value === 'Other' && otherInput.value.trim()) {
+      // Create a hidden input with the actual industry value
+      var hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.name = 'industry';
+      hidden.value = otherInput.value.trim();
+      this.appendChild(hidden);
+      // Disable the select so it doesn't submit "Other"
+      industrySelect.disabled = true;
     }
   });
 

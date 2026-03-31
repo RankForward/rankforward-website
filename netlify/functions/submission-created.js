@@ -101,7 +101,7 @@ exports.handler = async (event) => {
                     <strong>Want to talk through the results?</strong><br>
                     Book a free 30-minute strategy call — before or after your report arrives.
                   </p>
-                  <a href="https://calendly.com/rankforward/30min" style="display:inline-block;margin-top:12px;background:#2E86C1;color:white;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:bold;">Book Your Free Call</a>
+                  <a href="https://calendly.com/rankforward/free-strategy-call" style="display:inline-block;margin-top:12px;background:#2E86C1;color:white;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:bold;">Book Your Free Call</a>
                 </div>
               </div>
               <div style="background:#F8F9FA;padding:20px 32px;text-align:center;font-size:12px;color:#888;">
