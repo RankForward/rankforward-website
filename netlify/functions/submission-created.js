@@ -119,7 +119,10 @@ source GEO/geo_env/bin/activate 2>/dev/null || true
 set -a && source .env && set +a
 python tools/full_audit_report.py ${slug}
 
-echo "Audit report generated. Check clients/${slug}/reports/"</pre>
+echo "Audit report generated. Check clients/${slug}/reports/"
+
+# CrowdReply onboarding (run after audit)
+python tools/crowdreply_onboard_client.py ${slug}</pre>
               </div>
             </div>`,
         }),
