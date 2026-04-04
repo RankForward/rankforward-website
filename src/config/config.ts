@@ -22,17 +22,17 @@ export interface Config {
 }
 
 export const configData: Config = {
-	siteTitle: 'Toki - Agency Theme Built with Astro by Oxygenna',
+	siteTitle: 'RankForward — AI Search Optimization Agency',
 	siteDescription:
-		'Toki is a standout agency template with striking design, blazing speed, built for modern agencies and creatives',
+		'RankForward helps businesses get recommended by ChatGPT, Perplexity, Gemini, and Claude. Built on Princeton University GEO research. Free AI visibility score.',
 	ogImage: '/og.jpg',
 	logo: {
-		src: '/logo-light.webp',
-		srcDark: '/logo-dark.webp',
-		alt: 'Toki logo'
+		src: '/logo.svg',
+		srcDark: '/logo.svg',
+		alt: 'RankForward'
 	},
 	canonical: true,
 	noindex: false,
-	mode: 'auto',
+	mode: 'light',
 	scrollAnimations: true
 }

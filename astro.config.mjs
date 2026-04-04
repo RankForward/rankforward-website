@@ -9,7 +9,7 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://toki-theme.netlify.app",
+  site: "https://rankforward.ai",
   integrations: [
     icon(),
     sitemap(),

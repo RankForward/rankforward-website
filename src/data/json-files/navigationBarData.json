@@ -1,52 +1,16 @@
 {
 	"logo": {
-		"src": "/logo-light.webp",
-		"srcDark": "/logo-dark.webp",
-		"alt": "The tailwind astro theme"
+		"src": "/logo.svg",
+		"srcDark": "/logo.svg",
+		"alt": "RankForward",
+		"text": "RankForward"
 	},
 	"navItems": [
-		{ "name": "Work", "link": "/work" },
+		{ "name": "How It Works", "link": "/#how-it-works" },
 		{ "name": "Services", "link": "/services" },
-		{ "name": "Culture", "link": "/about-v1" },
-		{ "name": "Journal", "link": "/blog" },
-		{
-			"name": "Pages",
-			"link": "#",
-			"align": "full",
-			"submenu": [
-				{
-					"links": [
-						{ "name": "Home v1", "link": "/" },
-						{ "name": "Home v2", "link": "/home-v2" },
-						{ "name": "About us", "link": "/about-v1" },
-						{ "name": "About us v2", "link": "/about-v2" },
-						{
-							"name": "Toki i18n",
-							"link": "https://i18n--toki-theme.netlify.app",
-							"badge": "New"
-						}
-					]
-				},
-				{
-					"links": [
-						{ "name": "Our Work", "link": "/work" },
-						{ "name": "Our Work v2", "link": "/work-v2" },
-						{ "name": "Single Project", "link": "/work/atlaswear" },
-						{ "name": "Services", "link": "/services" },
-						{ "name": "Terms", "link": "/terms" }
-					]
-				},
-				{
-					"links": [
-						{ "name": "Blog v1", "link": "/blog" },
-						{ "name": "Blog v2", "link": "/blog-v2" },
-						{ "name": "Single Post", "link": "/blog/brands-are-built-in-motion" },
-						{ "name": "Contact", "link": "/contact" },
-						{ "name": "404", "link": "/404" }
-					]
-				}
-			]
-		}
+		{ "name": "Pricing", "link": "/pricing" },
+		{ "name": "Blog", "link": "/blog" },
+		{ "name": "FAQ", "link": "/faq" }
 	],
-	"navActions": [{ "name": "lets talk!", "link": "/contact" }]
+	"navActions": [{ "name": "Free AI Score", "link": "/#free-score" }]
 }

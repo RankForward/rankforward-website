@@ -9,15 +9,7 @@ export interface SocialLink {
 
 export const socialLinks: SocialLink[] = [
 	{
-		name: 'Instagram',
-		link: '/'
-	},
-	{
 		name: 'LinkedIn',
-		link: '/'
-	},
-	{
-		name: 'Threads',
-		link: '/'
+		link: 'https://www.linkedin.com/company/rankforward'
 	}
 ]

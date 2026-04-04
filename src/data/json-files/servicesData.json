@@ -1,34 +1,26 @@
 [
 	{
-		"title": "Branding",
+		"title": "Submit Your URL",
 		"text": [
-			"We help brands find their voice, define their vibe, and show up sharp. Whether you’re starting fresh or need a reset, we build identities that stick — not just visually, but strategically.",
-			"Logos are just the start. We craft full systems: typography, color, tone of voice, and usage rules that grow with you — not against you."
+			"Enter your business website and we'll query ChatGPT, Perplexity, Gemini, and Claude to see if they recommend you.",
+			"You'll receive a detailed AI visibility score within 24 hours — no cost, no commitment."
 		],
 		"image": "/assets/services/service-01.webp"
 	},
 	{
-		"title": "UX design",
+		"title": "We Audit & Optimize",
 		"text": [
-			"We think through the clicks before we design them. Our UX work is focused on flow, clarity, and making sure users don’t have to ask, “What do I do now?",
-			"Wireframes, journeys, structure — we map it all out before the colors show up. Because good UX doesn’t shout, it guides."
+			"Our team analyzes your AI visibility across all engines and builds a custom GEO optimization roadmap using Princeton-backed methodology.",
+			"We identify exactly where you're invisible and what content changes will get you cited."
 		],
 		"image": "/assets/services/service-02.webp"
 	},
 	{
-		"title": "Development",
+		"title": "You Get Recommended",
 		"text": [
-			"We write clean, scalable code that brings your design to life without surprises. Everything’s responsive, accessible, and built to perform.",
-			"Whether it’s a marketing site or a complex product UI, we work closely with designers to keep every detail intact — from animations to button states."
+			"We optimize your digital presence so AI engines cite your business when customers ask who to hire in your market.",
+			"Monthly tracking shows your progress as AI engines start recognizing and recommending you."
 		],
 		"image": "/assets/services/service-03.webp"
-	},
-	{
-		"title": "Motion",
-		"text": [
-			"Movement matters. We add motion where it counts — not just to impress, but to guide, delight, and communicate.",
-			"From subtle microinteractions to full-blown scroll animations, we help your site feel more alive, more polished, and way more fun to use."
-		],
-		"image": "/assets/services/service-04.webp"
 	}
 ]

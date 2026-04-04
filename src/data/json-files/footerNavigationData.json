@@ -1,35 +1,35 @@
 {
 	"footerAbout": {
-		"aboutText": "Tired of boring? Let’s talk.",
-		"aboutLink": "hello@toki.com"
+		"aboutText": "RankForward helps businesses get recommended by AI search engines like ChatGPT, Perplexity, and Gemini. Built on Princeton University GEO research.",
+		"aboutLink": "hello@rankforward.ai"
 	},
 	"footerColumns": [
 		{
+			"category": "Company",
 			"subCategories": [
-				{
-					"subCategory": "Our culture",
-					"subCategoryLink": "/about-v1"
-				},
-				{
-					"subCategory": "Journal",
-					"subCategoryLink": "/blog"
-				},
-				{
-					"subCategory": "Services",
-					"subCategoryLink": "/services"
-				},
-				{
-					"subCategory": "Contact",
-					"subCategoryLink": "/contact"
-				},
-				{
-					"subCategory": "Terms",
-					"subCategoryLink": "/terms"
-				}
+				{ "subCategory": "How It Works", "subCategoryLink": "/#how-it-works" },
+				{ "subCategory": "Pricing", "subCategoryLink": "/pricing" },
+				{ "subCategory": "Blog", "subCategoryLink": "/blog" }
+			]
+		},
+		{
+			"category": "Resources",
+			"subCategories": [
+				{ "subCategory": "Free AI Score", "subCategoryLink": "/#free-score" },
+				{ "subCategory": "FAQ", "subCategoryLink": "/faq" },
+				{ "subCategory": "Contact", "subCategoryLink": "/contact" }
+			]
+		},
+		{
+			"category": "Legal",
+			"subCategories": [
+				{ "subCategory": "Terms of Service", "subCategoryLink": "/terms" },
+				{ "subCategory": "Privacy Policy", "subCategoryLink": "/privacy" },
+				{ "subCategory": "Disclaimer", "subCategoryLink": "/disclaimer" }
 			]
 		}
 	],
 	"subFooter": {
-		"copywriteText": "2025© Toki Studio"
+		"copywriteText": "2026 RankForward. All rights reserved."
 	}
 }
