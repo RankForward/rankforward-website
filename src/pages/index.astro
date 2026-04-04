@@ -272,7 +272,7 @@ const industries = [
 	</Section>
 
 	<!-- FREE SCORE FORM -->
-	<Section id="free-score" type="alt" decoration="all" classes="py-20! lg:py-28!">
+	<Section id="free-score" type="alt" decoration="all" classes="py-20! lg:py-28! overflow-x-hidden!">
 		<Row classes="mb-8">
 			<Col span="12">
 				<h2 class="text-center">Get Your Free AI Visibility Score</h2>
@@ -281,7 +281,7 @@ const industries = [
 		</Row>
 		<Row>
 			<Col span="8" classes="mx-auto col-start-3">
-				<div class="rounded-xl border border-neutral-200 bg-white p-8 dark:border-neutral-700 dark:bg-neutral-900">
+				<div class="rounded-xl border border-neutral-200 bg-white p-4 md:p-8 dark:border-neutral-700 dark:bg-neutral-900 box-border max-w-full overflow-hidden">
 					<form name="free-score-intake" method="POST" data-netlify="true" netlify-honeypot="website_confirm" id="freeScoreForm">
 						<input type="hidden" name="form-name" value="free-score-intake" />
 						<div style="position:absolute;left:-9999px" aria-hidden="true">
@@ -388,3 +388,19 @@ const industries = [
 		})
 	}
 </script>
+
+<style>
+	@media (max-width: 768px) {
+		#freeScoreForm {
+			padding: 0;
+		}
+		#freeScoreForm input,
+		#freeScoreForm select,
+		#freeScoreForm textarea,
+		#freeScoreForm button {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+	}
+</style>

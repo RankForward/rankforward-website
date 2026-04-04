@@ -256,4 +256,38 @@ const savedNavActions = navActions.map((action: any) => ({
 	.menu--open ~ .header__actions {
 		@apply visible opacity-100 delay-500 duration-700;
 	}
+
+	/* Explicit mobile fallbacks — ensures nav collapses below lg (1024px) */
+	@media (max-width: 1023px) {
+		.header__menu:not(.menu--open) {
+			visibility: hidden !important;
+			opacity: 0 !important;
+			position: absolute !important;
+			z-index: -1 !important;
+		}
+		.header__menu.menu--open {
+			visibility: visible !important;
+			opacity: 1 !important;
+		}
+		.header__toggle {
+			display: block !important;
+		}
+		.header__actions:not(:has(~ .menu--open)) {
+			visibility: hidden !important;
+			opacity: 0 !important;
+		}
+	}
+	@media (min-width: 1024px) {
+		.header__toggle {
+			display: none !important;
+		}
+		.header__menu {
+			visibility: visible !important;
+			opacity: 1 !important;
+			position: relative !important;
+			display: flex !important;
+			z-index: 0 !important;
+			margin-top: 0 !important;
+		}
+	}
 </style>

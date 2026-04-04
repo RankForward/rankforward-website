@@ -166,6 +166,9 @@
 <!-- Scroll animations -->
 <script>
 	const initializeScrollAnimationsAndCounters = () => {
+		// Enable scroll animations now that JS is ready — elements are visible by default until this fires
+		document.querySelectorAll('.scroll-animation').forEach(el => el.classList.add('scroll-ready'))
+
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -206,7 +209,7 @@
 		)
 
 		document
-			.querySelectorAll('.scroll-animation .col:not(.no-scroll-animation)')
+			.querySelectorAll('.scroll-animation.scroll-ready .col:not(.no-scroll-animation)')
 			.forEach((el) => observer.observe(el))
 
 		document.querySelectorAll('.counter').forEach((el) => observer.observe(el))

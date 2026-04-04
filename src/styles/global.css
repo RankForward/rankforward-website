@@ -256,8 +256,8 @@ form button {
 }
 
 /* Scroll animations */
-/* To disable scroll animations remove the class "scroll-animation" from root html in the layout file. To make a col not scroll animated add the class "no-scroll-animation" */
-.scroll-animation .col:not(.no-scroll-animation) {
+/* Elements start visible. JS adds .scroll-ready to enable animations — content is never hidden without JS. */
+.scroll-animation.scroll-ready .col:not(.no-scroll-animation) {
 	@apply translate-y-6 scale-y-110 transform opacity-0 blur-sm transition-all duration-1000 nth-1:delay-50 nth-10:delay-725 nth-11:delay-800 nth-12:delay-875 nth-2:delay-125 nth-3:delay-200 nth-4:delay-275 nth-5:delay-350 nth-6:delay-425 nth-7:delay-500 nth-8:delay-575 nth-9:delay-650 [&.scroll-animated]:translate-y-0 [&.scroll-animated]:scale-y-100 [&.scroll-animated]:opacity-100 [&.scroll-animated]:blur-none;
 }
 
