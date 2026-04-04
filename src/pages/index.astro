@@ -1,44 +1,390 @@
 ---
-// Home Page
-// ------------
-// Description: The home page is a page that displays the most important information.
-
-// Components
-// - Layout
+// Home Page — RankForward
 import Layout from '../layouts/Layout.astro'
-// - Blocks
-import Hero from '../components/blocks/hero/MediaHeroCTA.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+import Button from '../components/ui/Button.astro'
 import Statistics from '../components/blocks/stats/Statistics.astro'
 import Services from '../components/blocks/services/ServicesBasic.astro'
-import Slider from '../components/blocks/slider/BrandSlider.astro'
-import Work from '../components/blocks/work/WorkBasic.astro'
-import Testimonials from '../components/blocks/testimonials/TestimonialsAlt.astro'
+import Testimonials from '../components/blocks/testimonials/TestimonialsBasic.astro'
 import Blog from '../components/blocks/blog/PostCards.astro'
 
-// Content
-// - SEO
 const SEO = {
-	title: 'Toki | Agency Theme Template',
-	description:
-		'Toki is a creative studio helping brands find their voice, shape their presence, and make things people remember.'
+	title: 'RankForward — AI Search Optimization Agency',
+	description: 'RankForward helps businesses get recommended by ChatGPT, Perplexity, Gemini, and Claude. Built on Princeton University GEO research. Free AI visibility score.'
 }
-// - Hero
+
 const hero = {
-	title: 'We design like we mean it.',
-	text: 'We don’t do generic. We do design that fits, moves, and grows with you — grounded in strategy and made to stand out in a sea of sameness.'
+	title: 'Your Customers Are Asking AI Which Business to Hire. What Does It Say About You?',
+	text: 'RankForward helps businesses get recommended by ChatGPT, Perplexity, Gemini, and Claude — using methodology built on Princeton University research.'
 }
-// - Statistics
+
 const statistics = {
-	text: 'We’re <strong>Toki</strong> — a small, sharp creative studio that believes in good ideas, clean builds, and design that actually does something. We help brands shape their identity, tell their story, and launch digital experiences people remember (for the right reasons).'
+	text: 'We\'re <strong>RankForward</strong> — an AI search optimization agency that helps businesses get cited and recommended by the AI engines your customers are already using. Built on peer-reviewed research from Princeton University (ACM KDD 2024).'
 }
+
+const faqItems = [
+	{
+		q: 'What is AI search optimization?',
+		a: 'AI search optimization — also called Generative Engine Optimization (GEO) — is the process of making your business visible in AI-generated search answers from platforms like ChatGPT, Perplexity, Google AI Overviews, Claude, and Grok. Unlike traditional SEO, which focuses on Google\'s link-based algorithm, GEO optimizes your content to be cited, quoted, and recommended by large language models. According to Princeton University\'s KDD 2024 research, systematic GEO optimization can improve AI citation visibility by up to 40%.'
+	},
+	{
+		q: 'How do I get my business to show up in ChatGPT results?',
+		a: 'To appear in ChatGPT results, your business needs strong AI citation signals: factual content with specific data points, presence on third-party platforms AI trusts (directories, review sites, industry publications), proper schema markup, and an llms.txt file. RankForward\'s audit tests your business against 20+ prompts and identifies exactly where you\'re invisible.'
+	},
+	{
+		q: 'What is GEO (Generative Engine Optimization)?',
+		a: 'GEO is a methodology developed through academic research at Princeton University, published at <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener">ACM KDD 2024</a>. It identifies 9 specific content optimization methods that increase how often AI search engines cite a source. GEO is different from traditional SEO: SEO helps you get found on Google. GEO gets you cited by AI.'
+	},
+	{
+		q: 'How is GEO different from traditional SEO?',
+		a: 'Traditional SEO ranks you in Google\'s blue links using backlinks and keyword optimization. GEO gets you cited in AI-generated answers using factual density, authority signals, and third-party citations. A business can rank #1 on Google and score 0% in AI answers — the ranking factors are completely different.'
+	},
+	{
+		q: 'How long does it take to see results?',
+		a: 'Most clients begin seeing measurable AI visibility improvements within 60–90 days. Full compounding impact typically takes 3–6 months. RankForward tracks your score monthly and reports every change — you\'ll see progress before you see the full result.'
+	},
+	{
+		q: 'Does RankForward build our website or write our web pages?',
+		a: 'No. RankForward provides AI search optimization strategy, content drafts, and reporting. Website development, technical implementation, and publishing content to your site require your web developer or internal team. We tell you exactly what to do and provide the content — your team executes it.'
+	},
+	{
+		q: 'What does the GEO audit include?',
+		a: 'The GEO audit includes: AI visibility scan across ChatGPT, Claude, Grok, and Perplexity using 20+ prompts, competitor citation source map, citation readiness score from 1–10 with detailed reasoning, your top 3 high-impact action items, and a written report delivered within 7 days followed by a 30-minute call.'
+	},
+	{
+		q: 'How much does AI search optimization cost?',
+		a: 'RankForward offers a free AI visibility score, a one-time GEO Audit for $500, Monthly Management at $1,500/month, and Full Service at $2,500/month. We recommend starting with the free score to establish your baseline.'
+	},
+	{
+		q: 'Do you work with businesses outside your area?',
+		a: 'Yes. Our GEO methodology works for any business in any location. We take clients nationally. Contact us to discuss your market.'
+	}
+]
+
+const industries = [
+	'Commercial Real Estate', 'Residential Real Estate', 'Home Services', 'Plumbing',
+	'HVAC', 'Roofing', 'Healthcare', 'Dental', 'Medical Practice', 'Veterinary',
+	'Automotive / Auto Dealer', 'Restaurant / Food', 'Professional Services', 'Legal',
+	'Accounting / Financial', 'Technology / SaaS', 'Retail', 'Construction',
+	'Fitness / Wellness', 'Other'
+]
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-	<Hero title={hero.title} text={hero.text} />
+
+	<!-- HERO -->
+	<Section classes="py-24! lg:py-40!">
+		<Row>
+			<Col span="7">
+				<h1 class="text-balance">{hero.title}</h1>
+			</Col>
+			<Col span="5" classes="self-end">
+				<p class="text-lead mb-8">{hero.text}</p>
+				<div class="flex flex-wrap gap-4">
+					<Button type="link" link="/#free-score" size="lg">Get Your Free AI Score &rarr;</Button>
+					<Button type="link" link="/#how-it-works" style="link" size="lg">See How It Works &rarr;</Button>
+				</div>
+			</Col>
+		</Row>
+		<Row classes="mt-12">
+			<Col span="12">
+				<div class="flex flex-wrap justify-center gap-8 text-sm text-neutral-500 border-t border-neutral-200 pt-8 dark:border-neutral-800">
+					<span>Built on Princeton University GEO Research</span>
+					<span class="hidden md:inline">&bull;</span>
+					<span>4 AI Engines Analyzed</span>
+					<span class="hidden md:inline">&bull;</span>
+					<span>Results in 24 Hours</span>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- STATS -->
 	<Statistics text={statistics.text} />
+
+	<!-- CASE STUDY -->
+	<Section type="alt" decoration="all" classes="py-20! lg:py-28!">
+		<Row>
+			<Col span="12">
+				<div class="text-center mb-12">
+					<h2>From Invisible to Recommended in 30 Days</h2>
+					<p class="text-lead max-w-2xl mx-auto">How we used our own GEO methodology on RankForward</p>
+				</div>
+			</Col>
+		</Row>
+		<Row classes="mb-12">
+			<Col span="5">
+				<div class="rounded-xl border border-neutral-200 bg-white p-8 text-center dark:border-neutral-700 dark:bg-neutral-900">
+					<p class="text-xs uppercase tracking-widest text-neutral-500 mb-2">Day 1</p>
+					<p class="text-6xl font-bold font-headings mb-2">0/10</p>
+					<p class="text-sm text-neutral-500">Zero AI engines knew us</p>
+				</div>
+			</Col>
+			<Col span="2" classes="self-center text-center">
+				<p class="text-3xl text-neutral-400">&rarr;</p>
+			</Col>
+			<Col span="5">
+				<div class="rounded-xl border-2 border-emerald-500/30 bg-emerald-50 p-8 text-center dark:bg-emerald-950/20">
+					<p class="text-xs uppercase tracking-widest text-emerald-600 mb-2">Day 30</p>
+					<p class="text-6xl font-bold font-headings mb-2">3/10</p>
+					<p class="text-sm text-emerald-600">Cited by Claude &bull; Recognized by ChatGPT</p>
+				</div>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="4">
+				<div class="rounded-xl bg-white p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+					<p class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">Week 1</p>
+					<h4 class="text-base font-semibold mb-2">Citation Foundation</h4>
+					<p class="text-sm text-neutral-600 dark:text-neutral-400">Built profiles on 6 high-authority platforms. Added Schema.org structured data. Optimized website copy with GEO Method 3 (Authoritative Tone).</p>
+				</div>
+			</Col>
+			<Col span="4">
+				<div class="rounded-xl bg-white p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+					<p class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">Week 2-3</p>
+					<h4 class="text-base font-semibold mb-2">Content Signals</h4>
+					<p class="text-sm text-neutral-600 dark:text-neutral-400">Published research-backed blog content 2x/week. Applied GEO Method 5 (Credible Citations) and Method 8 (Statistics) across all pages.</p>
+				</div>
+			</Col>
+			<Col span="4">
+				<div class="rounded-xl bg-white p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700">
+					<p class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-2">Week 4</p>
+					<h4 class="text-base font-semibold mb-2">First Citation</h4>
+					<p class="text-sm text-neutral-600 dark:text-neutral-400">Claude began citing RankForward accurately. ChatGPT showed partial awareness. Grok and Perplexity indexing in progress.</p>
+				</div>
+			</Col>
+		</Row>
+		<Row classes="mt-8">
+			<Col span="12" classes="text-center">
+				<Button type="link" link="/#free-score" size="lg">Get Your Free Score to See Where You Stand &rarr;</Button>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- HOW IT WORKS -->
+	<Section id="how-it-works">
+		<Row classes="mb-8">
+			<Col span="12">
+				<h2 class="text-center">How It Works</h2>
+				<p class="text-lead text-center max-w-2xl mx-auto">Three steps to getting your business recommended by AI search engines.</p>
+			</Col>
+		</Row>
+	</Section>
 	<Services />
-	<Slider />
-	<Work />
-	<Testimonials />
+
+	<!-- PRICING -->
+	<Section id="pricing" type="alt" decoration="all" classes="py-20! lg:py-28!">
+		<Row classes="mb-12">
+			<Col span="12">
+				<h2 class="text-center">Pricing</h2>
+				<p class="text-lead text-center max-w-2xl mx-auto">Start with a free score. Scale when you're ready.</p>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-6 h-full flex flex-col dark:bg-neutral-900 dark:border-neutral-700">
+					<h3 class="text-lg font-semibold mb-1">Free AI Score</h3>
+					<p class="text-3xl font-bold font-headings mb-4">$0</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 mb-8 flex-1">
+						<li>AI visibility score across 4 engines</li>
+						<li>See who AI recommends instead of you</li>
+						<li>Competitive gap analysis</li>
+					</ul>
+					<Button type="link" link="/#free-score" size="sm" classes="w-full justify-center!">Get Free Score &rarr;</Button>
+				</div>
+			</Col>
+			<Col span="3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-6 h-full flex flex-col dark:bg-neutral-900 dark:border-neutral-700">
+					<h3 class="text-lg font-semibold mb-1">GEO Audit</h3>
+					<p class="text-3xl font-bold font-headings mb-1">$500</p>
+					<p class="text-xs text-neutral-500 mb-4">one-time</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 mb-8 flex-1">
+						<li>Everything in Free Score, plus:</li>
+						<li>Full audit with AI-generated content recommendations</li>
+						<li>Copy-paste-ready optimized business descriptions</li>
+						<li>GEO methodology roadmap</li>
+						<li>Before/after comparison framework</li>
+					</ul>
+					<Button type="link" link="https://calendly.com/rankforward/30min" size="sm" classes="w-full justify-center!">Book a Call &rarr;</Button>
+				</div>
+			</Col>
+			<Col span="3">
+				<div class="rounded-xl border-2 border-blue-500 bg-white p-6 h-full flex flex-col relative dark:bg-neutral-900">
+					<span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
+					<h3 class="text-lg font-semibold mb-1">Monthly Management</h3>
+					<p class="text-3xl font-bold font-headings mb-1">$1,500</p>
+					<p class="text-xs text-neutral-500 mb-4">per month</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 mb-8 flex-1">
+						<li>Everything in GEO Audit, plus:</li>
+						<li>Monthly AI visibility monitoring</li>
+						<li>Ongoing content optimization</li>
+						<li>Citation building &amp; management</li>
+						<li>Monthly progress reports</li>
+					</ul>
+					<Button type="link" link="https://calendly.com/rankforward/30min" size="sm" classes="w-full justify-center!">Book a Call &rarr;</Button>
+				</div>
+			</Col>
+			<Col span="3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-6 h-full flex flex-col dark:bg-neutral-900 dark:border-neutral-700">
+					<h3 class="text-lg font-semibold mb-1">Full Service</h3>
+					<p class="text-3xl font-bold font-headings mb-1">$2,500</p>
+					<p class="text-xs text-neutral-500 mb-4">per month</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 mb-8 flex-1">
+						<li>Everything in Monthly Management, plus:</li>
+						<li>Done-for-you content updates</li>
+						<li>Social media optimization for AI</li>
+						<li>Reddit &amp; community seeding</li>
+						<li>Dedicated account manager</li>
+					</ul>
+					<Button type="link" link="https://calendly.com/rankforward/30min" size="sm" classes="w-full justify-center!">Book a Call &rarr;</Button>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- TESTIMONIAL -->
+	<Testimonials sectionType="none" />
+
+	<!-- FAQ -->
+	<Section id="faq" classes="py-20! lg:py-28!">
+		<Row classes="mb-12">
+			<Col span="12">
+				<h2 class="text-center">Frequently Asked Questions</h2>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="8" classes="mx-auto col-start-3">
+				<div class="space-y-4">
+					{faqItems.map((item) => (
+						<details class="group rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-900">
+							<summary class="cursor-pointer font-semibold text-lg list-none flex items-center justify-between">
+								{item.q}
+								<span class="ml-4 text-2xl text-neutral-400 group-open:rotate-45 transition-transform">+</span>
+							</summary>
+							<p class="mt-4 text-neutral-600 dark:text-neutral-400 leading-relaxed" set:html={item.a} />
+						</details>
+					))}
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- FREE SCORE FORM -->
+	<Section id="free-score" type="alt" decoration="all" classes="py-20! lg:py-28!">
+		<Row classes="mb-8">
+			<Col span="12">
+				<h2 class="text-center">Get Your Free AI Visibility Score</h2>
+				<p class="text-lead text-center max-w-2xl mx-auto">See what ChatGPT, Perplexity, Gemini, and Claude say when customers ask for businesses like yours.</p>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="8" classes="mx-auto col-start-3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-8 dark:border-neutral-700 dark:bg-neutral-900">
+					<form name="free-score-intake" method="POST" data-netlify="true" netlify-honeypot="website_confirm" id="freeScoreForm">
+						<input type="hidden" name="form-name" value="free-score-intake" />
+						<div style="position:absolute;left:-9999px" aria-hidden="true">
+							<input type="text" name="website_confirm" tabindex="-1" autocomplete="off" />
+						</div>
+
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+							<div>
+								<label for="firstName" class="block text-sm font-medium mb-1">First Name</label>
+								<input type="text" id="firstName" name="firstName" required placeholder="Your name" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="bizName" class="block text-sm font-medium mb-1">Business Name</label>
+								<input type="text" id="bizName" name="bizName" required placeholder="Your company" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+							<div>
+								<label for="website" class="block text-sm font-medium mb-1">Website URL</label>
+								<input type="text" id="website" name="website" required placeholder="https://yourbusiness.com" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+								<span class="text-xs text-neutral-500 mt-1">Include https://</span>
+							</div>
+							<div>
+								<label for="email" class="block text-sm font-medium mb-1">Email</label>
+								<input type="email" id="email" name="email" required placeholder="you@company.com" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+							<div>
+								<label for="industry" class="block text-sm font-medium mb-1">Industry</label>
+								<select id="industry" name="industry" required class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800 bg-white dark:bg-neutral-800">
+									<option value="">Select your industry...</option>
+									{industries.map((ind) => (
+										<option value={ind === 'Other' ? 'Other' : ind}>{ind === 'Other' ? 'Other (specify below)' : ind}</option>
+									))}
+								</select>
+								<input type="text" id="industryOther" name="industryOther" placeholder="Please specify your industry..." maxlength="50" class="hidden w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm mt-2 focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="market" class="block text-sm font-medium mb-1">Primary Market / City</label>
+								<input type="text" id="market" name="market" required placeholder="e.g. Denver, CO" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+
+						<div class="mb-6">
+							<label for="message" class="block text-sm font-medium mb-1">What prompted your interest in AI search visibility? (optional)</label>
+							<textarea id="message" name="message" rows="3" placeholder="Tell us what prompted your interest..." class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800"></textarea>
+						</div>
+
+						<Button type="submit" size="lg" classes="w-full justify-center!">Get My Free Score &rarr;</Button>
+					</form>
+					<div id="formSuccess" class="hidden text-center py-8">
+						<p class="text-lg font-semibold text-emerald-600">Your free AI visibility score is being prepared.</p>
+						<p class="text-neutral-500 mt-2">Expect it in your inbox within 24 hours.</p>
+					</div>
+				</div>
+				<p class="text-center text-sm text-neutral-500 mt-4">No credit card. No commitment.</p>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- BLOG -->
 	<Blog />
+
 </Layout>
+
+<script>
+	// Show/hide industryOther field
+	const industrySelect = document.getElementById('industry') as HTMLSelectElement
+	const industryOther = document.getElementById('industryOther') as HTMLInputElement
+	if (industrySelect && industryOther) {
+		industrySelect.addEventListener('change', () => {
+			if (industrySelect.value === 'Other') {
+				industryOther.classList.remove('hidden')
+				industryOther.required = true
+			} else {
+				industryOther.classList.add('hidden')
+				industryOther.required = false
+				industryOther.value = ''
+			}
+		})
+	}
+
+	// Form submission handler
+	const form = document.getElementById('freeScoreForm') as HTMLFormElement
+	const formSuccess = document.getElementById('formSuccess')
+	if (form && formSuccess) {
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault()
+			const formData = new FormData(form)
+			try {
+				await fetch('/', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+					body: new URLSearchParams(formData as any).toString()
+				})
+				form.classList.add('hidden')
+				formSuccess.classList.remove('hidden')
+			} catch (err) {
+				alert('Something went wrong. Please try again.')
+			}
+		})
+	}
+</script>
