@@ -134,7 +134,11 @@
 
 /* Layout rules */
 html {
-	@apply scroll-smooth antialiased;
+	@apply scroll-smooth antialiased overflow-x-hidden;
+	max-width: 100vw;
+}
+body {
+	overflow-x: hidden;
 }
 body {
 	@apply font-body bg-neutral-50 bg-[url('/bgs/light.webp')] bg-size-[200px] text-base leading-7 text-neutral-500 selection:bg-neutral-950 selection:text-neutral-50 in-[.dark]:text-neutral-400 in-[.light]:text-neutral-500 has-[.header\_\_menu--open]:overflow-hidden lg:has-[.header\_\_menu--open]:overflow-auto dark:bg-neutral-950 dark:bg-[url('/bgs/dark.webp')] dark:text-neutral-400 dark:selection:bg-neutral-50 dark:selection:text-neutral-950;
@@ -169,6 +173,10 @@ h5 strong,
 h6 strong {
 	font-weight: inherit;
 }
+h1, h2, h3 {
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
 h1,
 .h1,
 h2,
@@ -189,7 +197,7 @@ h6,
 
 h1,
 .h1 {
-	@apply text-6xl lg:text-[7rem] 2xl:text-9xl;
+	@apply text-3xl md:text-5xl lg:text-[7rem] 2xl:text-9xl;
 }
 
 h2,
