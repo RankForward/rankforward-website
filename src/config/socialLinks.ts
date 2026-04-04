@@ -10,6 +10,6 @@ export interface SocialLink {
 export const socialLinks: SocialLink[] = [
 	{
 		name: 'LinkedIn',
-		link: 'https://www.linkedin.com/company/rankforward'
+		link: 'https://www.linkedin.com/in/rankforward'
 	}
 ]
