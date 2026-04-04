@@ -1,13 +1,13 @@
 {
-  "score": 0,
-  "label": "Not Known to AI",
-  "date": "2026-03-30",
-  "next_update": "2026-04-01",
+  "score": 1,
+  "label": "Minimal AI Awareness",
+  "date": "2026-04-04",
+  "next_update": "2026-04-06",
   "chatgpt": "ChatGPT has minimal awareness of RankForward with limited accuracy.",
   "claude": "Claude returned no response (API unavailable).",
-  "grok": "Grok explicitly states it has no information about RankForward.",
+  "grok": "Grok fabricated a generic description without real knowledge of RankForward.",
   "perplexity": "Perplexity explicitly states it has no information about RankForward.",
-  "verdict": "1 of 3 responding AI engines show awareness of RankForward. (Claude updating shortly.)",
+  "verdict": "Zero AI engines have genuine public knowledge of RankForward. (ChatGPT, Claude updating shortly.)",
   "history": [
     {
       "date": "2026-03-25",
@@ -28,6 +28,11 @@
       "date": "2026-03-30",
       "score": 0,
       "label": "Not Known to AI"
+    },
+    {
+      "date": "2026-04-04",
+      "score": 1,
+      "label": "Minimal AI Awareness"
     }
   ],
   "score_based_on_N_models": 3,
@@ -36,11 +41,11 @@
   "grok_timed_out": false,
   "perplexity_timed_out": false,
   "engines_used": [
-    "ChatGPT",
     "Grok",
     "Perplexity"
   ],
   "engines_timed_out": [
+    "ChatGPT",
     "Claude"
   ]
 }
