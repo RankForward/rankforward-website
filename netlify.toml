@@ -1,0 +1,35 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[redirects]]
+  from = "https://www.rankforward.ai/*"
+  to = "https://rankforward.ai/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/intake"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/intake/*"
+  to = "/contact"
+  status = 301
