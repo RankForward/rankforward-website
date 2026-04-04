@@ -1,0 +1,51 @@
+---
+// Basic Astro Form
+// ------------
+// Description: A form that can be used to collect user information
+// Properties:
+// - formData: The data of the form
+// - classes: Additional classes to be added to the form
+
+// Components
+// - UI
+import Card from '../../ui/cards/Card.astro'
+import AstroForm from '../../ui/forms/AstroForm.astro'
+import FormField from '../../ui/forms/partials/FormField.astro'
+import InputField from '../../ui/forms/form-elements/InputField.astro'
+import TextArea from '../../ui/forms/form-elements/TextArea.astro'
+import Button from '../../ui/Button.astro'
+
+// Props
+type Props = {
+	formData?: any
+	classes?: string
+}
+const { formData, classes } = Astro.props
+---
+
+<Card
+	classes={classes}
+	cardBodyClasses="lg:p-15!"
+	decoration="all"
+	classes="bg-white/60! dark:bg-neutral-900/80!"
+>
+	<AstroForm>
+		<FormField>
+			<InputField type="text" id="firstName" label={formData.firstName} />
+			<InputField type="text" id="lastName" label={formData.lastName} />
+		</FormField>
+		<FormField>
+			<InputField
+				type="email"
+				id="email"
+				label={formData.email.label}
+				required
+				value={formData.email.value}
+			/>
+		</FormField>
+		<FormField>
+			<TextArea id="message" label={formData.message} />
+		</FormField>
+		<Button style="primary" type="submit" size="lg">{formData.button}</Button>
+	</AstroForm>
+</Card>

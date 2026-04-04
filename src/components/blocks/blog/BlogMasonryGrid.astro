@@ -1,0 +1,122 @@
+---
+// Blog Masonry Grid
+// ------------
+// Description: A layout for blog posts with a grid of cards and pagination
+// Properties:
+// - data: The data of the blog posts
+// - pagination: The pagination of the blog posts
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Card from '../../ui/cards/Card.astro'
+import Pagination from '../../ui/Pagination.astro'
+// - Scripts
+import { postSubtitle } from '../../../components/scripts/postScripts.ts'
+// Content
+// - Props
+type Props = {
+	data: any
+	pagination?: {
+		first: string
+		prev: string
+		next: string
+		last: string
+		current: string
+		length: number
+		size: number
+		total: number
+	}
+}
+const { data: allPosts, pagination } = Astro.props
+
+// Sort blog posts by publication date (newest first)
+const sortedBlogPosts = allPosts.sort((a: any, b: any) => {
+	return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+})
+---
+
+<Section>
+	<Row>
+		{
+			// Render the first post if it exists
+			sortedBlogPosts[0] && (
+				<Col span="8">
+					<Card
+						title={sortedBlogPosts[0].data.title}
+						subtitle={sortedBlogPosts[0].data.subtitle}
+						link={`/blog/${sortedBlogPosts[0].id}`}
+						image={sortedBlogPosts[0].data.imageThumbnail}
+						video={sortedBlogPosts[0].data.videoThumbnail}
+						classes="h-full"
+						cardMediaClasses="order-2 max-h-[380px] w-full object-cover"
+						cardHeaderClasses="lg:p-12! pb-7.5! [&_span]:lg:text-[21px]! [&_span]:text-base! [&_span]:lg:leading-9! [&_span]:max-w-[600px] [&_span]:inline-block!"
+						cardBodyClasses="order-3 lg:p-12! pt-7.5!"
+					>
+						<p class="line-clamp-8 columns-auto gap-7.5 lg:columns-2">
+							{sortedBlogPosts[0].data.description}
+						</p>
+					</Card>
+				</Col>
+			)
+		}
+
+		{
+			// Render second and third posts if they exist
+			(sortedBlogPosts[1] || sortedBlogPosts[2]) && (
+				<Col span="4" classes="flex flex-col gap-6">
+					{[1, 2].map((i) => {
+						const p = sortedBlogPosts[i]
+						if (!p) return null
+						return (
+							<Card
+								title={p.data.title}
+								subtitle={postSubtitle(p.data.author, p.data.pubDate)}
+								titleLink={`/blog/${p.id}`}
+								classes="h-full only:h-fit!"
+							>
+								<p class="line-clamp-5">{p.data.description}</p>
+							</Card>
+						)
+					})}
+				</Col>
+			)
+		}
+
+		{
+			// Render the rest starting from the 4th post
+			sortedBlogPosts.length > 3 &&
+				sortedBlogPosts.slice(3).map((post: any) => (
+					<Col span="4">
+						<Card
+							title={post.data.title}
+							subtitle={postSubtitle(post.data.author, post.data.pubDate)}
+							titleLink={`/blog/${post.id}`}
+							classes="h-full"
+						>
+							<p class="line-clamp-5">{post.data.description}</p>
+						</Card>
+					</Col>
+				))
+		}
+	</Row>
+
+	{
+		pagination && (
+			<Row classes="pt-16">
+				<Col span="12">
+					<Pagination
+						prev={pagination.prev}
+						next={pagination.next}
+						current={pagination.current}
+						length={pagination.length}
+						collection="blog-v2"
+					/>
+				</Col>
+			</Row>
+		)
+	}
+</Section>

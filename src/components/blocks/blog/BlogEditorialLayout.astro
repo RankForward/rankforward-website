@@ -1,0 +1,78 @@
+---
+// Blog Editorial Layout
+// ------------
+// Description: A layout for blog posts with a grid of cards and pagination
+// Properties:
+// - data: The data of the blog posts
+// - pagination: The pagination of the blog posts
+
+// Components
+// - Layout
+import Section from '../../../components/ui/Section.astro'
+import Row from '../../../components/ui/Row.astro'
+import Col from '../../../components/ui/Col.astro'
+// - UI
+import BlogCard from '../../../components/ui/cards/BlogCard.astro'
+import Pagination from '../../../components/ui/Pagination.astro'
+
+// Content
+// - Props
+type Props = {
+	data: any
+	pagination?: {
+		first: string
+		prev: string
+		next: string
+		last: string
+		current: string
+		length: number
+		size: number
+		total: number
+	}
+}
+const { data: sortedBlogPosts, pagination } = Astro.props
+
+// Define the grid column pattern (repeats every 6 posts)
+const columnMap = ['1', '3', '1', '2', '2', '3']
+---
+
+<Section>
+	<Row classes="grid-cols-3! gap-y-15!">
+		{
+			sortedBlogPosts.map((post: any, index: number) => {
+				const gridColumn = columnMap[index % columnMap.length]
+
+				return (
+					<Col span="1" start={gridColumn}>
+						<BlogCard
+							title={post.data.title}
+							image={post.data.imageThumbnail}
+							video={post.data.videoThumbnail}
+							link={`/blog/${post.id}`}
+							date={post.data.pubDate}
+							author={post.data.author}
+							classes="h-full"
+						>
+							{post.data.description}
+						</BlogCard>
+					</Col>
+				)
+			})
+		}
+	</Row>
+	{
+		pagination && (
+			<Row classes="pt-16">
+				<Col span="12">
+					<Pagination
+						prev={pagination.prev}
+						next={pagination.next}
+						current={pagination.current}
+						length={pagination.length}
+						collection="blog-v2"
+					/>
+				</Col>
+			</Row>
+		)
+	}
+</Section>

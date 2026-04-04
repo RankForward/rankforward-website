@@ -1,0 +1,81 @@
+---
+// Button
+// ------------
+// Description: Interactive button element with various types, styles, and sizes.
+// Properties:
+// - Type: button type (link, button, submit, reset)
+// - Size: button size (lg, base, sm)
+// - Link: URL for link type buttons
+// - Modal: ID of modal triggered by the button (optional)
+// - Style: button style (primary)
+// - Classes: additional CSS classes
+
+import Decorations from './Decor.astro'
+
+// Content
+// - Props
+type Props = {
+	type?: 'link' | 'button' | 'submit' | 'reset'
+	size?: 'lg' | 'base' | 'sm'
+	link?: string
+	modal?: string
+	style?: 'primary' | 'link'
+	classes?: string
+}
+const { type = 'button', size = 'base', link, modal, style = 'primary', classes } = Astro.props
+
+const isAbsoluteURL = (url: string) => /^https?:\/\//i.test(url)
+---
+
+{
+	type === 'link' || link ? (
+		<a
+			href={link}
+			target={link && isAbsoluteURL(link) ? '_blank' : '_self'}
+			class:list={[
+				'button',
+				{ ['button--' + `${size}`]: size },
+				{ ['button--' + `${style}`]: style },
+				{ [`${classes}`]: classes }
+			]}
+		>
+			<slot />
+			{style === 'primary' && <Decorations type="all" size="sm" />}
+		</a>
+	) : (
+		<button
+			type={type}
+			class:list={[
+				'button',
+				{ ['button--' + `${size}`]: size },
+				{ ['button--' + `${style}`]: style },
+				{ [`${classes}`]: classes }
+			]}
+			{...(modal ? { 'data-modal': modal } : {})}
+		>
+			<slot />
+			{style === 'primary' && <Decorations type="all" size="sm" />}
+		</button>
+	)
+}
+<style>
+	@reference '../../styles/global.css';
+	.button {
+		@apply relative inline-flex cursor-pointer items-center justify-center gap-2 border font-medium transition duration-300 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:shadow-none;
+	}
+	.button--lg {
+		@apply h-14 px-6 text-sm;
+	}
+	.button--base {
+		@apply h-12 px-5 text-sm;
+	}
+	.button--sm {
+		@apply h-10 px-4 text-xs;
+	}
+	.button--primary {
+		@apply bg-primary-950 hover:bg-primary-900 dark:hover:bg-primary-100 dark:text-primary-950 border-primary-100 dark:border-primary-800 border bg-[url('/bgs/dark.webp')] bg-size-[200px] px-12 py-4 text-lg font-medium text-white transition-colors duration-300 dark:bg-white dark:bg-[url('/bgs/light.webp')];
+	}
+	.button--link {
+		@apply text-primary-900 hover:text-primary-950 focus:text-primary-950 dark:text-primary-50 dark:hover:text-primary-100 dark:focus:text-primary-200 inline-flex h-auto! items-center justify-start gap-2 border-0 bg-transparent px-0;
+	}
+</style>

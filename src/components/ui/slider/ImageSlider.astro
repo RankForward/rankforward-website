@@ -1,0 +1,79 @@
+---
+// Image Slider
+// ------------
+// Description: A slider for images
+// Properties:
+// - images: The images to be displayed in the slider
+// - interval: The interval between slides
+
+// Content
+// - Props
+type Props = {
+	images: string[]
+	interval?: number
+}
+
+const { images = [], interval = 3000 } = Astro.props
+
+// Generate a unique ID for the slider instance
+const id = `slider-${Math.random().toString(36).slice(2, 9)}`
+---
+
+<div class="slider-container" data-id={id} data-interval={interval}>
+	<div class="slider-track">
+		{images.map((image, i) => <img src={image} alt={`Slide ${i + 1}`} class="slide" />)}
+	</div>
+</div>
+
+<style>
+	@reference '../../../styles/global.css';
+	.slider-container {
+		@apply relative h-[24px] w-full overflow-hidden;
+	}
+
+	.slider-track {
+		@apply flex flex-col transition-all duration-500 ease-in-out;
+	}
+
+	.slide {
+		@apply h-[24px] w-full shrink-0 object-contain;
+	}
+</style>
+
+<script is:inline>
+	// Function to initialize all sliders on the page
+	function initializeSliders() {
+		const containers = document.querySelectorAll('.slider-container')
+
+		containers.forEach((container) => {
+			// Skip if this slider has already been initialized
+			if (container.dataset.initialized === 'true') return
+			container.dataset.initialized = 'true'
+
+			// Get track and slide elements
+			const track = container.querySelector('.slider-track')
+			const slides = container.querySelectorAll('.slide')
+			const totalSlides = slides.length
+
+			// Read interval from data attribute or fallback to 3000ms
+			const interval = parseInt(container.dataset.interval, 10) || 3000
+
+			let currentIndex = 0
+
+			// Function to move to the next slide
+			function moveToNextSlide() {
+				currentIndex = (currentIndex + 1) % totalSlides
+				track.style.transform = `translateY(-${currentIndex * 24}px)`
+			}
+
+			// Start automatic sliding
+			setInterval(moveToNextSlide, interval)
+		})
+	}
+
+	// Run the initializer on first page load
+	document.addEventListener('DOMContentLoaded', initializeSliders)
+	// Run again when Astro loads a new page via client-side routing
+	document.addEventListener('astro:page-loaded', initializeSliders)
+	document.addEventListener('astro:after-swap', initializeSliders)
+</script>

@@ -1,0 +1,80 @@
+---
+// Pagination
+// ------------
+// Description: The primary basic pagination component.
+// Properties:
+// - prev: The URL of the previous page
+// - next: The URL of the next page
+// - current: The URL of the current page
+// - length: The total number of pages
+// - collection: The collection name
+
+// Components
+// - UI
+import Decorations from './Decor.astro'
+
+// Content
+// - Props
+type Props = {
+	prev: string
+	next: string
+	current: string
+	length: number
+	collection?: string
+}
+const { prev, next, current, length, collection = 'blog' } = Astro.props
+---
+
+<nav class="pagination" role="navigation" aria-label="Pagination Navigation">
+	<ul class="pagination__list">
+		<li class="block md:hidden">
+			<a href={prev} aria-label="Got to previous page" class="pagination__nav-arrows">
+				<span>Prev</span>
+				<Decorations type="top-left bottom-right" />
+			</a>
+		</li>
+
+		{
+			Array.from({ length: length }).map((_, index) => {
+				const pageNumber = index + 1
+				const pageUrl = pageNumber === 1 ? `/${collection}` : `/${collection}/${pageNumber}`
+
+				return (
+					<li class="hidden md:block">
+						<a
+							href={pageUrl}
+							aria-label={`Goto Page ${pageNumber}`}
+							class={`pagination__item-link ${pageUrl === current ? 'pagination__item-link--active' : ''}`}
+						>
+							{pageNumber}
+							<Decorations type="top-left bottom-right" />
+						</a>
+					</li>
+				)
+			})
+		}
+		<li class="block md:hidden">
+			<a href={next} aria-label={`Goto Page ${current + 1}`} class="pagination__nav-arrows">
+				<span>Next</span>
+				<Decorations type="top-left bottom-right" />
+			</a>
+		</li>
+	</ul>
+</nav>
+
+<style>
+	@reference '../../styles/global.css';
+	.pagination {
+		@apply flex w-full flex-col items-center gap-7.5 md:flex-row md:justify-end;
+	}
+	.pagination__list {
+		@apply flex items-center justify-center text-base text-neutral-700 md:gap-1 dark:text-neutral-50 [&_li]:list-none;
+	}
+	.pagination__nav-arrows,
+	.pagination__item-link {
+		@apply relative flex h-10 flex-col items-center justify-center border border-neutral-100 bg-white/20 px-4 text-base font-medium text-neutral-500 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900/20 dark:text-neutral-400;
+	}
+	.pagination__item-link--active {
+		@apply bg-primary-950 hover:bg-primary-900 dark:hover:bg-primary-100 dark:text-primary-950 bg-[url('/bgs/dark.webp')] text-white dark:bg-[url('/bgs/light.webp')];
+	}
+</style>

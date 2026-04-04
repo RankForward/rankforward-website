@@ -1,0 +1,73 @@
+---
+// Basic Hero CTA
+// ------------
+// Description: A hero section with a title and a subtitle
+// Properties:
+// - title: The title of the hero section
+// - text: The subtitle of the hero section 
+// - titleSpan: The span of the title
+// - type: The type of the hero section (basic or vertical)
+// - textStyle: The text style of the hero section (none or card)
+// - classes: Additional classes to be added to the hero section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import BasicCard from '../../ui/cards/Card.astro'
+
+// Content
+// - Props
+type Props = {
+	title?: string
+	text?: string
+	titleSpan?: string
+	type?: 'basic' | 'vertical'
+	textStyle?: 'none' | 'card'
+	classes?: string
+}
+const {
+	title = '',
+	text = '',
+	type = 'basic',
+	titleSpan = '6',
+	textStyle = 'card',
+	classes = 'py-40!'
+} = Astro.props
+---
+
+<Section classes={`${classes ? classes : ''}`}>
+	<Row>
+		<Col span={titleSpan}>
+			<h1>{title}</h1>
+			{
+				text &&
+					type === 'vertical' &&
+					(textStyle === 'none' ? (
+						<p class="text-lead max-w-[600px]">{text}</p>
+					) : (
+						<BasicCard decoration="all" style="transparent" classes="mt-12 max-w-[720px]">
+							<p class="text-lead">{text}</p>
+						</BasicCard>
+					))
+			}
+		</Col>
+		{
+			text &&
+				type === 'basic' &&
+				(textStyle === 'none' ? (
+					<Col span="6" classes="self-end">
+						<p class="text-lead max-w-[600px]">{text}</p>
+					</Col>
+				) : (
+					<Col span="6" classes="self-end">
+						<BasicCard decoration="all" style="transparent">
+							<p class="text-lead">{text}</p>
+						</BasicCard>
+					</Col>
+				))
+		}
+	</Row>
+</Section>

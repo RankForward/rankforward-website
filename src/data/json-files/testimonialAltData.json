@@ -1,0 +1,38 @@
+[
+	{
+		"blockquote": "We had a message. Toki gave it form. From the first wireframe to the final scroll animation, everything felt intentional — like they understood the soul of our brand better than we did.",
+		"figcaption": "Sarah L, Founder, Noto Studio",
+		"colSpan": "6",
+		"colStart": "2",
+		"classes": "self-end"
+	},
+
+	{
+		"blockquote": "We stopped looking like a startup. Now we *feel* like a brand.",
+		"figcaption": "Sofia Dimitriou, Altura Systems",
+		"colSpan": "5",
+		"classes": "self-end"
+	},
+
+	{
+		"blockquote": "It’s rare to find design partners who actually listen, iterate fast, and obsess over the same details you do. Working with Toki was a reminder that good design is quiet confidence — and they have it in spades.",
+		"figcaption": "Olivia T, Hollow & Co.",
+		"colSpan": "5",
+		"classes": "self-start"
+	},
+	{
+		"group": [
+			{
+				"blockquote": "Feels custom, not corporate. Our new site finally reflects who we are.",
+				"figcaption": "Riley Morgan, Shift Labs",
+				"colSpan": "5"
+			},
+			{
+				"blockquote": "We had a message. Toki gave it form. From the first wireframe to the final scroll animation, everything felt intentional — like they understood the soul of our brand better than we did..",
+				"figcaption": "Sarah L, Founder, Noto Studio",
+				"colSpan": "7"
+			}
+		],
+		"colSpan": "7"
+	}
+]

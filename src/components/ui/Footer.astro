@@ -1,0 +1,105 @@
+---
+// Footer
+// ------------
+// Description: Website footer containing about section, navigation columns, social links, and decorative accents.
+// Properties:
+// - footerAbout: content for the about section including text and email link
+// - footerColumns: array of navigation column data with subcategories and links
+// - subFooter: content for the sub-footer including copyright text
+
+// Components
+// - UI
+import Decor from './Decor.astro'
+import Row from './Row.astro'
+import Col from './Col.astro'
+
+// Data
+import { socialLinks } from '../../config/socialLinks'
+import { getFooterNavigationData } from '../../config/footerNavigation'
+
+const footerNavigationData = await getFooterNavigationData()
+const { footerAbout, footerColumns, subFooter } = footerNavigationData
+---
+
+<footer class="footer">
+	<!-- Main footer -->
+	<div class="footer__inner">
+		<div class="container">
+			<Row classes="mb-12">
+				<Col span="6">
+					<p class="footer__about">
+						{footerAbout.aboutText}
+						<a href={`mailto:${footerAbout.aboutLink}`}>{footerAbout.aboutLink}</a>
+					</p>
+				</Col>
+				<Col span="3" classes="hidden lg:block" />
+				{
+					footerColumns.map((column) => (
+						<Col span="3" classes="content-end">
+							<ul class="footer__links">
+								{column.subCategories.map((subCategory) => (
+									<li>
+										<a href={subCategory.subCategoryLink}> {subCategory.subCategory} </a>
+									</li>
+								))}
+							</ul>
+						</Col>
+					))
+				}
+			</Row>
+			<Col>
+				<Col span="12">
+					<div class="footer__copy">
+						<div class="footer__copy-text">
+							<p class="footer__copywrite">{subFooter.copywriteText}</p>
+							<div class="footer__social">
+								{socialLinks.map((social) => <a href={social.link}>{social.name}</a>)}
+							</div>
+						</div>
+						<Decor type="all" inverted />
+					</div>
+				</Col>
+			</Col>
+		</div>
+	</div>
+
+	<!-- Decorations -->
+	<Decor type="all" />
+</footer>
+
+<style>
+	@reference '../../styles/global.css';
+	.footer {
+		@apply relative mx-auto mb-[80px] w-[calc(100%-3rem)] overflow-hidden border border-neutral-100 bg-neutral-950 bg-[url('/bgs/dark.webp')] bg-size-[200px] text-neutral-400 in-[.dark]:text-neutral-500 lg:max-w-[1700px] lg:overflow-visible dark:border-neutral-800 dark:bg-neutral-50 dark:bg-[url('/bgs/light.webp')] dark:text-neutral-500 [.light_&]:text-neutral-400;
+	}
+	.footer__inner {
+		@apply relative py-16 lg:py-20 [&.dark:not([class*='bg-'])]:bg-neutral-950 [&.light]:bg-white [&.light:not([class*='bg-'])]:bg-white [&.section--sticky-col_.container]:h-full;
+	}
+	.container {
+		@apply relative z-1 mx-auto px-6 in-[.section--fullwidth]:max-w-full [.section--fullwidth_&]:md:px-0;
+	}
+	.footer__about {
+		@apply font-headings text-4xl font-medium text-neutral-50 in-[.dark]:text-neutral-950 md:text-6xl lg:text-8xl dark:text-neutral-950 [.light_&]:text-neutral-50;
+	}
+	.footer__about a {
+		@apply underline decoration-neutral-500 decoration-wavy decoration-[0.1rem] underline-offset-8 transition-all hover:underline-offset-12 dark:decoration-neutral-400;
+	}
+	.footer__links {
+		@apply m-0 ml-auto flex flex-col p-0 text-lg text-neutral-50 lg:text-xl dark:text-neutral-950;
+	}
+	.footer__links li {
+		@apply m-0 list-none py-1 text-inherit;
+	}
+	.footer__copy {
+		@apply relative border border-neutral-800 bg-neutral-900 p-7.5 transition-colors delay-300 in-[.dark]:bg-white/60 dark:border-neutral-100 dark:bg-white/60 [.light_&]:bg-neutral-950;
+	}
+	.footer__copy-text {
+		@apply flex flex-col justify-between gap-7 text-center text-sm text-neutral-50 md:flex-row lg:text-left dark:text-neutral-950;
+	}
+	.footer__social {
+		@apply m-0 flex justify-between gap-4 p-0;
+	}
+	.footer__copywrite {
+		@apply mb-0;
+	}
+</style>

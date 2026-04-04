@@ -1,0 +1,57 @@
+---
+// 404 Page
+// ------------
+// Description: The 404 page is a page that displays when a page is not found.
+
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+// - UI
+import Video from '../components/ui/Video.astro'
+import Decoration from '../components/ui/Decor.astro'
+import BasicCard from '../components/ui/cards/Card.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Oops! You Lost the Trail - Page Not Found',
+	description:
+		" Looks like we chased our tail and lost the page. Don't worry, let's get you back on the trail!"
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Section>
+		<Row>
+			<Col span="6" classes="flex justify-center flex-col">
+				<h1>This Page is Off the Map</h1>
+				<BasicCard decoration="all" style="transparent">
+					<p>
+						Looks like you've wandered off the map. This page might have blown away with the wind,
+						or maybe it never existed at all.But don’t worry — you’re not alone out here. Try
+						heading back to safer ground by clicking the home button, or use the menu to explore
+						other parts of the site.
+					</p>
+				</BasicCard>
+			</Col>
+			<Col span="6" classes="lg:order-1">
+				<div class="border-neutral-100 dark:border-neutral-800">
+					<Video
+						video="https://oxygenna-themes.b-cdn.net/toki-astro/videos/404-video.mp4"
+						id="video404"
+						width={470}
+						height={600}
+						loop={true}
+						autoplay={true}
+						muted={false}
+						classes="w-full object-cover lg:h-[800px]!"
+					/>
+				</div>
+				<Decoration type="all" />
+			</Col>
+		</Row>
+	</Section>
+</Layout>

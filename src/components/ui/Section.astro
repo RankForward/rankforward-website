@@ -1,0 +1,137 @@
+---
+// Section
+// ------------
+// Description: a foundational component representing a section of content within a page. The section can contain any number of rows.
+// Properties:
+// - id: the id of the section
+// - fullWidth: whether the section expands to full width
+// - fullWidthRight: whether the section expands to full width on the right side
+// - stickyCol: specifies whether the section contains a sticky column
+// - vAlign: vertical alignment of the section content
+// - bg: the background image of the section
+// - bgPosition: position of the background image (center, top, bottom)
+// - bgHeight: height of the background image
+// - bgSize: size of the background image (cover, contain)
+// - bgClasses: additional classes for the background container
+// - decoration: decoration style of the section (corners, all, none)
+// - type: type of section styling (alt, none)
+// - classes: additional classes for the section container
+
+// Components
+// - UI
+import Decorations from '../../components/ui/Decor.astro'
+
+// Content
+// - Props
+type BgProps = {
+	src: string
+	width: number
+	height: number
+	format: string
+}
+type Props = {
+	id?: string
+	fullWidth?: boolean
+	fullWidthRight?: boolean
+	stickyCol?: boolean
+	vAlign?: string
+	bg?: BgProps
+	bgPosition?: string
+	bgHeight?: string
+	bgSize?: string
+	type?: 'alt' | 'none'
+	decoration?: string
+	classes?: string
+	bgClasses?: string
+}
+const {
+	id,
+	fullWidth,
+	fullWidthRight,
+	stickyCol = false,
+	vAlign,
+	bg,
+	bgPosition = 'center',
+	bgHeight = '100%',
+	bgSize,
+	type = 'none',
+	decoration = 'none',
+	classes,
+	bgClasses
+} = Astro.props
+
+const bgStyle = bg
+	? {
+			backgroundImage: `url(${bg.src})`,
+			height: bgHeight,
+			backgroundPosition: bgPosition,
+			backgroundRepeat: 'no-repeat'
+		}
+	: {
+			height: bgHeight
+		}
+---
+
+<section
+	{...id ? { id } : {}}
+	class:list={[
+		'section',
+		{ 'section--sticky-col': stickyCol },
+		{ 'section--fullwidth': fullWidth },
+		{ 'section--fullwidth-right': fullWidthRight },
+		{ [`section--v-allign-${vAlign}`]: vAlign },
+		{ [`section--${type}`]: type },
+		{ [`${classes}`]: classes }
+	]}
+>
+	<div
+		style={bgStyle}
+		class:list={[
+			'section__bg',
+			{ [`section__bg--${bgSize}`]: bgSize },
+			{ [`${bgClasses}`]: bgClasses }
+		]}
+	>
+	</div>
+	<div class="container">
+		{
+			fullWidthRight ? (
+				<div class="container__track">
+					<slot />
+				</div>
+			) : (
+				<slot />
+			)
+		}
+	</div>
+	{decoration !== 'none' && <Decorations type={decoration} />}
+</section>
+
+<style>
+	@reference '../../styles/global.css';
+	.section {
+		@apply relative overflow-hidden py-16 lg:py-20 [&.dark:not([class*='bg-'])]:bg-neutral-950 [&.light]:bg-white [&.light:not([class*='bg-'])]:bg-white [&.section--sticky-col_.container]:h-full;
+	}
+	.section--v-allign-top {
+		@apply flex flex-col justify-start;
+	}
+	.section--v-allign-center {
+		@apply flex flex-col justify-center;
+	}
+	.section--v-allign-bottom {
+		@apply flex flex-col justify-end;
+	}
+	.section__bg {
+		@apply absolute inset-0;
+	}
+	.container {
+		@apply relative z-1 mx-auto px-6 in-[.section--fullwidth]:max-w-full in-[.section--fullwidth]:overflow-visible [.section--fullwidth_&]:md:px-0;
+	}
+	.container__track {
+		@apply lg:in-[.section--fullwidth-right]:w-screen;
+	}
+	/* Section alt */
+	.section--alt {
+		@apply mx-auto overflow-hidden border border-neutral-200 bg-[url('/bgs/alt-light.webp')] bg-size-[240px] lg:w-[calc(100%-3rem)] lg:max-w-[1700px] lg:overflow-visible dark:border-neutral-800 dark:bg-[url('/bgs/alt-dark.webp')];
+	}
+</style>

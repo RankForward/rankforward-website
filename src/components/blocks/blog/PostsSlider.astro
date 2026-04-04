@@ -1,0 +1,114 @@
+---
+// Posts Slider
+// ------------
+// Description: A slider for blog posts
+// Properties:
+// - data: The data of the blog posts
+// - pagination: The pagination of the blog posts
+
+import { Swiper, SwiperWrapper, SwiperSlide } from 'astro-swiper'
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - Blocks
+import TitleSection from '../basic/TitleSection.astro'
+// - UI
+import BasicCard from '../../ui/cards/Card.astro'
+// - Scripts
+import { postSubtitle } from '../../scripts/postScripts.ts'
+
+// - Collection
+import { getCollection } from 'astro:content'
+const allWorkProjects = await getCollection('blog', ({ id }) => id)
+// Sort blog posts by publication date (newest first)
+const sortedBlogPosts = allWorkProjects.sort((a, b) => {
+	return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+})
+---
+
+<TitleSection
+	title="Stuff we think, and some times regret."
+	text="Tips, rants, and stories from the design side of the internet. Smart takes on branding, digital, and creative work."
+	link="/blog"
+	classes="lg:pb-15!"
+/>
+
+<Section fullWidthRight classes="pt-0!">
+	<Row>
+		<Col span="12">
+			<Swiper
+				options={{
+					slidesPerView: 'auto',
+					loop: true,
+					spaceBetween: 30,
+					speed: 1000,
+					observer: true,
+					observeParents: true
+				}}
+				class="cursor-grab"
+			>
+				<SwiperWrapper>
+					{
+						sortedBlogPosts.slice(0, 6).map((post, index) => (
+							<SwiperSlide
+								class={`w-full self-stretch lg:h-auto! ${index === 0 ? 'lg:w-[800px]!' : 'lg:w-[400px]!'}`}
+							>
+								<BasicCard
+									title={post.data.title}
+									titleLink={`/blog/${post.id}`}
+									subtitle={postSubtitle(post.data.author, post.data.pubDate.toISOString())}
+									{...(index === 0 && {
+										orientation: 'horizontal',
+										image: post.data.imageThumbnail,
+										video: post.data.videoThumbnail
+									})}
+									classes="h-full"
+								>
+									<p class="line-clamp-5">{post.data.description}</p>
+								</BasicCard>
+							</SwiperSlide>
+						))
+					}
+				</SwiperWrapper>
+			</Swiper>
+		</Col>
+	</Row>
+</Section>
+
+<script>
+	import Swiper from 'swiper'
+
+	function initPostsSwiper() {
+		const swiperEl = document.querySelector('.swiper.cursor-grab') as HTMLElement | null
+		if (!swiperEl) return
+
+		// Check if already initialized
+		if ((swiperEl as any).swiper) return
+
+		// Wait a bit for astro-swiper to initialize, if it doesn't, we'll do it manually
+		setTimeout(() => {
+			if (!(swiperEl as any).swiper) {
+				new Swiper(swiperEl, {
+					slidesPerView: 'auto',
+					loop: true,
+					spaceBetween: 30,
+					speed: 1000,
+					observer: true,
+					observeParents: true
+				})
+			}
+		}, 100)
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initPostsSwiper)
+	} else {
+		initPostsSwiper()
+	}
+
+	document.addEventListener('astro:page-loaded', initPostsSwiper)
+	document.addEventListener('astro:after-swap', initPostsSwiper)
+</script>

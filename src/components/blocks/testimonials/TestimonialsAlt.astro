@@ -1,0 +1,80 @@
+---
+// Testimonials Alt
+// ------------
+// Description: A testimonials section with a title, a subtitle, a description and a grid of testimonials
+// Properties:
+// - sectionType: The type of the testimonials section
+// - classes: The classes of the testimonials section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import TestimonialCard from '../../ui/cards/TestimonialCard.astro'
+
+// Content
+// - Data
+import testimonialData from '../../../data/json-files/testimonialAltData.json'
+// - Props
+interface Props {
+	sectionType?: 'alt' | 'none'
+	classes?: string
+}
+const { sectionType = 'alt', classes } = Astro.props
+---
+
+<Section decoration="all" type={sectionType} classes="">
+	<Row classes="lg:gap-7.5!">
+		{
+			// Loop through each testimonial item (could be a single testimonial or a group)
+			testimonialData.map((item: any) => {
+				// If the item is a group (i.e., contains an array of testimonials under `group`)
+				if (Array.isArray(item.group)) {
+					return (
+						// Create a container div for the group, with a dynamic grid layout
+						<div
+							class={`col-span-12 lg:col-span-${item.colSpan} grid w-full grid-cols-${item.colSpan} gap-12 lg:gap-7.5`}
+						>
+							{
+								// Loop through each testimonial inside the group
+								item.group.map((nested: any) => (
+									<Col span={nested.colSpan} start={nested.colStart} classes={nested.classes}>
+										<TestimonialCard
+											blockquote={nested.blockquote}
+											figcaption={nested.figcaption}
+											classes={classes}
+										/>
+									</Col>
+								))
+							}
+						</div>
+					)
+				}
+				// Otherwise, render a single testimonial normally
+				return (
+					<Col span={item.colSpan} start={item.colStart} classes={item.classes}>
+						<TestimonialCard
+							blockquote={item.blockquote}
+							figcaption={item.figcaption}
+							classes={classes}
+						/>
+					</Col>
+				)
+			})
+		}
+	</Row>
+	<Row classes="mt-15 lg:mt-25">
+		<Col span="3" />
+		<Col span="9" classes="self-end justify-self-end">
+			<h2 class="md:text-right">
+				Toki designs and builds digital products brands and experiences with offices in New York and
+				Athens.
+			</h2>
+			<p class="text-lead md:text-right">
+				read more about our team and our culture in Toki studios
+			</p>
+		</Col>
+	</Row>
+</Section>

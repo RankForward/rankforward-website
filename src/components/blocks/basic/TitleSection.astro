@@ -1,0 +1,48 @@
+---
+// Title Section
+// ------------
+// Description: A section that can have a title and a subtitle, and a link
+// Properties:
+// - title: The title of the section
+// - text: The subtitle of the section
+// - link: The link to the section
+// - classes: Additional classes to be added to the section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Button from '../../ui/Button.astro'
+import { Icon } from 'astro-icon/components'
+
+// Content
+// - Props
+type Props = {
+	title?: string
+	text?: string
+	link?: string
+	classes?: string
+}
+const { title, text, link, classes } = Astro.props
+---
+
+<Section classes={`${classes ? classes : ''}`}>
+	<Row>
+		<Col span="6">
+			{title && <h2>{title}</h2>}
+			{text && <p>{text}</p>}
+		</Col>
+		{
+			link && (
+				<Col span="6" classes="self-end lg:justify-self-end">
+					<Button size="lg" style="link" link={link} classes="text-base! font-medium!">
+						<Icon name="plus-bold" class="size-2" />
+						view all
+					</Button>
+				</Col>
+			)
+		}
+	</Row>
+</Section>

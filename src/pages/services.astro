@@ -1,0 +1,49 @@
+---
+// Services Page
+// ------------
+// Description: The services page is a page that displays all the services.
+
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - Blocks
+import Hero from '../components/blocks/hero/MediaGrid.astro'
+import ServicesList from '../components/blocks/services/ServicesList.astro'
+import VideoSection from '../components/blocks/video/VideoSection.astro'
+import BrandSlider from '../components/blocks/slider/BrandSlider.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | Services',
+	description: 'Services'
+}
+// - Hero
+const hero = {
+	title: 'This is what we do all day.',
+	text: 'We design brands, build websites, and add just the right amount of motion. No shortcuts. Just smart, creative work that clicks.',
+	description:
+		'Need help with strategy, design, development, or something weird and wonderful in between? We’ve got the skills to turn your ideas into smart, scroll-worthy, and totally ownable digital experiences. No copy-paste process here. Every project (and every client) is different — so we stay flexible, adapt fast, and shape our work to fit your world, not the other way around.'
+}
+// - Services List
+const servicesList = {
+	title: 'Stuff we’re good at and love doing too.',
+	text: 'Our services blend bold design, smart UX, and clean builds into experiences that feel good and perform even better. Custom, scalable, never boring.'
+}
+// Video
+const video = {
+	video: 'https://oxygenna-themes.b-cdn.net/toki-astro/videos/about-us-video.mp4'
+}
+// Brand Slider
+const brandSlider = {
+	title: 'Brands we’ve teamed up with',
+	text: 'From future unicorns to up-and-coming legends, we work with brands that aren’t afraid to make noise.'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={hero.title} text={hero.text} description={hero.description} />
+	<ServicesList title={servicesList.title} text={servicesList.text} />
+	<VideoSection video={video.video} classes="pt-0!" />
+	<BrandSlider title={brandSlider.title} text={brandSlider.text} />
+</Layout>

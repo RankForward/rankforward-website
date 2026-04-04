@@ -1,0 +1,89 @@
+---
+// Brand Slider
+// ------------
+// Description: A brand slider section with a title, a subtitle, a description and a grid of brands
+// Properties:
+// - title: The title of the brand slider section
+// - text: The subtitle of the brand slider section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - Blocks
+import TitleSection from '../basic/TitleSection.astro'
+// - UI
+import Slider from '../../ui/slider/ImageSlider.astro'
+import CardContainer from '../../ui/cards/partials/CardContainer.astro'
+
+// Content
+// - Assets
+const logo01 = '/assets/logos/logo-01.svg'
+const logo02 = '/assets/logos/logo-02.svg'
+const logo03 = '/assets/logos/logo-03.svg'
+const logo04 = '/assets/logos/logo-04.svg'
+const logo05 = '/assets/logos/logo-05.svg'
+const logo06 = '/assets/logos/logo-06.svg'
+const logo07 = '/assets/logos/logo-07.svg'
+const logo08 = '/assets/logos/logo-08.svg'
+const logo09 = '/assets/logos/logo-09.svg'
+const logo10 = '/assets/logos/logo-10.svg'
+const logo11 = '/assets/logos/logo-11.svg'
+const logo12 = '/assets/logos/logo-12.svg'
+const logo13 = '/assets/logos/logo-13.svg'
+// Combine all images into groups
+const group01 = [logo01, logo02, logo03]
+const group02 = [logo04, logo05]
+const group03 = [logo06, logo07, logo08]
+const group04 = [logo09, logo10, logo11]
+const group05 = [logo12, logo13]
+
+// - Props
+type Props = {
+	title?: string
+	text?: string
+}
+const { title = '', text = '' } = Astro.props
+---
+
+{(title || text) && <TitleSection title={title} text={text} classes="pb-15!" />}
+<Section classes={`${title || text ? 'pt-0!' : ''}`}>
+	<Row flex classes="justify-center gap-7.5 flex-col lg:flex-row">
+		<Col classes="w-full flex-1">
+			<CardContainer>
+				<div class="p-7.5">
+					<Slider images={group01} interval={2000} />
+				</div>
+			</CardContainer>
+		</Col>
+		<Col classes="w-full flex-1">
+			<CardContainer>
+				<div class="p-7.5">
+					<Slider images={group02} interval={3500} />
+				</div>
+			</CardContainer>
+		</Col>
+		<Col classes="w-full flex-1">
+			<CardContainer>
+				<div class="p-7.5">
+					<Slider images={group03} interval={3500} />
+				</div>
+			</CardContainer>
+		</Col>
+		<Col classes="w-full flex-1">
+			<CardContainer>
+				<div class="p-7.5">
+					<Slider images={group04} interval={2500} />
+				</div>
+			</CardContainer>
+		</Col>
+		<Col classes="w-full flex-1">
+			<CardContainer>
+				<div class="p-7.5">
+					<Slider images={group05} interval={3100} />
+				</div>
+			</CardContainer>
+		</Col>
+	</Row>
+</Section>

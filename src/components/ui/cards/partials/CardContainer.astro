@@ -1,0 +1,52 @@
+---
+// Card Container
+// ---------------
+// Description: Wrapper component for Card. Handles links, background style, and decorations.
+// Properties:
+// - Decoration: the decoration of the card corners
+// - Link: makes the entire card clickable
+// - Style: normal or transparent (background style)
+// - Classes: extra classes for the container
+
+// Props
+import Decorations from '../../Decor.astro'
+
+type Props = {
+	decoration?: string
+	link?: string
+	classes?: string
+	style?: 'normal' | 'transparent'
+}
+
+const { decoration = 'all', link, classes, style = 'normal' } = Astro.props
+---
+
+{
+	link ? (
+		<a
+			href={link}
+			class:list={['card group', { [`${classes}`]: classes }, { [`card--${style}`]: style }]}
+		>
+			<slot />
+			{decoration !== 'none' && <Decorations type={decoration} />}
+		</a>
+	) : (
+		<div class:list={['card group', { [`${classes}`]: classes }, { [`card--${style}`]: style }]}>
+			<slot />
+			{decoration !== 'none' && <Decorations type={decoration} />}
+		</div>
+	)
+}
+
+<style>
+	@reference '../../../../styles/global.css';
+	.card {
+		@apply relative flex flex-col border border-neutral-100 bg-white text-neutral-500 transition-colors duration-300 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400;
+	}
+	.card--transparent {
+		@apply bg-white/20 dark:bg-neutral-900/20;
+	}
+	.card--horizontal {
+		@apply flex flex-col lg:flex-row;
+	}
+</style>

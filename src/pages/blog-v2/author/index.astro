@@ -1,0 +1,65 @@
+---
+// Blog Author Page
+// ------------
+// Description: The blog author page is a page that displays all the blog posts written by a specific author.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+import Section from '../../../components/ui/Section.astro'
+import Row from '../../../components/ui/Row.astro'
+import Col from '../../../components/ui/Col.astro'
+// - Blocks
+import BlogCard from '../../../components/ui/cards/BlogCard.astro'
+import Hero from '../../../components/blocks/hero/BasicHeroCTA.astro'
+// - Collection
+import { getCollection } from 'astro:content'
+const allPosts = await getCollection('blog', ({ id }) => id)
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | Work Projects',
+	description:
+		"Explore Toki's latest work projects designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools."
+}
+
+// Sort blog posts by publication date (newest first)
+const sortedBlogPosts = allPosts.sort((a: any, b: any) => {
+	return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+})
+// Define the grid column pattern (repeats every 6 posts)
+const columnMap = ['1', '3', '1', '2', '2', '3']
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero
+		title="What we’re thinking about."
+		text="Notes from the studio on work, process, and creative problem-solving. No fluff, just ideas we wanted to share."
+	/>
+	<Section classes="pt-0!">
+		<Row classes="grid-cols-3! gap-y-15!">
+			{
+				sortedBlogPosts.map((post: any, index: number) => {
+					const gridColumn = columnMap[index % columnMap.length]
+
+					return (
+						<Col span="1" start={gridColumn}>
+							<BlogCard
+								title={post.data.title}
+								image={post.data.image}
+								video={post.data.video}
+								link={`/blog/${post.id}`}
+								date={post.data.pubDate}
+								author={post.data.author}
+								classes="h-full"
+							>
+								{post.data.description}
+							</BlogCard>
+						</Col>
+					)
+				})
+			}
+		</Row>
+	</Section>
+</Layout>

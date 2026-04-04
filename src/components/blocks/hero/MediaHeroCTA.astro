@@ -1,0 +1,66 @@
+---
+// Media Hero CTA
+// ------------
+// Description: A hero section with a title, a subtitle, a media grid and a CTA
+// Properties:
+// - title: The title of the hero section
+// - text: The subtitle of the hero section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Card from '../../ui/cards/Card.astro'
+
+// Content
+// - Props
+type Props = {
+	title?: string
+	text?: string
+}
+const { title = '', text = '' } = Astro.props
+---
+
+<Section classes="lg:py-40!">
+	<Row>
+		<Col span="6">
+			<h1>{title}</h1>
+
+			<p class="text-lead max-w-[600px]">{text}</p>
+		</Col>
+
+		<Col span="6" classes="self-end">
+			<div
+				class="grid max-h-[620px] grid-cols-3 grid-rows-3 gap-3 lg:grid-cols-4 lg:grid-rows-4 lg:gap-7.5"
+			>
+				<Card
+					image="/assets/images/image-01.webp"
+					classes="col-span-1 row-span-1 col-start-1 row-start-1 lg:row-start-4 h-full"
+					cardMediaClasses="h-full w-full object-cover "
+				/>
+				<Card
+					video="/assets/collections/blog/videos/video-02.mp4"
+					classes="col-span-1 row-span-2 lg:col-start-2 col-start-1 lg:row-start-3 row-start-2 h-full"
+					cardMediaClasses="h-full w-full object-cover"
+				/>
+				<Card
+					video="/assets/videos/video-01.mp4"
+					classes="col-span-1 row-span-1 lg:col-start-4 lg:row-start-1 h-full hidden! lg:block!"
+					cardMediaClasses="h-full w-full object-cover"
+				/>
+				<Card
+					image="/assets/images/image-04.webp"
+					classes="col-span-2 row-span-2 lg:col-start-3 col-start-2 lg:row-start-2 row-start-1 h-full"
+					cardMediaClasses="h-full w-full object-cover"
+				/>
+				<Card
+					video="/assets/videos/video-02.mp4"
+					classes="col-span-2 row-span-1 lg:col-start-3 lg:row-start-4 col-start-2 row-start-3 h-full"
+					cardMediaClasses="h-full w-full object-cover "
+				/>
+			</div>
+		</Col>
+	</Row>
+</Section>

@@ -1,0 +1,23 @@
+[
+	{
+		"city": "Tokyo",
+		"address": ["Shibuya Scramble Square", "2-24-12 Shibuya", "Shibuya-ku, Tokyo 150-0002", "JAPAN"]
+	},
+	{
+		"city": "Kyoto",
+		"address": [
+			"Kyoto Research Park (KRP)",
+			"134 Chudoji Minami-machi",
+			"Shimogyo-ku, Kyoto 600-8813",
+			"JAPAN"
+		]
+	},
+	{
+		"city": "Osaka",
+		"address": ["Knowledge Capital", "3-1 Ofuka-cho", "Kita-ku, Osaka 530-0011", "JAPAN"]
+	},
+	{
+		"city": "Narita",
+		"address": ["Tokyo International Airport", "1-1-1 Narita", "Chiba 275-0001", "JAPAN"]
+	}
+]

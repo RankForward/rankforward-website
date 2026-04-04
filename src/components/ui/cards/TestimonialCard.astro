@@ -1,0 +1,37 @@
+---
+// Testimonial Card
+// ------------
+// Description: A testimonial card with a title, a subtitle, a description.
+// Properties:
+// - blockquote: The blockquote of the testimonial card
+// - figcaption: The figcaption of the testimonial card
+// - classes: extra classes for the card container
+// - quoteClasses: extra classes for the quote
+
+//Components
+// - UI
+import Card from './Card.astro'
+import Testimonial from '../Testimonial.astro'
+
+//Content
+// - Props
+type Props = {
+	blockquote: string
+	figcaption: string
+	classes?: string
+	quoteClasses?: string
+}
+const { blockquote, figcaption, classes, quoteClasses } = Astro.props
+---
+
+<Card
+	classes="bg-[#f5f5f5]! dark:bg-slate-950/50! border-[#EBEBEB]! dark:border-slate-900! hover:bg-white! dark:hover:bg-slate-950! transition-colors duration-700! hover:border-neutral-100! dark:hover:border-neutral-800!"
+	cardBodyClasses="lg:p-12! lg:pb-15!"
+>
+	<Testimonial
+		blockquote={blockquote}
+		figcaption={figcaption}
+		classes={classes}
+		quoteClasses={quoteClasses}
+	/>
+</Card>

@@ -1,0 +1,66 @@
+---
+// Contact Hero CTA
+// ------------
+// Description: A hero section with a title and a subtitle
+// Properties:
+// - title: The title of the hero section
+// - text: The subtitle of the hero section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - Blocks
+import BasicAstroForm from '../form/BasicAstroForm.astro'
+
+// Content
+// - Form data
+const formData = {
+	firstName: 'First Name',
+	lastName: 'Last Name',
+	email: {
+		label: 'Email',
+		value: 'name@youremail.com'
+	},
+	message: 'Your Message',
+	button: 'Submit'
+}
+// - Location 
+import locationData from '../../../data/json-files/locationData.json'
+// - Props
+type Props = {
+	title?: string
+	text?: string
+}
+const { title, text } = Astro.props
+---
+
+<Section decoration="all">
+	<Row>
+		<Col span="5">
+			<h1>{title}</h1>
+			<p class="text-lead">{text}</p>
+		</Col>
+		<Col span="7">
+			<BasicAstroForm formData={formData} />
+		</Col>
+	</Row>
+</Section>
+
+<Section type="alt" classes="p-8!" decoration="all">
+	<Row classes="gap-0!">
+		{locationData.map((location) => (
+			<Col classes="relative col-span-12 before:absolute before:bottom-0 before:h-px before:w-full before:bg-linear-to-r before:from-stone-200/0 before:via-stone-200 before:to-stone-200/0 after:absolute after:top-0 after:right-0 after:hidden after:h-full after:w-px after:bg-linear-to-b after:from-stone-200/0 after:via-stone-200 after:to-stone-200/0 last:after:hidden lg:col-span-3 lg:before:hidden lg:after:block dark:before:from-neutral-800/0 dark:before:via-neutral-800 dark:before:to-neutral-800/0 dark:after:from-neutral-700/0 dark:after:via-neutral-800 dark:after:to-neutral-800/0">
+			  <div class="flex h-full flex-col py-[40px] lg:px-7.5">
+				<h3>{location.city}</h3>
+				<address>
+				  {location.address.map((line) => (
+					<span class="block">{line}</span>
+				  ))}
+				</address>
+			  </div>
+			</Col>
+		  ))}
+	</Row>
+</Section>

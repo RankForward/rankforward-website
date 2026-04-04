@@ -1,0 +1,111 @@
+---
+// Basic Contact Form
+// ------------
+// Description: A basic contact form with fields for first name, last name, email, phone number and message.
+// Properties:
+// - classes: Additional classes to be added to the block
+//- Access Key: Your Web3Forms Access Key Replace the access key with your actual key to start receiving email submissions.
+// Reference: https://web3forms.com/platforms/astro-contact-form
+
+// Props
+type Props = {
+	classes?: string
+}
+const { classes } = Astro.props
+---
+
+<form
+	action="https://api.web3forms.com/submit"
+	method="POST"
+	id="form"
+	class:list={[`needs-validation`, { [`${classes}`]: classes }]}
+	data-astro-reload
+	novalidate
+>
+	<!-- Web3Forms Access Key -->
+	<!-- Replace the value of the access_key with your Web3Forms Access Key -->
+	<input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY} />
+	<!-- Identifier for website -->
+	<input type="hidden" name="siteName" value="Toki Theme" />
+	<!-- Bot check -->
+	<input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+	<!-- Your form fields slot -->
+	<slot />
+	<!-- Result output -->
+	<div id="result" class="form-result"></div>
+</form>
+
+<style>
+	@reference '../../../styles/global.css';
+	.form-result {
+		@apply my-6 text-slate-700 dark:text-slate-50;
+	}
+</style>
+
+<script is:inline>
+	// use astro:page-load event if you are using View Transitions
+
+	document.addEventListener(
+		'DOMContentLoaded',
+		() => {
+			const form = document.getElementById('form')
+			const result = document.getElementById('result')
+
+			form.addEventListener('submit', function (e) {
+				e.preventDefault()
+				form.classList.add('was-validated')
+				if (!form.checkValidity()) {
+					form.querySelectorAll(':invalid')[0].focus()
+					return
+				}
+				const formData = new FormData(form)
+				const object = Object.fromEntries(formData)
+				const json = JSON.stringify(object)
+
+				result.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <span class="relative only:-mx-6">
+                    <svg class="h-5 w-5 animate-spin text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    </span>
+                    <span>Loading...</span>
+                </div>
+                `
+
+				fetch('https://api.web3forms.com/submit', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json'
+					},
+					body: json
+				})
+					.then(async (response) => {
+						let json = await response.json()
+						if (response.status == 200) {
+							result.classList.add('text-green-500!')
+							result.innerHTML = json.message
+						} else {
+							console.log(response)
+							result.classList.add('text-red-500!')
+							result.innerHTML = json.message
+						}
+					})
+					.catch((error) => {
+						console.log(error)
+						result.innerHTML = 'Something went wrong!'
+					})
+					.then(function () {
+						form.reset()
+						form.classList.remove('was-validated')
+						setTimeout(() => {
+							result.style.display = 'none'
+						}, 5000)
+					})
+			})
+		},
+		{ once: true }
+	)
+</script>

@@ -1,0 +1,56 @@
+---
+// About Page
+// ------------
+// Description: The about page is a page that displays information about the company.
+
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - Blocks
+import BasicHeroCTA from '../components/blocks/hero/BasicHeroCTA.astro'
+import TwoColVideoSection from '../components/blocks/video/TwoColVideoSection.astro'
+import TeamIntro from '../components/blocks/team/TeamIntro.astro'
+import Statistics from '../components/blocks/stats/Statistics.astro'
+import Testimonials from '../components/blocks/testimonials/TestimonialsAlt.astro'
+import BrandSlider from '../components/blocks/slider/BrandSlider.astro'
+// - UI
+import Card from '../components/ui/cards/Card.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | About us',
+	description: 'About us'
+}
+// - Hero
+const hero = {
+	title: 'Small team, sharp minds.'
+}
+// - About Section
+const aboutSection = {
+	leftCardContent: [
+		`Toki is a compact crew of designers, developers, and brand strategists who think small teams
+    can do big things — especially when they like each other. We work closely (and laugh often),
+    fueled by strong opinions, open Slack threads, and the occasional espresso-fueled hot take.`,
+
+		`We believe the best work comes from good process, honest feedback, and the freedom to chase
+    weird ideas all the way through. Collaborating directly with our clients. We’re
+    remote-first, time-zone friendly, and occasionally chaotic in the best way.`
+	],
+	rightCardVideo: 'https://oxygenna-themes.b-cdn.net/toki-astro/videos/about-us-video.mp4'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<BasicHeroCTA title={hero.title} titleSpan="12" classes="[&_h1]:max-w-[920px]" />
+
+	<TwoColVideoSection classes="pt-0! overflow-visible!" video={aboutSection.rightCardVideo}>
+		<Card>
+			{aboutSection.leftCardContent.map((paragraph) => <p class="mb-9! last:mb-0">{paragraph}</p>)}
+		</Card>
+	</TwoColVideoSection>
+	<TeamIntro />
+	<Statistics />
+	<Testimonials sectionType="none" />
+	<BrandSlider />
+</Layout>

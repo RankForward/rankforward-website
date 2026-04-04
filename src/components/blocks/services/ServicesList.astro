@@ -1,0 +1,59 @@
+---
+// Services List
+// ------------
+// Description: A services section with a title, a subtitle, a description and a grid of services
+// Properties:
+// - title: The title of the services section
+// - text: The subtitle of the services section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - Blocks
+import TitleSection from '../basic/TitleSection.astro'
+// - UI
+import Card from '../../ui/cards/Card.astro'
+
+// Content
+// - Data
+import servicesData from '../../../data/json-files/servicesData.json'
+// - Props
+const { title = '', text = '' } = Astro.props
+---
+
+<TitleSection title={title} text={text} classes="pb-0!" />
+<Section stickyCol classes="overflow-visible! ">
+	{
+		servicesData.map((service: any, index: number) => (
+			<Row classes="mb-12 ">
+				<Col span="4" classes="h-full min-w-[420px] max-w-[460px] w-full ">
+					<div class="sticky top-32 hidden lg:block">
+						<h3 class="mb-2 flex flex-col justify-start gap-3 text-4xl! md:flex-row lg:text-5xl!">
+							<span class="text-primary-500 hidden xl:block!">
+								{String(index + 1).padStart(2, '0')}
+							</span>
+							{service.title}
+						</h3>
+					</div>
+				</Col>
+				<Col span="8" classes="h-full w-full grow">
+					<Card
+						title={service.title}
+						cardHeaderClasses="block lg:hidden!"
+						classes="h-full w-full"
+						cardBodyClasses="h-full lg:pt-7.5! "
+						cardMediaClasses="lg:order-2 h-[400px]"
+						orientation="horizontal"
+						image={service.image}
+					>
+						{service.text.map((text: string) => (
+							<p class="relative z-10 text-lg">{text}</p>
+						))}
+					</Card>
+				</Col>
+			</Row>
+		))
+	}
+</Section>

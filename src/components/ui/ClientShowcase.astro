@@ -1,0 +1,58 @@
+---
+// Client Showcase
+// ------------
+// Description: A client showcase with a grid of logos that slide horizontally
+// Properties:
+// - logoGroups: The groups of logos to be displayed
+
+// Content
+// - Props
+interface Props {
+	logoGroups: string[][]
+}
+
+const { logoGroups } = Astro.props
+---
+
+<div class="mx-auto grid max-w-6xl grid-cols-3 gap-4 py-12 md:grid-cols-6">
+	{
+		logoGroups.map((group, index) => (
+			<div class="relative h-9 overflow-hidden" data-slot>
+				<div class="transition-all duration-700 ease-in-out" data-track>
+					{group.map((logo, i) => (
+						<img
+							src={logo}
+							alt={`Client logo ${index}-${i}`}
+							class="mx-auto block h-9"
+							loading="lazy"
+						/>
+					))}
+				</div>
+			</div>
+		))
+	}
+</div>
+
+<script is:inline>
+	document.addEventListener('DOMContentLoaded', () => {
+		const slots = document.querySelectorAll('[data-slot]')
+
+		slots.forEach((slot) => {
+			const track = slot.querySelector('[data-track]')
+			const logos = track.querySelectorAll('img')
+			console.log(logos.length)
+			let current = Math.floor(Math.random() * logos.length)
+
+			track.style.transform = `translateY(-${current * 100}%)`
+
+			setInterval(
+				() => {
+					const next = (current + 1) % logos.length
+					track.style.transform = `translateY(-${next * 100}%)`
+					current = next
+				},
+				3000 + Math.random() * 2000
+			)
+		})
+	})
+</script>

@@ -1,0 +1,69 @@
+---
+// Work Page
+// ------------
+// Description: The work page is a page that displays all the work projects.
+
+// Components
+// - Layout
+import Layout from '../../layouts/Layout.astro'
+// - Blocks
+import Hero from '../../components/blocks/hero/BasicHeroCTA.astro'
+import ProjectHighlights from '../../components/blocks/work/ProjectMediaHighlights.astro'
+import Testimonials from '../../components/blocks/testimonials/TestimonialsBasic.astro'
+import BrandSlider from '../../components/blocks/slider/BrandSlider.astro'
+// - UI
+import Card from '../../components/ui/cards/Card.astro'
+// - Collection
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths({ paginate }: any) {
+	const allProjects = await getCollection('work', ({ id }) => {
+		return id
+	})
+	// Generate pages from our array of blog, with 6 to a page
+	return paginate(allProjects, { pageSize: 6 })
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props as any
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | Work Projects',
+	description:
+		"Explore Toki's latest work projects designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Toki today!"
+}
+// Function to sort case studies by date
+const sortedWorkProjects = page.data.sort((a: any, b: any) => {
+	return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+})
+---
+
+<Layout title={SEO.title} description={SEO.description} navigation="sticky">
+	<Hero
+		title="Work we did and nailed."
+		text="From bold beginnings to finished builds — here’s what happens when design, dev, and caffeine align."
+	/>
+	<ProjectHighlights
+		data={sortedWorkProjects}
+		{...page.lastPage === 1
+			? {}
+			: {
+					pagination: {
+						first: page.url.first,
+						current: page.url.current,
+						length: page.lastPage,
+						prev: page.url.prev,
+						next: page.url.next,
+						last: page.url.last,
+						size: page.size,
+						total: page.total
+					}
+				}}
+	/>
+	<Testimonials />
+	<BrandSlider
+		title="Brands we’ve teamed up with"
+		text="From future unicorns to up-and-coming legends, we work with brands that aren't afraid to make noise."
+	/>
+</Layout>

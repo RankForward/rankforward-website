@@ -1,0 +1,89 @@
+---
+// Project Highlights
+// ------------
+// Description: A project highlights section with a title, a subtitle, a description and a grid of projects
+// Properties:
+// - data: The data of the project highlights section
+// - pagination: The pagination of the project highlights section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import ProjectCard from '../../ui/cards/ProjectCard.astro'
+import Pagination from '../../ui/Pagination.astro'
+
+// Content
+// - Props
+type Props = {
+	data: any
+	pagination?: {
+		first: string
+		prev: string
+		next: string
+		last: string
+		current: string
+		length: number
+		size: number
+		total: number
+	}
+}
+const { data: sortedWorkProjects, pagination } = Astro.props
+---
+
+<Section stickyCol classes="overflow-visible!">
+	<Row classes="mb-15">
+		<Col span="6">
+			<h2>Partners, not just projects.</h2>
+			<p>
+				We collaborate with ambitious teams to build brands, launch websites, and design experiences
+				that actually leave a mark. Here’s a peek at some of the journeys we’ve shared.
+			</p>
+		</Col>
+	</Row>
+	{
+		sortedWorkProjects.map((post: any) => (
+			<Row classes="mb-12">
+				<Col span="3" classes="h-full">
+					<div class="sticky top-32">
+						<a href={`/work/${post.id}`} class="h3 mb-2 text-5xl!">
+							{post.data.title}
+						</a>
+						<p class="text-lead">{post.data.subtitle}</p>
+					</div>
+				</Col>
+				<Col span="9">
+					<ProjectCard
+						image={post.data.imageThumbnail}
+						title={post.data.title}
+						link={`/work/${post.id}`}
+					>
+						<p slot="desc">{post.data.description}</p>
+						<ul slot="list">
+							{post.data.list.map((item: string) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</ProjectCard>
+				</Col>
+			</Row>
+		))
+	}
+	{
+		pagination && (
+			<Row classes="pt-16">
+				<Col span="12">
+					<Pagination
+						prev={pagination.prev}
+						next={pagination.next}
+						current={pagination.current}
+						length={pagination.length}
+						collection="work-v2"
+					/>
+				</Col>
+			</Row>
+		)
+	}
+</Section>

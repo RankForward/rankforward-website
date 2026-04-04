@@ -1,0 +1,25 @@
+[
+	{
+		"number": 120,
+		"suffix": "+",
+		"title": "Projects completed",
+		"description": "From bold startups to growing legends, we've built brands and sites."
+	},
+	{
+		"number": 85,
+		"title": "Brands Built",
+		"description": "Full identities crafted from scratch — logos, voices, and vibes included."
+	},
+	{
+		"number": 15,
+		"suffix": "+",
+		"title": "Industries Served",
+		"description": "Tech, fashion, wellness, SaaS, and whatever comes next — we like a good challenge."
+	},
+	{
+		"number": 23,
+		"suffix": "k",
+		"title": "Logged hours",
+		"description": "Late nights, wild ideas, and a lot of good coffee behind every pixel we pushed."
+	}
+]

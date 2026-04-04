@@ -1,0 +1,83 @@
+---
+// Project Media Highlights
+// ------------
+// Description: A project media highlights section with a title, a subtitle, a description and a grid of projects
+// Properties:
+// - data: The data of the project media highlights section
+// - pagination: The pagination of the project media highlights section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Card from '../../ui/cards/Card.astro'
+import Pagination from '../../ui/Pagination.astro'
+
+// Content
+// - Props
+type Props = {
+	data: any
+	pagination?: {
+		first: string
+		prev: string
+		next: string
+		last: string
+		current: string
+		length: number
+		size: number
+		total: number
+	}
+}
+const { data: sortedWorkProjects, pagination } = Astro.props
+---
+
+<Section stickyCol classes="overflow-visible!">
+	{
+		sortedWorkProjects.map((post: any) => (
+			<Row classes="mb-12">
+				<Col span="3" classes="h-full">
+					<div class="sticky top-32">
+						<a href={`/work/${post.id}`} class="h3 mb-2 text-5xl!">
+							{post.data.title}
+						</a>
+						<p class="text-lead">{post.data.subtitle}</p>
+					</div>
+				</Col>
+				<Col span="9">
+					<Card
+						image={post.data.imageThumbnail}
+						mediaEffect="hover"
+						link={`/work/${post.id}`}
+						cardBodyClasses="order-2  lg:order-1 col-span-1 lg:flex-1"
+						cardMediaClasses="order-1 col-span-1 w-full object-cover lg:order-2 lg:flex-1"
+						classes="divide-x divide-neutral-100 min-h-60 relative lg:flex-row!"
+					>
+						<p>{post.data.description}</p>
+						<ul>
+							{post.data.list.map((item: string) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</Card>
+				</Col>
+			</Row>
+		))
+	}
+	{
+		pagination && (
+			<Row classes="pt-16">
+				<Col span="12">
+					<Pagination
+						prev={pagination.prev}
+						next={pagination.next}
+						current={pagination.current}
+						length={pagination.length}
+						collection="work"
+					/>
+				</Col>
+			</Row>
+		)
+	}
+</Section>

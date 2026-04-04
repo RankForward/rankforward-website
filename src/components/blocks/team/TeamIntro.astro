@@ -1,0 +1,135 @@
+---
+// Team Intro
+// ------------
+// Description: A team intro section with a title, a subtitle, a description and a grid of team members
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// -UI
+import Card from '../../ui/cards/Card.astro'
+---
+
+<Section>
+	<Row classes="pb-12">
+		<Col span="4">
+			<div class="flex flex-col gap-7.5">
+				<Card
+					image="/assets/images/image-02.webp"
+					cardMediaClasses="max-h-[429px] lg:max-h-[600px] object-cover w-full"
+					mediaEffect="parallax"
+				/>
+				<Card
+					title="Takeshi Mori"
+					subtitle="Visual Leader, Co-founder"
+					classes="block! lg:hidden!"
+					cardHeaderClasses="gap-0!"
+				>
+					<p>
+						Co-founded Toki with a love for tight grids, sharp layouts, and design that quietly does
+						its job (but looks amazing doing it). probably spent a weekend getting it that way — and
+						enjoyed every second.
+					</p>
+					<p>
+						Makes colors pop, Figma files sing, and occasionally renames layers out of sheer
+						principle. If it feels pixel-perfect, Ren probably spent a weekend getting it that way —
+						and enjoyed every second.
+					</p>
+				</Card>
+			</div>
+		</Col>
+		<Col span="4" classes="hidden lg:block">
+			<div class="grid grid-cols-4 gap-y-36">
+				<Card
+					title="Takeshi Mori"
+					subtitle="Visual Leader, Co-founder"
+					classes="col-span-3 row-span-1"
+					cardHeaderClasses="gap-0!"
+				>
+					<p>
+						Co-founded Toki with a love for tight grids, sharp layouts, and design that quietly does
+						its job (but looks amazing doing it). probably spent a weekend getting it that way — and
+						enjoyed every second.
+					</p>
+					<p>
+						Makes colors pop, Figma files sing, and occasionally renames layers out of sheer
+						principle. If it feels pixel-perfect, Ren probably spent a weekend getting it that way —
+						and enjoyed every second.
+					</p>
+				</Card>
+				<Card
+					title="Yuna Takeda"
+					subtitle="Creative Director, Co-founder"
+					classes="col-span-3 row-span-1 col-start-2 "
+					cardHeaderClasses="gap-0!"
+				>
+					<p>
+						Leads the vision, sets the vibe, and still finds time to obsess over kerning. Fluent in
+						feedback and really good fonts.
+					</p>
+				</Card>
+			</div>
+		</Col>
+		<Col span="4" classes="self-end">
+			<div class="flex flex-col gap-7.5">
+				<Card
+					image="/assets/images/image-05.webp"
+					cardMediaClasses="max-h-[429px] lg:max-h-[600px] object-cover object-top w-full"
+					mediaEffect="parallax"
+				/>
+				<Card
+					title="Yuna Takeda"
+					subtitle="Creative Director, Co-founder"
+					classes="lg:hidden! flex!"
+					cardHeaderClasses="gap-0!"
+				>
+					<p>
+						Leads the vision, sets the vibe, and still finds time to obsess over kerning. Fluent in
+						feedback and really good fonts.
+					</p>
+				</Card>
+			</div>
+		</Col>
+	</Row>
+	<Row>
+		<Col span="4">
+			<div class="grid grid-cols-4 gap-7.5">
+				<Card
+					image="/assets/images/image-06.webp"
+					cardMediaClasses="max-h-[429px] object-cover w-full"
+					classes="col-span-4"
+					mediaEffect="parallax"
+				/>
+				<Card
+					title="Kaori Yamamoto"
+					subtitle="Visual Leader, Co-founder"
+					classes="col-span-4"
+					cardHeaderClasses="gap-0!"
+				>
+					<p>
+						Makes grids behave, colors pop, and Figma files suspiciously organized. Occasionally
+						caught adjusting spacing that’s already perfect.
+					</p>
+				</Card>
+			</div>
+		</Col>
+		<Col span="1" classes="lg:block hidden" />
+		<Col span="3" classes="lg:pt-15">
+			<Card
+				image="/assets/images/image-07.webp"
+				cardMediaClasses="max-h-[429px] lg:max-h-[336px] object-cover w-full"
+				mediaEffect="parallax"
+			/>
+		</Col>
+		<Col span="4" classes="lg:pt-15">
+			<Card title="Miso" subtitle="Chief Vibe Officer" cardHeaderClasses="gap-0!">
+				<p>
+					Sleeps through meetings, interrupts video calls, and provides emotional support during
+					tight deadlines. Doesn’t design, but definitely approves the work.
+				</p>
+			</Card>
+		</Col>
+	</Row>
+</Section>

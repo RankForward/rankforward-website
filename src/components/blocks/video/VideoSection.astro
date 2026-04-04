@@ -1,0 +1,73 @@
+---
+// Video Section
+// ------------
+// Description: A video section with a title, a subtitle, a description and a video
+// Properties:
+// - video: The video of the video section
+// - classes: The classes of the video section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Decoration from '../../ui/Decor.astro'
+import Kursor from '../../ui/kursor.astro'
+import Video from '../../ui/Video.astro'
+
+// Content
+// - Props
+type Props = {
+	video?: string
+	classes?: string
+}
+const { video = 'https://oxygenna-themes.b-cdn.net/toki-astro/videos/home-video.mp4', classes } =
+	Astro.props
+---
+
+<Section classes={`${classes ? classes : ''}`}>
+	<Row>
+		<Col span="12">
+			<div
+				class="animate-cursor relative border border-neutral-100 lg:cursor-none dark:border-neutral-600"
+			>
+				<div class="parallax overflow-hidden">
+					<Video
+						video={video}
+						id="promo"
+						width={470}
+						height={600}
+						loop={true}
+						autoplay={false}
+						muted={false}
+						classes="max-h-[830px] w-full object-cover media--parallax"
+					/>
+				</div>
+				<Decoration type="all" />
+			</div>
+		</Col>
+	</Row>
+</Section>
+
+<Kursor />
+<script is:inline>
+	function initVideoClickToggle() {
+		const video = document.getElementById('promo')
+		if (!video || video.dataset.bound) return
+
+		video.addEventListener('click', () => {
+			if (video.paused) {
+				video.play().catch(() => {})
+			} else {
+				video.pause()
+			}
+		})
+
+		video.dataset.bound = 'true' // prevent re-binding on Astro navigation
+	}
+
+	document.addEventListener('DOMContentLoaded', initVideoClickToggle)
+	document.addEventListener('astro:page-load', initVideoClickToggle)
+	document.addEventListener('astro:after-swap', initVideoClickToggle)
+</script>

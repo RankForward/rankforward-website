@@ -1,0 +1,259 @@
+---
+// Header - Navigation bar
+// ------------
+// Description: persistent and accessible navigation bar for primary site navigation.
+// Structure:
+// - Logo: website logo with light/dark versions and optional text
+// - Menu toggle: mobile hamburger toggle for navigation menu
+// - Navigation Links: main navigation items with optional submenus and badges
+// - Actions: action buttons in the navigation bar
+// - Theme Switcher: toggle between light and dark modes
+
+// Components
+// - UI
+import { Icon } from 'astro-icon/components'
+import Decorations from './Decor.astro'
+import Switcher from './ModeSwitcher.astro'
+import Badge from './Badge.astro'
+
+// Content
+// - Props
+type Props = {
+	type?: 'none' | 'transparent' | 'sticky'
+}
+// -- Page Metadata
+const { type = 'sticky' } = Astro.props
+
+// - Data
+import { getNavigationBarData } from '../../config/navigationBar'
+const navigationBarData = await getNavigationBarData()
+const { logo, navItems, navActions } = navigationBarData
+
+// - Determine current path
+const path = new URL(Astro.request.url).pathname
+function isActivePath(currentPath: string): boolean {
+	return path === currentPath || path === `${currentPath}/`
+}
+
+// - Type assertion for navActions to ensure type safety
+const savedNavActions = navActions.map((action: any) => ({
+	...action,
+	size: action.size as 'base' | 'lg' | 'sm',
+	style: action.style as 'primary' | 'secondary' | 'neutral'
+}))
+---
+
+<header class:list={['header', { [`header--${type}`]: type }]}>
+	<div class="header__container">
+		<nav aria-label="main navigation" role="navigation" class="header__nav">
+			{/* Logo */}
+			<a href={`/`} class="header__logo">
+				<img src={logo.src} alt={logo.alt} width="60" height="60" class="block dark:hidden" />
+				<img src={logo.srcDark} alt={logo.alt} width="60" height="60" class="hidden dark:block" />
+				{logo.text && <span>{logo.text}</span>}
+				<Decorations type="bottom-right" size="sm" />
+			</a>
+
+			{/* Menu toggle */}
+			<button
+				id="header-toggle"
+				class="header__toggle group/toggle"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<div class="header__toggle-inner">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</div>
+			</button>
+
+			{/* Navigation links */}
+			<ul role="menubar" aria-label="Select page" class="header__menu peer/menu">
+				{
+					navItems.map((item) => (
+						<li role="none" class="header__menu-item group/menuItem">
+							{!item.submenu ? (
+								<a
+									href={item.link}
+									role="menuitem"
+									class={`header__menu-link ${isActivePath(item.link) ? 'active' : ''}`}
+								>
+									{item.name}
+									{item.badge && (
+										<Badge name={item.badge} size="sm" classes="translate-x-1 -translate-y-1" />
+									)}
+									<Decorations type="bottom-left" size="sm" extraClasses="!hidden lg:block!" />
+								</a>
+							) : (
+								<span
+									role="menuitem"
+									class={`header__menu-link ${isActivePath(item.link) ? 'active' : ''}`}
+								>
+									{item.name}
+									{item.badge && (
+										<Badge
+											name={item.badge}
+											size="sm"
+											type="primary"
+											classes="translate-x-1 -translate-y-1"
+										/>
+									)}
+									<Icon name="plus" class="header__menu-chevron size-sm" />
+									<Decorations type="bottom-left" size="sm" extraClasses="!hidden lg:block!" />
+								</span>
+							)}
+							{item.submenu && (
+								<ul
+									class:list={[
+										'header__submenu',
+										{ [`header__submenu--${item.align}`]: item.align }
+									]}
+								>
+									{item.submenu.map((subItem) => (
+										<li role="none" class="header__submenu-item group/submenuItem">
+											{subItem.name && (
+												<div class="header__submenu-title">
+													{subItem.icon && (
+														<Icon name={subItem.icon} class="header__submenu-icon" />
+													)}
+													{subItem.name}
+												</div>
+											)}
+											<ul class="header__submenu-col">
+												{subItem.links.map((subLink) => (
+													<li role="none" class="header__submenu-item group/submenuItem">
+														<a
+															href={subLink.link}
+															role="menuitem"
+															class={`header__submenu-link ${isActivePath(subLink.link) ? 'active' : ''}`}
+														>
+															{subLink.name}
+															{subLink.badge && (
+																<Badge
+																	name={subLink.badge}
+																	size="sm"
+																	type="primary"
+																	classes="translate-x-2 -translate-y-2"
+																/>
+															)}
+														</a>
+													</li>
+												))}
+												<Decorations type="all" size="sm" />
+											</ul>
+										</li>
+									))}
+								</ul>
+							)}
+						</li>
+					))
+				}
+			</ul>
+
+			{/* Navigation action buttons */}
+			<div class="header__actions">
+				{
+					savedNavActions.map((action) => (
+						<a href={action.link} class="header__action">
+							{action.name}
+						</a>
+					))
+				}
+			</div>
+
+			{/* Theme Switcher */}
+			<Switcher />
+		</nav>
+	</div>
+</header>
+
+<style>
+	@reference '../../styles/global.css';
+	.header {
+		@apply relative top-0 z-20 w-full border-b border-neutral-100 bg-neutral-50/60 bg-[url('/bgs/light.webp')] bg-size-[200px] lg:backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/60 dark:bg-[url('/bgs/dark.webp')];
+	}
+	.header--sticky {
+		@apply sticky;
+	}
+
+	.header__container {
+		@apply relative container mx-auto max-w-full px-0;
+	}
+	.header__logo {
+		@apply font-headings relative flex items-center gap-2 border-r border-neutral-100 bg-[#ffffff] bg-[url('/bgs/light.webp')] bg-size-[200px] p-3 text-2xl font-black tracking-wider whitespace-nowrap focus:outline-hidden lg:p-5 dark:border-neutral-800 dark:bg-neutral-900 dark:bg-[url('/bgs/dark.webp')];
+	}
+	.header__nav {
+		@apply flex h-22 items-stretch justify-between font-medium lg:h-[6.25rem];
+	}
+	.header__menu {
+		@apply invisible absolute top-0 left-0 z-[-1] m-0 mt-22 h-[calc(100vh-5.5rem)] w-full justify-center overflow-hidden overflow-y-auto overscroll-contain border-t border-neutral-100 bg-white bg-[url('/bgs/light.webp')] bg-size-[200px] px-6 pt-6 pb-28 text-lg leading-none font-medium opacity-0 transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0 lg:z-0 lg:mt-0 lg:ml-auto lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:border-x lg:border-t-0 lg:border-b-0 lg:border-neutral-100 lg:px-0 lg:pt-0 lg:pb-0 lg:opacity-100 dark:border-neutral-800 dark:bg-neutral-900 dark:bg-[url('/bgs/dark.webp')] dark:lg:border-neutral-800;
+	}
+	.menu--open {
+		@apply visible opacity-100 backdrop-blur-sm;
+	}
+	.header__menu-item {
+		@apply static m-0 flex cursor-pointer flex-col items-stretch justify-center p-0 has-[>.header\_\_submenu_col]:relative lg:min-w-32 lg:flex-row;
+	}
+
+	.header__menu-link {
+		@apply [&.active]:text-primary-950 dark:[&.active]:text-primary-50 relative flex w-full items-center gap-1 p-0 py-4 text-neutral-500 transition-colors duration-300 hover:text-neutral-950 focus:text-neutral-950 focus:outline-hidden focus-visible:outline-hidden lg:justify-center lg:border-l lg:border-neutral-100 lg:px-7 lg:py-0 dark:text-neutral-400 dark:hover:text-neutral-50 dark:focus:text-neutral-50 dark:lg:border-neutral-800;
+	}
+	.header__menu-chevron {
+		@apply h-4 w-4 transition-transform group-[.open]/menuItem:rotate-45;
+	}
+	.header__submenu {
+		@apply animate-dropdown top-full left-0 mb-0 hidden flex-col divide-x divide-neutral-100 border border-neutral-100 bg-neutral-50 bg-[url('/bgs/light.webp')] bg-size-[200px] py-4 backdrop-blur-sm group-[.open]/menuItem:flex lg:absolute lg:flex-row lg:border lg:border-l lg:bg-white lg:bg-[url('/bgs/light.webp')] lg:py-0 dark:divide-neutral-800 dark:border-neutral-800 dark:bg-neutral-950 dark:bg-[url('/bgs/dark.webp')] lg:dark:bg-neutral-900 lg:dark:bg-[url('/bgs/dark.webp')];
+	}
+	.header__submenu--center {
+		@apply lg:left-1/2 lg:-translate-x-1/2;
+	}
+	.header__submenu--right {
+		@apply lg:right-0 lg:left-auto;
+	}
+	.header__submenu--full {
+		@apply lg:right-0 lg:left-0 lg:w-full;
+	}
+	.header__submenu-title {
+		@apply flex cursor-default items-center gap-2 px-6 py-4 text-base font-medium;
+	}
+	.header__submenu-icon {
+		@apply size-4;
+	}
+	.header__submenu-col {
+		@apply mb-0 w-full py-0 lg:min-w-56 lg:py-6;
+	}
+	.header__submenu-item {
+		@apply m-0 hidden group-[.open]/menuItem:block;
+	}
+	.header__submenu-link {
+		@apply [&.active]:text-primary-950 dark:[&.active]:text-primary-50 px-7 py-4 text-neutral-500 transition-colors duration-300 group-has-[svg]/submenuItem:pl-12 group-[.open]/menuItem:flex hover:text-neutral-950 focus:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50 dark:focus:text-neutral-50;
+	}
+	.header__toggle {
+		@apply relative order-10 block h-full w-22 self-center border-l border-neutral-100 bg-[#ffffff] bg-[url('/bgs/light.webp')] bg-size-[200px] lg:hidden dark:border-neutral-800 dark:bg-neutral-900 dark:bg-[url('/bgs/dark.webp')] [&--open]:visible [&--open]:opacity-100;
+	}
+	.header__toggle-inner {
+		@apply absolute top-1/2 left-1/2 w-6 -translate-x-1/2 -translate-y-1/2 transform;
+	}
+	.header__toggle-inner span {
+		@apply absolute block h-[1.5px] transform rounded-full bg-neutral-900 transition-all duration-300 dark:bg-white;
+	}
+	.header__toggle-inner span:nth-child(1) {
+		@apply w-9/12 -translate-y-2 group-[.toggle--open]/toggle:w-6 group-[.toggle--open]/toggle:translate-y-0 group-[.toggle--open]/toggle:rotate-45;
+	}
+	.header__toggle-inner span:nth-child(2) {
+		@apply w-6 group-[.toggle--open]/toggle:-rotate-45;
+	}
+	.header__toggle-inner span:nth-child(3) {
+		@apply w-1/2 origin-top-left translate-y-2 group-[.toggle--open]/toggle:w-0;
+	}
+	.header__actions {
+		@apply dark:bg-primary-900 invisible fixed right-0 bottom-0 z-50 order-4 flex w-full bg-white bg-[url('/bgs/light.webp')] bg-size-[200px] p-6 text-center opacity-0 transition-opacity lg:visible lg:static lg:z-0 lg:w-auto lg:bg-none lg:p-0 lg:opacity-100 dark:bg-[url('/bgs/dark.webp')] dark:lg:bg-none;
+	}
+	.header__action {
+		@apply bg-primary-950 hover:bg-primary-900 dark:hover:bg-primary-100 dark:text-primary-950 border-primary-100 dark:border-primary-800 h-full w-full items-center border bg-[url('/bgs/dark.webp')] bg-size-[200px] px-12 py-4 text-lg font-medium text-white transition-colors duration-300 lg:flex lg:border-0 lg:border-l dark:bg-white dark:bg-[url('/bgs/light.webp')];
+	}
+	.menu--open ~ .header__actions {
+		@apply visible opacity-100 delay-500 duration-700;
+	}
+</style>

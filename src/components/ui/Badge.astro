@@ -1,0 +1,69 @@
+---
+// Badge
+// ------------
+// Description: Visual indicator badge to highlight UI elements.
+// Properties:
+// - Name: text content of the badge
+// - Link: optional URL to wrap the badge
+// - Type: badge style type (neutral, primary)
+// - Size: badge size (e.g. base, sm)
+// - Classes: additional CSS classes
+
+// Components
+// - UI
+import Decorations from './Decor.astro'
+
+// Content
+// - Props
+type Props = {
+	size?: string
+	name: string
+	link?: string
+	type?: string
+	classes?: string
+}
+const { name, link, type = 'primary', size = 'base', classes } = Astro.props
+---
+
+{
+	link ? (
+		<a
+			href={link}
+			class:list={[
+				'badge',
+				{ [`${classes}`]: classes },
+				{ [`badge--${type}`]: type },
+				{ [`badge--${size}`]: size }
+			]}
+		>
+			{name}
+			{type === 'primary' && <Decorations type="all" size="sm" />}
+		</a>
+	) : (
+		<span
+			class:list={[
+				'badge',
+				{ [`${classes}`]: classes },
+				{ [`badge--${type}`]: type },
+				{ [`badge--${size}`]: size }
+			]}
+		>
+			{name}
+			{type === 'primary' && <Decorations type="all" size="sm" />}
+		</span>
+	)
+}
+
+<style>
+	@reference '../../styles/global.css';
+	.badge {
+		@apply inline-block h-full gap-1 px-1.5 py-1 text-sm transition-colors;
+	}
+	.badge--primary {
+		@apply bg-primary-950 hover:bg-primary-900 dark:hover:bg-primary-100 dark:text-primary-950 border-primary-100 dark:border-primary-800 border bg-[url('/bgs/dark.webp')] bg-size-[200px] text-white duration-300 dark:bg-white dark:bg-[url('/bgs/light.webp')];
+	}
+
+	.badge--sm {
+		@apply text-xs;
+	}
+</style>

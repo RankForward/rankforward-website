@@ -1,0 +1,70 @@
+---
+// Testimonial
+// ------------
+// Description: A testimonial component
+// Properties:
+// - blockquote: The blockquote of the testimonial
+// - figcaption: The figcaption of the testimonial
+// - classes: The classes of the testimonial
+// - quoteClasses: The classes of the quote
+
+// Components
+// - UI
+import { Icon } from 'astro-icon/components'
+
+// Content
+// - Props
+type Props = {
+	blockquote: string
+	figcaption: string
+	classes?: string
+	quoteClasses?: string
+}
+const { blockquote, figcaption, classes, quoteClasses } = Astro.props
+---
+
+<div class:list={['testimonial', { [`${classes}`]: classes }]}>
+	<div class="testimonial__container">
+		<figure class="testimonial__figure">
+			<Icon name="quotemark" class="testimonial__quote" size={60} width={60} height={60} />
+			<blockquote class:list={['testimonial__blockquote', { [`${quoteClasses}`]: quoteClasses }]}>
+				<p>
+					{blockquote}
+				</p>
+			</blockquote>
+			<figcaption class="testimonial__figcaption">
+				<div class="testimonial__figcaption-container">
+					<span class="testimonial__figcaption--credit">{figcaption}</span>
+				</div>
+			</figcaption>
+		</figure>
+	</div>
+</div>
+
+<style>
+	@reference '../../styles/global.css';
+	.testimonial {
+		@apply w-full;
+	}
+	.testimonial__quote {
+		@apply z-0 mb-9 size-15 dark:opacity-20;
+	}
+	.testimonial__container {
+		@apply relative;
+	}
+	.testimonial__figure {
+		@apply relative z-10;
+	}
+	.testimonial__blockquote p {
+		@apply leading-12 font-headings pb-6 text-2xl text-neutral-950 lg:text-3xl dark:text-neutral-50;
+	}
+	.testimonial__figcaption {
+		@apply text-neutral-700 dark:text-neutral-200;
+	}
+	.testimonial__figcaption-container {
+		@apply flex items-center gap-4 text-sm leading-none;
+	}
+	.testimonial__figcaption--credit {
+		@apply font-medium;
+	}
+</style>

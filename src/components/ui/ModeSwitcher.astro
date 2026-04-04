@@ -1,0 +1,23 @@
+---
+// Theme Switcher
+// ------------
+// Description: the theme switcher component is a ui element that allows users to switch between light and dark mode.
+
+// Components
+// - UI
+import { Icon } from 'astro-icon/components'
+import Decorations from './Decor.astro'
+---
+
+<div id="theme-selector">
+	<Icon name="moon" class="hidden size-6 dark:block" />
+	<Icon name="sun" class="block size-6 dark:hidden" />
+	<Decorations type="bottom-left" size="sm" />
+</div>
+
+<style>
+	@reference '../../styles/global.css';
+	#theme-selector {
+		@apply relative order-3 ml-auto flex h-full w-22 cursor-pointer items-center justify-center border-neutral-100 bg-white bg-[url('/bgs/light.webp')] bg-size-[200px] text-neutral-500 transition-colors duration-300 hover:text-neutral-950 focus:text-neutral-950 focus:outline-hidden focus-visible:outline-hidden lg:ml-0 lg:w-25 dark:border-neutral-800 dark:bg-neutral-900 dark:bg-[url('/bgs/dark.webp')] dark:text-neutral-400 dark:hover:text-neutral-50;
+	}
+</style>

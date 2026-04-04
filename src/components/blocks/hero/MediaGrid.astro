@@ -1,0 +1,86 @@
+---
+// Media Grid
+// ------------
+// Description: A hero section with a title, a subtitle, a description and a media grid
+// Properties:
+// - title: The title of the hero section
+// - text: The subtitle of the hero section
+// - description: The description of the hero section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - Blocks
+import BasicHeroCTA from './BasicHeroCTA.astro'
+// - UI
+import Card from '../../ui/cards/Card.astro'
+
+// Content
+// - Props
+type Props = {
+	title?: string
+	text?: string
+	description?: string
+}
+const { title = '', text = '', description = '' } = Astro.props
+---
+
+<BasicHeroCTA title={title} text={text} classes="pb-12!" />
+<Section classes="pt-0! pb-7.5!">
+	<Row classes="gap-7.5 pb-12 ">
+		<Col span="3" spanMobile="3" classes="hidden lg:block">
+			<Card
+				image="/assets/images/image-10.webp"
+				classes="h-full"
+				cardMediaClasses="h-full w-full object-cover"
+				mediaEffect="parallax"
+			/>
+		</Col>
+		<Col span="3" spanMobile="4" classes="lg:col-start-2 lg:col-start-auto">
+			<Card
+				video="/assets/videos/video-03.mp4"
+				classes="h-full"
+				cardMediaClasses="h-full w-full object-cover"
+				mediaEffect="parallax"
+			/>
+		</Col>
+		<Col span="3" classes="hidden lg:block" />
+		<Col span="3" classes="hidden lg:block">
+			<Card
+				image="/assets/images/image-08.webp"
+				classes="h-full"
+				cardMediaClasses="h-full w-full object-cover"
+				mediaEffect="parallax"
+			/>
+		</Col>
+	</Row>
+	<Row classes="gap-7.5 pb-12 hidden! lg:grid!">
+		<Col span="3" />
+		<Col span="3">
+			<Card
+				image="/assets/images/image-09.webp"
+				classes="h-full"
+				cardMediaClasses="h-full w-full object-cover"
+				mediaEffect="parallax"
+			/>
+		</Col>
+		<Col span="6">
+			<Card
+				video="/assets/videos/video-02.mp4"
+				classes="h-full"
+				cardMediaClasses="h-full w-full object-cover"
+				mediaEffect="parallax"
+			/>
+		</Col>
+	</Row>
+	<Row classes="gap-7.5">
+		<Col span="3" classes="hidden lg:block" />
+		<Col span="9">
+			<Card style="transparent">
+				<p>{description}</p>
+			</Card>
+		</Col>
+	</Row>
+</Section>

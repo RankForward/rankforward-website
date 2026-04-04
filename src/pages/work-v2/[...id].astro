@@ -1,0 +1,28 @@
+---
+// Work Post Page
+// ------------
+// Description: The work post page is a page that displays a single work post.
+
+// Components
+// - Layout
+import Layout from '../../layouts/WorkLayout.astro'
+
+// Data
+import { getCollection, render } from 'astro:content'
+export async function getStaticPaths() {
+	const workProjects = await getCollection('work')
+	return workProjects.map((entry) => {
+		const workProjectsId = entry.id
+		return {
+			params: { id: workProjectsId },
+			props: { entry }
+		}
+	})
+}
+const { entry } = Astro.props
+const { Content } = await render(entry)
+---
+
+<Layout frontmatter={entry.data}>
+	<Content />
+</Layout>

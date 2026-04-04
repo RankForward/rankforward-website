@@ -1,0 +1,42 @@
+---
+// Home Page
+// ------------
+// Description: The second variation of the home page
+
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - Blocks
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
+import Video from '../components/blocks/video/VideoSection.astro'
+import Statistics from '../components/blocks/stats/Statistics.astro'
+import Services from '../components/blocks/services/ServicesBasic.astro'
+import BrandSlider from '../components/blocks/slider/BrandSlider.astro'
+import Work from '../components/blocks/work/WorkBasic.astro'
+import Testimonials from '../components/blocks/testimonials/TestimonialsBasic.astro'
+import Blog from '../components/blocks/blog/PostsSlider.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | Agency Theme Template',
+	description:
+		'Toki is a creative studio helping brands find their voice, shape their presence, and make things people remember.'
+}
+// - Hero
+const hero = {
+	title: 'We make things that click',
+	text: 'Toki is a creative studio helping brands find their voice, shape their presence, and make things people remember.'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={hero.title} text={hero.text} />
+	<Video />
+	<Statistics />
+	<Services />
+	<BrandSlider />
+	<Work />
+	<Testimonials />
+	<Blog />
+</Layout>

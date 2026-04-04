@@ -1,0 +1,122 @@
+---
+// Work Layout
+// ------------
+// Description: A layout for work pages
+// Properties:
+// - frontmatter: The frontmatter of the work page
+
+// Imports
+const { frontmatter } = Astro.props
+
+// Components
+// - Layout
+import Layout from './Layout.astro'
+import Col from '../components/ui/Col.astro'
+import Row from '../components/ui/Row.astro'
+import Section from '../components/ui/Section.astro'
+// - Blocks
+import StickySidebar from '../components/blocks/basic/StickySidebar.astro'
+// - UI
+import Card from '../components/ui/cards/Card.astro'
+import TestimonialCard from '../components/ui/cards/TestimonialCard.astro'
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+	<!-- Title -->
+	<Section classes="pt-40! pb-0! overflow-visible!">
+		<Row>
+			<Col span="12">
+				<h1>{frontmatter.title}</h1>
+			</Col>
+		</Row>
+	</Section>
+	<!-- Image or Video -->
+	{
+		frontmatter.image && (
+			<Section classes="pt-20! pb-15! overflow-visible!">
+				<Row>
+					<Col span="12">
+						<Card
+							image={frontmatter.image}
+							cardMediaClasses="h-[800px] w-full"
+							classes="w-full"
+							mediaEffect="parallax"
+						/>
+					</Col>
+				</Row>
+			</Section>
+		)
+	}
+	{
+		frontmatter.video && (
+			<Section classes="pt-20! pb-15! overflow-visible!">
+				<Row>
+					<Col span="12">
+						<Card video={frontmatter.video} cardMediaClasses="h-[800px] w-full" classes="w-full" />
+					</Col>
+				</Row>
+			</Section>
+		)
+	}
+
+	<!-- Introduction -->
+	<StickySidebar classes="pt-0! pb-15!">
+		<div slot="sidebar">
+			<Card title={frontmatter.introduction.title} subtitle={frontmatter.introduction.subtitle} />
+		</div>
+		<div set:html={frontmatter.introduction.body} class="basic-text text-lead" />
+	</StickySidebar>
+
+	<!-- What We Brought -->
+	<StickySidebar classes="pt-0! pb-15!">
+		<div slot="sidebar">
+			<Card title={frontmatter.whatWeDid.title} subtitle={frontmatter.whatWeDid.subtitle} />
+		</div>
+		{
+			frontmatter.whatWeDid.images && (
+				<div class="grid auto-rows-fr grid-cols-2 gap-7.5 pb-7.5">
+					{frontmatter.whatWeDid.images.map((image: string, index: number) => {
+						const patternIndex = index % 5
+						let className = ''
+
+						if (patternIndex === 0) {
+							className = 'col-span-2 row-span-2 max-h-[790px]'
+						} else if (patternIndex === 1) {
+							className = 'col-span-1 row-span-2 max-h-[790px]'
+						} else if (patternIndex === 2 || patternIndex === 3) {
+							className = 'col-span-1 row-span-1 max-h-[380px]'
+						} else if (patternIndex === 4) {
+							className = 'col-span-2 row-span-1 max-h-[380px]'
+						}
+
+						return (
+							<Card
+								image={image}
+								classes={className}
+								cardMediaClasses="h-full w-full object-cover"
+								mediaEffect="parallax"
+							/>
+						)
+					})}
+				</div>
+			)
+		}
+		<div set:html={frontmatter.whatWeDid.body} class="basic-text text-lead" />
+	</StickySidebar>
+
+	<!-- Feedback -->
+	<StickySidebar classes="pt-0! pb-40!">
+		<div slot="sidebar">
+			<Card title={frontmatter.feedback.title} subtitle={frontmatter.feedback.subtitle} />
+		</div>
+		{
+			frontmatter.feedback.clientFeedback && (
+				<TestimonialCard
+					blockquote={frontmatter.feedback.clientFeedback.blockquote}
+					figcaption={frontmatter.feedback.clientFeedback.figcaption}
+				/>
+			)
+		}
+		<div set:html={frontmatter.feedback.body} class="basic-text text-lead pt-7.5" />
+	</StickySidebar>
+</Layout>

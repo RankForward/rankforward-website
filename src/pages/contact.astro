@@ -1,0 +1,31 @@
+---
+// Contact Page
+// ------------
+// Description: The contact page is a page that displays a contact form.
+
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - Blocks
+import ContactHeroCTA from '../components/blocks/hero/ContactHeroCTA.astro'
+import TestimonialsBasic from '../components/blocks/testimonials/TestimonialsBasic.astro'
+import BrandSlider from '../components/blocks/slider/BrandSlider.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | Contact',
+	description: 'Contact'
+}
+// - Hero
+const hero = {
+	title: "Let's discuss your dreams",
+	text: 'We are here to help you with any questions or concerns you may have.'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<ContactHeroCTA title={hero.title} text={hero.text} />
+	<TestimonialsBasic sectionType="none" />
+	<BrandSlider />
+</Layout>

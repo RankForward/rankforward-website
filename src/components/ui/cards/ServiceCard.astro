@@ -1,0 +1,57 @@
+---
+// Service Card
+// ------------
+// Description: A service card variation with a background image
+// Properties:
+// - decoration: The decoration of the service card corners
+// - title: The title of the service card
+// - subtitle: The subtitle of the service card (supports HTML)
+// - image: The main image of the service card
+// - link: if provided, the card becomes a link
+// - classes: extra classes for the card container
+// - cardBodyClasses: extra classes for the card body
+// - bgClasses: extra classes for the background
+
+// Components
+// - UI
+import Card from './Card.astro'
+
+// Content
+// - Props
+type Props = {
+	decoration?: string
+	title?: string
+	subtitle?: string
+	image?: any
+	link?: string
+	classes?: string
+	cardBodyClasses?: string
+	bgClasses?: string
+}
+const {
+	decoration = 'top-left bottom-right',
+	title = '',
+	subtitle,
+	image,
+	link,
+	classes = '',
+	cardBodyClasses = 'h-[500px] relative',
+	bgClasses = 'absolute top-0 right-0 bottom-0 h-full w-full max-w-[800px] bg-size-[100%] bg-top-right bg-no-repeat transition-all duration-1000 group-hover:bg-position-[0%_-20px]'
+} = Astro.props
+
+// Generate background style if image exists
+const bgStyle = image ? `background-image: url(${image});` : ''
+---
+
+<Card
+	classes={`${classes} relative group`}
+	link={link}
+	decoration={decoration}
+	title={title}
+	subtitle={subtitle}
+	cardBodyClasses={cardBodyClasses}
+	cardHeaderClasses="max-w-[460px] pb-0! [&_span]:text-base!"
+>
+	<div style={bgStyle} class={bgClasses}></div>
+	<slot />
+</Card>

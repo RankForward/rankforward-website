@@ -1,0 +1,50 @@
+---
+// Video
+// ------------
+// Description: A video component
+// Properties:
+// - video: The video of the video component
+// - id: The id of the video component
+// - width: The width of the video component
+// - height: The height of the video component
+// - muted: The muted state of the video component
+// - autoplay: The autoplay state of the video component
+// - loop: The loop state of the video component
+// - classes: The classes of the video component
+
+// Content
+// - Props
+type Props = {
+	video: string
+	id?: string
+	width?: number
+	height?: number
+	muted?: boolean
+	autoplay?: boolean
+	loop?: boolean
+	classes?: string
+}
+const {
+	video,
+	id = 'video',
+	width = 470,
+	height = 600,
+	muted = true,
+	autoplay = true,
+	loop = true,
+	classes = ''
+} = Astro.props
+---
+
+<video
+	width={width}
+	height={height}
+	{...muted ? { muted: true } : {}}
+	{...autoplay ? { autoplay: true } : {}}
+	{...loop ? { loop: true } : {}}
+	id={id}
+	class={`video-in-viewport w-full h-full object-cover ${classes}`}
+>
+	<source src={video} type="video/mp4" />
+	Sorry, your browser doesn't support embedded videos.
+</video>

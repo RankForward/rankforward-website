@@ -1,0 +1,81 @@
+---
+// Blog Author Page
+// ------------
+// Description: The blog author page is a page that displays all the blog posts written by a specific author.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+import Section from '../../../components/ui/Section.astro'
+import Row from '../../../components/ui/Row.astro'
+import Col from '../../../components/ui/Col.astro'
+// - Blocks
+import BlogCard from '../../../components/ui/cards/BlogCard.astro'
+import Hero from '../../../components/blocks/hero/BasicHeroCTA.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+export async function getStaticPaths() {
+	const allAuthors = await getCollection('blog', ({ id }) => id)
+	const uniqueAuthors = [...new Set(allAuthors.map((blogAuthor) => blogAuthor.data.author).flat())]
+
+	return uniqueAuthors.map((author) => {
+		const filteredGuides = allAuthors.filter((blogAuthor) =>
+			blogAuthor.data.author.includes(author)
+		)
+		return {
+			params: { author },
+			props: { authors: filteredGuides }
+		}
+	})
+}
+const { author } = Astro.params
+const { authors } = Astro.props
+
+// Format and hold the formatted author name in one statement
+const formattedAuthorName = author
+	.split('-')
+	.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+	.join(' ')
+
+// Content
+// - SEO
+const SEO = {
+	title: `Toki | Author ` + formattedAuthorName,
+	description:
+		"Explore Toki's latest news designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Toki today!"
+}
+
+// - Page Header
+const header = {
+	title: `Blog posts writter by ` + formattedAuthorName,
+	text: `View all the latest Toki posts from ` + formattedAuthorName + `.`
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} titleSpan="8" type="vertical" />
+	<Section classes="pt-0!">
+		<Row>
+			{
+				authors.map((post: any) => {
+					return (
+						<Col span="4">
+							<BlogCard
+								title={post.data.title}
+								image={post.data.image}
+								video={post.data.video}
+								link={`/blog/${post.id}`}
+								date={post.data.pubDate}
+								author={author}
+								classes="h-full"
+							>
+								{post.data.description}
+							</BlogCard>
+						</Col>
+					)
+				})
+			}
+		</Row>
+	</Section>
+</Layout>

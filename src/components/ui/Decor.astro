@@ -1,0 +1,83 @@
+---
+// Decorations
+// ------------
+// Description: Visual decorative accents positioned around a component to enhance UI.
+// Properties:
+// - Type: positions of decorations ('all', 'none', or any combination of 'top-left', 'top-right', 'bottom-left', 'bottom-right')
+// - Size: size of the decorations ('sm', 'base', 'lg')
+// - ExtraClasses: additional CSS classes to apply
+// - Inverted: whether to invert colors/styles (boolean)
+
+type Props = {
+	type?: string
+	size?: 'sm' | 'base'
+	extraClasses?: string
+	inverted?: boolean
+}
+
+const { type = '', size = 'base', extraClasses = '', inverted = false }: Props = Astro.props
+
+const ALL_POSITIONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right']
+
+let positions: string[] = []
+
+if (type === 'all') {
+	positions = ALL_POSITIONS
+} else if (type === 'none' || type.trim() === '') {
+	positions = []
+} else {
+	positions = type
+		.split(' ')
+		.map((p) => p.trim())
+		.filter((p) => ALL_POSITIONS.includes(p))
+}
+---
+
+{
+	positions.length > 0 && (
+		<div class={`decor decor--${size} ${extraClasses} ${inverted ? 'decor--inverted' : ''}`}>
+			{positions.map((pos) => (
+				<span class={`decor__${pos}`} />
+			))}
+		</div>
+	)
+}
+
+<style>
+	@reference '../../styles/global.css';
+	.decor {
+	}
+	span[class^='decor__'] {
+		@apply absolute size-12 before:absolute before:left-0 before:h-px before:w-12 before:bg-linear-to-r before:from-stone-200/0 before:via-stone-200 before:to-stone-200/0 after:absolute after:top-0 after:h-12 after:w-px after:bg-linear-to-b after:from-stone-200/0 after:via-stone-200 after:to-stone-200/0 in-[.decor--inverted]:before:from-stone-700/0 in-[.decor--inverted]:before:via-stone-700 in-[.decor--inverted]:before:to-stone-700/0 in-[.decor--inverted]:after:from-stone-700/0 in-[.decor--inverted]:after:via-stone-700 in-[.decor--inverted]:after:to-stone-700/0 dark:before:from-neutral-700/0 dark:before:via-neutral-700 dark:before:to-neutral-700/0 dark:after:from-neutral-700/0 dark:after:via-neutral-700 dark:after:to-neutral-700/0 dark:in-[.decor--inverted]:before:from-stone-200/0 dark:in-[.decor--inverted]:before:via-stone-200 dark:in-[.decor--inverted]:before:to-stone-200/0 dark:in-[.decor--inverted]:after:from-stone-200/0 dark:in-[.decor--inverted]:after:via-stone-200 dark:[.decor--inverted_&]:after:to-stone-200/0;
+	}
+	.decor--sm span[class^='decor__'] {
+		@apply size-4 before:w-4 after:h-4;
+	}
+	.decor__top-left {
+		@apply -top-[24px] -left-[24px] before:top-[23px] after:left-[23px];
+	}
+	.decor__top-right {
+		@apply -top-[24px] -right-[24px] before:top-[23px] after:right-[23px];
+	}
+	.decor__bottom-left {
+		@apply -bottom-[24px] -left-[24px] before:bottom-[23px] after:left-[23px];
+	}
+	.decor__bottom-right {
+		@apply -right-[24px] -bottom-[24px] before:bottom-[23px] after:right-[23px];
+	}
+	.decor--sm span[class^='decor__'] {
+		@apply size-4 before:w-4 after:h-4;
+	}
+	.decor--sm .decor__top-left {
+		@apply -top-[12px] -left-[12px] before:top-[11px] after:left-[11px];
+	}
+	.decor--sm .decor__top-right {
+		@apply -top-[12px] -right-[12px] before:top-[11px] after:right-[11px];
+	}
+	.decor--sm .decor__bottom-left {
+		@apply -bottom-[12px] -left-[12px] before:bottom-[11px] after:left-[11px];
+	}
+	.decor--sm .decor__bottom-right {
+		@apply -right-[12px] -bottom-[12px] before:bottom-[11px] after:right-[11px];
+	}
+</style>

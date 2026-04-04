@@ -1,0 +1,50 @@
+---
+// Project Card
+// ------------
+// Description: A project card variation with description and list slots
+// Properties:
+// - link: The link of the project card
+// - image: The image of the project card
+// - title: The title of the project card
+
+//Components
+// - UI
+import Card from './Card.astro'
+
+//Content
+// - Props
+type Props = { link?: string; image?: any; title?: string }
+const { link, image, title = '' } = Astro.props
+---
+
+<Card
+	link={link}
+	image={image}
+	classes="min-h-60 relative grid! grid-cols-1! lg:grid-cols-2! group"
+	cardMediaClasses="lg:hidden!"
+	cardBodyClasses="order-2 text-neutral-700 dark:text-neutral-50 lg:order-1 col-span-1 grid grid-cols-1 lg:grid-cols-2 divide-y divide-x-0 lg:divide-y-0 lg:divide-x divide-neutral-100 dark:divide-neutral-800 p-0! *:flex-1 *:p-7.5! [&_p]:m-0! col-span-2"
+>
+	<div class="project-desc">
+		<slot name="desc" />
+	</div>
+	<div class="project-list">
+		<img class="project-image" src={image} alt={title} width={1000} height={1000} />
+		<div class="project-text">
+			<slot name="list" />
+		</div>
+	</div>
+</Card>
+
+<style>
+	@reference '../../../styles/global.css';
+
+	.project-list {
+		@apply relative overflow-hidden;
+	}
+	.project-text {
+		@apply transition-opacity duration-300 lg:group-hover:z-[-1] lg:group-hover:opacity-0;
+	}
+	.project-image {
+		@apply hidden transition-all duration-1000 lg:absolute lg:right-0 lg:bottom-0 lg:block lg:h-full lg:scale-y-120 lg:object-cover lg:opacity-0 lg:blur-sm lg:group-hover:scale-y-100 lg:group-hover:opacity-100 lg:group-hover:blur-none;
+	}
+</style>

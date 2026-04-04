@@ -1,0 +1,52 @@
+---
+// Blog Page
+// ------------
+// Description: The blog page is a page that displays all the blog posts.
+
+// Components
+// - Layout
+import Layout from '../../layouts/Layout.astro'
+// - Blocks
+import Hero from '../../components/blocks/hero/BasicHeroCTA.astro'
+import BlogMasonryGrid from '../../components/blocks/blog/BlogMasonryGrid.astro'
+// - Collection
+import { getCollection } from 'astro:content'
+export async function getStaticPaths({ paginate }: any) {
+	const allPosts = await getCollection('blog', ({ id }) => id)
+	return paginate(allPosts, { pageSize: 6 })
+}
+const { page } = Astro.props as any
+
+// Content
+// - SEO
+const SEO = {
+	title: 'Toki | Work Projects',
+	description:
+		"Explore Toki's latest work projects designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools."
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero
+		title="What we’re thinking about."
+		text="Notes from the studio on work, process, and creative problem-solving. No fluff, just ideas we wanted to share."
+		classes="pb-0!"
+	/>
+	<BlogMasonryGrid
+		data={page.data}
+		{...page.lastPage === 1
+			? {}
+			: {
+					pagination: {
+						first: page.url.first,
+						current: page.url.current,
+						length: page.lastPage,
+						prev: page.url.prev,
+						next: page.url.next,
+						last: page.url.last,
+						size: page.size,
+						total: page.total
+					}
+				}}
+	/>
+</Layout>

@@ -1,0 +1,66 @@
+---
+// Two Col Video Section
+// ------------
+// Description: A two column video section with a title, a subtitle, a description and a video
+// Properties:
+// - video: The video of the two column video section
+// - classes: The classes of the two column video section
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Decoration from '../../ui/Decor.astro'
+import Kursor from '../../ui/kursor.astro'
+import Video from '../../ui/Video.astro'
+
+// Content
+// - Props
+type Props = {
+	video?: string
+	classes?: string
+}
+const { video = 'https://oxygenna-themes.b-cdn.net/toki-astro/videos/home-video.mp4', classes } =
+	Astro.props
+---
+
+<Section classes={`${classes ? classes : ''}`}>
+	<Row>
+		<Col span="4">
+			<slot />
+		</Col>
+		<Col span="8">
+			<div
+				class="animate-cursor relative border border-neutral-100 lg:cursor-none dark:border-neutral-600"
+			>
+				<Video
+					video={video}
+					id="promo"
+					width={470}
+					height={600}
+					loop={true}
+					autoplay={false}
+					muted={false}
+					classes="max-h-[830px] w-full object-cover"
+				/>
+
+				<Decoration type="all" />
+			</div>
+		</Col>
+	</Row>
+</Section>
+
+<Kursor />
+<script is:inline>
+	const video = document.getElementById('promo')
+
+	video.addEventListener('click', () => {
+		if (video.paused) {
+			video.play()
+		} else {
+			video.pause()
+		}
+	})
+</script>
