@@ -132,6 +132,22 @@
 	font-style: normal;
 }
 
+/* Mobile overflow safety net */
+@media (max-width: 768px) {
+	.row > .col[class*="col-span-"] {
+		grid-column: span 12 / span 12 !important;
+	}
+
+	form, form * {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+	section {
+		overflow-x: hidden;
+	}
+}
+
 /* Layout rules */
 html {
 	@apply scroll-smooth antialiased overflow-x-hidden;
