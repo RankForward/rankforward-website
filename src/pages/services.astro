@@ -1,49 +1,96 @@
 ---
-// Services Page
-// ------------
-// Description: The services page is a page that displays all the services.
-
-// Components
-// - Layout
+// Services / How It Works Page — RankForward
 import Layout from '../layouts/Layout.astro'
-// - Blocks
-import Hero from '../components/blocks/hero/MediaGrid.astro'
-import ServicesList from '../components/blocks/services/ServicesList.astro'
-import VideoSection from '../components/blocks/video/VideoSection.astro'
-import BrandSlider from '../components/blocks/slider/BrandSlider.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+import Button from '../components/ui/Button.astro'
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
 
-// Content
-// - SEO
 const SEO = {
-	title: 'Toki | Services',
-	description: 'Services'
-}
-// - Hero
-const hero = {
-	title: 'This is what we do all day.',
-	text: 'We design brands, build websites, and add just the right amount of motion. No shortcuts. Just smart, creative work that clicks.',
-	description:
-		'Need help with strategy, design, development, or something weird and wonderful in between? We’ve got the skills to turn your ideas into smart, scroll-worthy, and totally ownable digital experiences. No copy-paste process here. Every project (and every client) is different — so we stay flexible, adapt fast, and shape our work to fit your world, not the other way around.'
-}
-// - Services List
-const servicesList = {
-	title: 'Stuff we’re good at and love doing too.',
-	text: 'Our services blend bold design, smart UX, and clean builds into experiences that feel good and perform even better. Custom, scalable, never boring.'
-}
-// Video
-const video = {
-	video: 'https://oxygenna-themes.b-cdn.net/toki-astro/videos/about-us-video.mp4'
-}
-// Brand Slider
-const brandSlider = {
-	title: 'Brands we’ve teamed up with',
-	text: 'From future unicorns to up-and-coming legends, we work with brands that aren’t afraid to make noise.'
+	title: 'RankForward | How It Works',
+	description: 'How RankForward gets your business recommended by AI search engines. Our 3-step process built on Princeton University GEO research.'
 }
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-	<Hero title={hero.title} text={hero.text} description={hero.description} />
-	<ServicesList title={servicesList.title} text={servicesList.text} />
-	<VideoSection video={video.video} classes="pt-0!" />
-	<BrandSlider title={brandSlider.title} text={brandSlider.text} />
+	<Hero
+		title="How RankForward Gets You Recommended by AI"
+		text="Our process is built on peer-reviewed research from Princeton University (ACM KDD 2024) and real-world testing across hundreds of businesses."
+		type="vertical"
+		titleSpan="8"
+	/>
+
+	<!-- Step 1 -->
+	<Section>
+		<Row>
+			<Col span="5">
+				<p class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-4">Step 1</p>
+				<h2>Submit Your URL</h2>
+			</Col>
+			<Col span="7" classes="self-end">
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">Enter your business website and we query ChatGPT, Perplexity, Gemini, and Claude with 20+ prompts to see if they recommend you. You'll receive a detailed AI visibility score — your baseline — within 24 hours.</p>
+				<p class="text-neutral-600 dark:text-neutral-400">We test prompts like "Who is the best [your industry] in [your city]?" across every major AI engine. Most businesses score between 0 and 3 out of 10. This isn't a guess — it's a real measurement of how AI sees your business today.</p>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- Step 2 -->
+	<Section type="alt" decoration="all">
+		<Row>
+			<Col span="5">
+				<p class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-4">Step 2</p>
+				<h2>We Audit & Optimize</h2>
+			</Col>
+			<Col span="7" classes="self-end">
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">Our team analyzes your AI visibility across all engines and builds a custom GEO optimization roadmap. We identify exactly where you're invisible and what content changes will get you cited.</p>
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">The Princeton GEO research identified 9 specific content optimization methods that increase AI citation rates. We apply the ones most relevant to your business:</p>
+				<ul class="text-neutral-600 dark:text-neutral-400 space-y-2 ml-4">
+					<li>&bull; Authoritative tone and language</li>
+					<li>&bull; Credible citations and statistics</li>
+					<li>&bull; Structured data and schema markup</li>
+					<li>&bull; Third-party citation building</li>
+					<li>&bull; Content restructuring for LLM readability</li>
+				</ul>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- Step 3 -->
+	<Section>
+		<Row>
+			<Col span="5">
+				<p class="text-xs font-bold uppercase tracking-widest text-blue-600 mb-4">Step 3</p>
+				<h2>You Get Recommended</h2>
+			</Col>
+			<Col span="7" classes="self-end">
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">We optimize your digital presence so AI engines cite your business when customers ask who to hire in your market. Monthly tracking shows your progress as AI engines start recognizing and recommending you.</p>
+				<p class="text-neutral-600 dark:text-neutral-400">Every month, we re-run the full prompt battery, measure score changes, and report what's working. You'll see your AI visibility score climb as the optimizations compound over time.</p>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- Princeton Research -->
+	<Section type="alt" decoration="all">
+		<Row>
+			<Col span="12">
+				<h2 class="text-center mb-8">Built on Princeton University Research</h2>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="8" classes="mx-auto col-start-3">
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">Our methodology is grounded in the landmark GEO study published at ACM KDD 2024 by researchers at Princeton University, Georgia Tech, the Allen Institute, and IIT Delhi.</p>
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">The research tested 9 content optimization methods across thousands of queries and found that systematic optimization can increase AI citation visibility by up to 40%. Key findings include:</p>
+				<ul class="text-neutral-600 dark:text-neutral-400 space-y-2 ml-4 mb-8">
+					<li>&bull; Content with statistics and cited sources gets cited significantly more often</li>
+					<li>&bull; Authoritative language and expert quotations boost citation rates</li>
+					<li>&bull; Structured, factual content outperforms generic marketing copy</li>
+					<li>&bull; Third-party corroboration across multiple sources builds AI trust</li>
+				</ul>
+				<div class="text-center">
+					<Button type="link" link="/#free-score" size="lg">Get Your Free AI Score &rarr;</Button>
+				</div>
+			</Col>
+		</Row>
+	</Section>
 </Layout>

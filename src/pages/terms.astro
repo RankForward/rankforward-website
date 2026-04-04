@@ -1,173 +1,84 @@
 ---
-// Terms Page
-// ------------
-// Description: The terms page is a page that displays the terms and conditions.
-
-// Components
-// - Layout
+// Terms Page — RankForward
 import Layout from '../layouts/Layout.astro'
-// - Blocks
 import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
 import StickySidebar from '../components/blocks/basic/StickySidebar.astro'
 
-// Content
-// - SEO
 const SEO = {
-	title: 'Toki | Terms',
-	description: 'Terms'
-}
-// - Hero
-const header = {
-	title: 'Terms',
-	text: 'Please take a moment to read through these terms and conditions to understand your rights and responsibilities while using our services.'
+	title: 'RankForward | Terms of Service',
+	description: 'RankForward terms of service. Service scope, payment terms, and legal terms for AI search optimization services.'
 }
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-	<Hero title={header.title} text={header.text} />
+	<Hero title="Terms of Service" text="Effective March 2026. Please read these terms carefully before engaging RankForward for services." />
+
 	<StickySidebar SectionType="alt" SectionDecoration="all">
 		<div slot="sidebar">
-			<h3>Introduction</h3>
-			<p>
-				Please take a moment to read through these terms to understand your rights and
-				responsibilities while using our services.
-			</p>
+			<h3>Services & Payment</h3>
+			<p>What we provide and how billing works.</p>
 		</div>
 		<div class="basic-text">
-			<h4>Welcome to Toki</h4>
-			<p>
-				Welcome to Toki! We’re thrilled to have you on board. Our services are designed to help you
-				stay organized, communicate effectively, and boost your productivity. By using Toki, you are
-				agreeing to these terms and conditions, so please read them carefully.
-			</p>
-			<p>
-				Your satisfaction is important to us. If you have any questions or concerns about these
-				terms, please do not hesitate to contact us. Our team is here to assist you and ensure you
-				have a great experience with Toki.
-			</p>
+			<h4>1. Services Provided</h4>
+			<p>RankForward provides AI search optimization strategy and reporting services, including:</p>
+			<ul>
+				<li>AI visibility audits and citation readiness scoring</li>
+				<li>Generative Engine Optimization (GEO) strategy and recommendations</li>
+				<li>Citation gap analysis and competitive research</li>
+				<li>Monthly AI visibility reporting and score tracking</li>
+				<li>Content optimization recommendations for AI citation signals</li>
+			</ul>
+			<p><strong>RankForward does not provide website development, web design, hosting, traditional SEO implementation, or technical website changes.</strong> Implementation of our recommendations may require a separate web development partner.</p>
 
-			<h4>Acceptance of Terms</h4>
-			<p>
-				By accessing or using our services, you agree to comply with and be bound by these Terms of
-				Service and our Privacy Policy. If you do not agree with any part of these terms, you must
-				not use our services. Your continued use of Toki signifies your acceptance of these terms.
-			</p>
-			<p>
-				We reserve the right to modify these terms at any time. We will notify you of any changes by
-				posting the new terms on our website. It is your responsibility to review these terms
-				periodically. Continued use of the service after any changes means you accept the new terms.
-			</p>
+			<h4>2. Payment Terms</h4>
+			<ul>
+				<li><strong>GEO Audit:</strong> The audit is a one-time engagement. Payment is due in full before the audit report is delivered.</li>
+				<li><strong>Monthly Retainers:</strong> Monthly management services are billed at the beginning of each month. Payment is due within 15 days of invoice.</li>
+				<li><strong>Cancellation:</strong> Monthly retainer clients may cancel with 30 days written notice to <a href="mailto:hello@rankforward.ai">hello@rankforward.ai</a>. No refunds are issued for partial months.</li>
+			</ul>
 
-			<h4>Our Commitment to You</h4>
-			<p>
-				At Toki, we are committed to providing you with reliable, high-quality services. Our goal is
-				to help you achieve your productivity and organizational objectives with ease. We
-				continuously work to improve our services and provide you with the best possible experience.
-			</p>
-			<p>
-				We value your feedback and suggestions. Please feel free to reach out to us with any
-				comments or ideas on how we can serve you better. Your input helps us enhance Toki and meet
-				your
-			</p>
+			<h4>3. No Guarantee of Results</h4>
+			<p>RankForward does not guarantee specific AI visibility outcomes, citation readiness scores, or rankings in any AI search engine. AI search results are controlled by third-party platforms (OpenAI, Anthropic, Google, xAI, and others) and are subject to change at any time without notice.</p>
+			<p>Our recommendations are based on peer-reviewed academic research and real-world testing, but AI search is an emerging and rapidly evolving field. Past performance and baseline scores are not predictive of future results.</p>
 		</div>
 	</StickySidebar>
+
 	<StickySidebar>
 		<div slot="sidebar">
-			<h3>User Accounts</h3>
-			<p>
-				This section explains the requirements and responsibilities associated with creating and
-				maintaining a user account on Toki. Please ensure you understand and comply with these
-				guidelines to use our services effectively.
-			</p>
+			<h3>Intellectual Property & Confidentiality</h3>
+			<p>How we handle your data and our methodology.</p>
 		</div>
 		<div class="basic-text">
-			<h4>Registration</h4>
-			<p>
-				To access certain features of Toki, you must create a user account. During registration, you
-				agree to provide accurate and complete information. This information helps us serve you
-				better and ensures the security and functionality of your account.
-			</p>
-			<p>
-				By registering, you also agree to keep your information up-to-date. Inaccurate or outdated
-				information can lead to issues with your account and may affect your ability to use certain
-				features of Toki.
-			</p>
+			<h4>4. Intellectual Property</h4>
+			<p><strong>Client deliverables:</strong> All reports, audits, and deliverables created for a client become the client's property upon full payment. Clients may use these materials internally and share them with their teams or partners.</p>
+			<p><strong>RankForward methodology:</strong> Our proprietary tools, processes, scoring algorithms, and internal systems remain the intellectual property of RankForward. Clients may not reverse-engineer, redistribute, or resell our tools or methodology.</p>
 
-			<h4>Account Security</h4>
-			<p>
-				Maintaining the security of your account is your responsibility. You agree to keep your
-				password confidential and not share it with anyone. If you suspect any unauthorized use of
-				your account, you must notify us immediately.
-			</p>
-			<p>
-				We recommend using a strong and unique password for your Toki account. Regularly updating
-				your password and using two-factor authentication, if available, can further enhance the
-				security of your account.
-			</p>
-
-			<h4>Account Usage</h4>
-			<p>
-				As the account holder, you are responsible for all activities that occur under your account.
-				This includes any actions taken by others who may have access to your account. Ensure that
-				you monitor and manage your account usage appropriately.
-			</p>
-			<p>
-				If we detect any suspicious or unauthorized activities, we may take actions to protect your
-				account, including temporarily suspending access or requiring additional verification steps.
-				Our goal is to safeguard your account and personal information.
-			</p>
+			<h4>5. Confidentiality</h4>
+			<p>RankForward treats all client data, audit results, and business information as confidential. We will not share client-specific data with third parties without written consent, except as required by law. We may reference anonymized, aggregate results for marketing purposes (e.g., "average Arizona business scores 3-4/10").</p>
 		</div>
 	</StickySidebar>
-	<StickySidebar SectionType="alt" SectionDecoration="all" classes="mb-[80px]">
+
+	<StickySidebar SectionType="alt" SectionDecoration="all">
 		<div slot="sidebar">
-			<h3>Limitation of Liability</h3>
-			<p>
-				This section outlines the limitations of our liability regarding the use of Toki services.
-				Understanding these limitations helps you know the extent of our responsibilities and your
-				rights.
-			</p>
+			<h3>Liability & Legal</h3>
+			<p>Limitations of liability, governing law, and contact information.</p>
 		</div>
 		<div class="basic-text">
-			<h4>General Limitations</h4>
-			<p>
-				Toki is provided on an "as is" and "as available" basis. We do not warrant that the service
-				will be uninterrupted, error-free, or completely secure. We disclaim all warranties, whether
-				express or implied, including but not limited to the implied warranties of merchantability,
-				fitness for a particular purpose, and non-infringement.
-			</p>
-			<p>
-				We are not liable for any damages resulting from the use or inability to use our services,
-				including but not limited to direct, indirect, incidental, special, consequential, or
-				punitive damages. This includes damages for loss of profits, data, or other intangibles.
-			</p>
+			<h4>6. Limitation of Liability</h4>
+			<p>RankForward's total liability for any claim arising from our services is limited to the total fees paid by the client to RankForward in the 12 months preceding the claim. RankForward is not liable for indirect, incidental, consequential, or punitive damages, including lost revenue or business opportunities.</p>
 
-			<h4>Third-Party Services</h4>
-			<p>
-				Toki may include links to third-party websites or services that are not owned or controlled
-				by us. We do not endorse or assume any responsibility for any such third-party sites,
-				information, materials, products, or services. Accessing and using these third-party
-				services is at your own risk.
-			</p>
-			<p>
-				We are not liable for any loss or damage incurred as a result of any dealings with
-				third-party websites or services, including the sharing of your information with such third
-				parties. It is your responsibility to review the terms and conditions and privacy policies
-				of any third-party websites or services you use.
-			</p>
+			<h4>7. Indemnification</h4>
+			<p>Clients agree to indemnify and hold RankForward harmless from claims, losses, or damages arising from the client's use of our deliverables, the client's business operations, or any third-party disputes unrelated to RankForward's services.</p>
 
-			<h4>Maximum Liability</h4>
-			<p>
-				In no event shall our total liability to you for all claims arising out of or relating to
-				the use of or inability to use the service exceed the amount paid by you, if any, for
-				accessing Toki during the twelve (12) months immediately preceding the date of the claim.
-				This limitation applies regardless of the form or source of the claim or loss, whether such
-				liability arises out of any claim based upon contract, warranty, tort, or otherwise.
-			</p>
-			<p>
-				Some jurisdictions do not allow the exclusion or limitation of liability for consequential
-				or incidental damages, so the above limitation may not apply to you. In such cases, our
-				liability will be limited to the fullest extent permitted by applicable law.
-			</p>
+			<h4>8. Governing Law</h4>
+			<p>These terms are governed by and construed in accordance with the laws of the State of Arizona. Any disputes arising under these terms shall be resolved in the courts of Yavapai County, Arizona.</p>
+
+			<h4>9. Changes to These Terms</h4>
+			<p>RankForward may update these terms from time to time. Updated terms will be posted on this page with a revised effective date. Continued use of our services after changes constitutes acceptance of the revised terms.</p>
+
+			<h4>10. Contact</h4>
+			<p>Questions about these terms? Contact us at:</p>
+			<p><strong>Email:</strong> <a href="mailto:hello@rankforward.ai">hello@rankforward.ai</a></p>
 		</div>
 	</StickySidebar>
 </Layout>

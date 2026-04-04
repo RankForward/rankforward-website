@@ -1,31 +1,146 @@
 ---
-// Contact Page
-// ------------
-// Description: The contact page is a page that displays a contact form.
-
-// Components
-// - Layout
+// Contact / Client Intake Page — RankForward
 import Layout from '../layouts/Layout.astro'
-// - Blocks
-import ContactHeroCTA from '../components/blocks/hero/ContactHeroCTA.astro'
-import TestimonialsBasic from '../components/blocks/testimonials/TestimonialsBasic.astro'
-import BrandSlider from '../components/blocks/slider/BrandSlider.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+import Button from '../components/ui/Button.astro'
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
 
-// Content
-// - SEO
 const SEO = {
-	title: 'Toki | Contact',
-	description: 'Contact'
-}
-// - Hero
-const hero = {
-	title: "Let's discuss your dreams",
-	text: 'We are here to help you with any questions or concerns you may have.'
+	title: 'RankForward | Contact',
+	description: 'Get in touch with RankForward for AI search optimization services.',
+	noindex: true
 }
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
-	<ContactHeroCTA title={hero.title} text={hero.text} />
-	<TestimonialsBasic sectionType="none" />
-	<BrandSlider />
+	<Hero
+		title="Client Intake Form"
+		text="Tell us about your business so we can build your custom AI optimization plan."
+		type="vertical"
+		titleSpan="8"
+	/>
+
+	<Section classes="py-16! lg:py-24!">
+		<Row>
+			<Col span="8" classes="mx-auto col-start-3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-8 dark:border-neutral-700 dark:bg-neutral-900">
+					<form name="client-intake" method="POST" data-netlify="true" id="intakeForm">
+						<input type="hidden" name="form-name" value="client-intake" />
+
+						<!-- Business Info -->
+						<h3 class="text-lg font-semibold mb-4">Business Information</h3>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+							<div>
+								<label for="ci-name" class="block text-sm font-medium mb-1">Business Name</label>
+								<input type="text" id="ci-name" name="businessName" required placeholder="Your company" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="ci-website" class="block text-sm font-medium mb-1">Website</label>
+								<input type="text" id="ci-website" name="website" required placeholder="https://yourbusiness.com" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+							<div>
+								<label for="ci-email" class="block text-sm font-medium mb-1">Email</label>
+								<input type="email" id="ci-email" name="email" required placeholder="you@company.com" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="ci-contact" class="block text-sm font-medium mb-1">Contact Name</label>
+								<input type="text" id="ci-contact" name="contactName" required placeholder="Your name" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+							<div>
+								<label for="ci-industry" class="block text-sm font-medium mb-1">Industry</label>
+								<input type="text" id="ci-industry" name="industry" required placeholder="e.g. HVAC, Legal, Real Estate" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="ci-market" class="block text-sm font-medium mb-1">Primary Market</label>
+								<input type="text" id="ci-market" name="market" required placeholder="e.g. Denver, CO" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+
+						<!-- Target Audience -->
+						<h3 class="text-lg font-semibold mb-4">Market & Audience</h3>
+						<div class="mb-4">
+							<label for="ci-customers" class="block text-sm font-medium mb-1">Who are your target customers?</label>
+							<textarea id="ci-customers" name="targetCustomers" rows="2" placeholder="e.g. Homeowners in the Phoenix metro area, small business owners..." class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800"></textarea>
+						</div>
+						<div class="mb-8">
+							<label for="ci-area" class="block text-sm font-medium mb-1">Service Area</label>
+							<input type="text" id="ci-area" name="serviceArea" placeholder="e.g. Phoenix metro, statewide Arizona, nationwide" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+						</div>
+
+						<!-- Competitors -->
+						<h3 class="text-lg font-semibold mb-4">Competitors</h3>
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+							<div>
+								<label for="ci-comp1" class="block text-sm font-medium mb-1">Competitor 1</label>
+								<input type="text" id="ci-comp1" name="competitor1" placeholder="Name or URL" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="ci-comp2" class="block text-sm font-medium mb-1">Competitor 2</label>
+								<input type="text" id="ci-comp2" name="competitor2" placeholder="Name or URL" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+							<div>
+								<label for="ci-comp3" class="block text-sm font-medium mb-1">Competitor 3</label>
+								<input type="text" id="ci-comp3" name="competitor3" placeholder="Name or URL" class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800" />
+							</div>
+						</div>
+
+						<!-- Current Presence -->
+						<h3 class="text-lg font-semibold mb-4">Current Online Presence</h3>
+						<div class="mb-8">
+							<p class="text-sm text-neutral-600 dark:text-neutral-400 mb-3">Which platforms do you currently have profiles on?</p>
+							<div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+								{['Google Business Profile', 'Yelp', 'LinkedIn', 'Facebook', 'Website', 'Other'].map((platform) => (
+									<label class="flex items-center gap-2 text-sm">
+										<input type="checkbox" name="platforms" value={platform} class="rounded" />
+										{platform}
+									</label>
+								))}
+							</div>
+						</div>
+
+						<!-- Goals -->
+						<h3 class="text-lg font-semibold mb-4">Goals</h3>
+						<div class="mb-6">
+							<label for="ci-goals" class="block text-sm font-medium mb-1">What are you hoping to achieve with AI search optimization?</label>
+							<textarea id="ci-goals" name="goals" rows="4" placeholder="e.g. Get recommended by ChatGPT for our services, increase leads from AI search..." class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-neutral-800"></textarea>
+						</div>
+
+						<Button type="submit" size="lg" classes="w-full justify-center!">Submit Intake Form &rarr;</Button>
+					</form>
+					<div id="intakeSuccess" class="hidden text-center py-8">
+						<p class="text-lg font-semibold text-emerald-600">Thank you! We've received your intake form.</p>
+						<p class="text-neutral-500 mt-2">We'll review your information and get back to you within 1-2 business days.</p>
+					</div>
+				</div>
+			</Col>
+		</Row>
+	</Section>
 </Layout>
+
+<script>
+	const form = document.getElementById('intakeForm') as HTMLFormElement
+	const success = document.getElementById('intakeSuccess')
+	if (form && success) {
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault()
+			const formData = new FormData(form)
+			try {
+				await fetch('/', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+					body: new URLSearchParams(formData as any).toString()
+				})
+				form.classList.add('hidden')
+				success.classList.remove('hidden')
+			} catch (err) {
+				alert('Something went wrong. Please try again.')
+			}
+		})
+	}
+</script>

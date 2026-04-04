@@ -1,0 +1,93 @@
+---
+// FAQ Page — RankForward
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+import Button from '../components/ui/Button.astro'
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
+
+const SEO = {
+	title: 'RankForward | FAQ',
+	description: 'Frequently asked questions about AI search optimization, GEO, and how RankForward helps businesses get recommended by ChatGPT, Perplexity, and Claude.'
+}
+
+const faqItems = [
+	{
+		q: 'What is AI search optimization?',
+		a: 'AI search optimization — also called Generative Engine Optimization (GEO) — is the process of making your business visible in AI-generated search answers from platforms like ChatGPT, Perplexity, Google AI Overviews, Claude, and Grok. Unlike traditional SEO, which focuses on Google\'s link-based algorithm, GEO optimizes your content to be cited, quoted, and recommended by large language models. According to Princeton University\'s KDD 2024 research, systematic GEO optimization can improve AI citation visibility by up to 40%.'
+	},
+	{
+		q: 'How do I get my business to show up in ChatGPT results?',
+		a: 'To appear in ChatGPT results, your business needs strong AI citation signals: factual content with specific data points, presence on third-party platforms AI trusts (directories, review sites, industry publications), proper schema markup, and an llms.txt file. RankForward\'s audit tests your business against 20+ prompts and identifies exactly where you\'re invisible.'
+	},
+	{
+		q: 'What is GEO (Generative Engine Optimization)?',
+		a: 'GEO is a methodology developed through academic research at Princeton University, published at <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener" class="underline">ACM KDD 2024</a>. It identifies 9 specific content optimization methods that increase how often AI search engines cite a source. GEO is different from traditional SEO: SEO helps you get found on Google. GEO gets you cited by AI.'
+	},
+	{
+		q: 'How is GEO different from traditional SEO?',
+		a: 'Traditional SEO ranks you in Google\'s blue links using backlinks and keyword optimization. GEO gets you cited in AI-generated answers using factual density, authority signals, and third-party citations. A business can rank #1 on Google and score 0% in AI answers — the ranking factors are completely different.'
+	},
+	{
+		q: 'How long does it take to see results?',
+		a: 'Most clients begin seeing measurable AI visibility improvements within 60–90 days. Full compounding impact typically takes 3–6 months. RankForward tracks your score monthly and reports every change — you\'ll see progress before you see the full result.'
+	},
+	{
+		q: 'Does RankForward build our website or write our web pages?',
+		a: 'No. RankForward provides AI search optimization strategy, content drafts, and reporting. Website development, technical implementation, and publishing content to your site require your web developer or internal team. We tell you exactly what to do and provide the content — your team executes it.'
+	},
+	{
+		q: 'What does the GEO audit include?',
+		a: 'The GEO audit includes: AI visibility scan across ChatGPT, Claude, Grok, and Perplexity using 20+ prompts, competitor citation source map, citation readiness score from 1–10 with detailed reasoning, your top 3 high-impact action items, and a written report delivered within 7 days followed by a 30-minute call.'
+	},
+	{
+		q: 'How much does AI search optimization cost?',
+		a: 'RankForward offers a free AI visibility score, a one-time GEO Audit for $500, Monthly Management at $1,500/month, and Full Service at $2,500/month. We recommend starting with the free score to establish your baseline. See our <a href="/pricing" class="underline">pricing page</a> for full details.'
+	},
+	{
+		q: 'Do you work with businesses outside your area?',
+		a: 'Yes. Our GEO methodology works for any business in any location. We take clients nationally. Contact us to discuss your market.'
+	}
+]
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero
+		title="Frequently Asked Questions"
+		text="Everything you need to know about AI search optimization and how RankForward can help your business get recommended."
+		type="vertical"
+		titleSpan="8"
+	/>
+
+	<Section classes="py-20! lg:py-28!">
+		<Row>
+			<Col span="8" classes="mx-auto col-start-3">
+				<div class="space-y-4">
+					{faqItems.map((item) => (
+						<details class="group rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-900">
+							<summary class="cursor-pointer font-semibold text-lg list-none flex items-center justify-between">
+								{item.q}
+								<span class="ml-4 text-2xl text-neutral-400 group-open:rotate-45 transition-transform">+</span>
+							</summary>
+							<p class="mt-4 text-neutral-600 dark:text-neutral-400 leading-relaxed" set:html={item.a} />
+						</details>
+					))}
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<Section type="alt" decoration="all" classes="py-16!">
+		<Row>
+			<Col span="12" classes="text-center">
+				<h3>Still Have Questions?</h3>
+				<p class="text-neutral-600 dark:text-neutral-400 mt-2 mb-6">Start with a free AI visibility score — or reach out directly.</p>
+				<div class="flex flex-wrap gap-4 justify-center">
+					<Button type="link" link="/#free-score" size="lg">Get Your Free Score &rarr;</Button>
+					<Button type="link" link="mailto:hello@rankforward.ai" style="link" size="lg">Email Us</Button>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+</Layout>

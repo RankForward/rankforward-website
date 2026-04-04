@@ -1,0 +1,64 @@
+---
+// Disclaimer Page — RankForward
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
+import StickySidebar from '../components/blocks/basic/StickySidebar.astro'
+
+const SEO = {
+	title: 'RankForward | Disclaimer',
+	description: 'RankForward disclaimer. Important information about our AI search optimization services and results.'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title="Disclaimer" text="Important information about our services." />
+
+	<StickySidebar SectionType="alt" SectionDecoration="all">
+		<div slot="sidebar">
+			<h3>Independence & Results</h3>
+			<p>Our relationship with AI platforms and what to expect from results.</p>
+		</div>
+		<div class="basic-text">
+			<h4>Independence</h4>
+			<p>RankForward is an independent AI search optimization consulting service. We are <strong>not affiliated with, endorsed by, or partnered with</strong> OpenAI (ChatGPT), Anthropic (Claude), Google (Gemini), xAI (Grok), or any other AI platform provider.</p>
+			<p>Our services involve querying these platforms as end users to assess how AI search engines describe and recommend businesses. We do not have special access, insider knowledge, or preferential treatment from any AI provider.</p>
+
+			<h4>Results May Vary</h4>
+			<p>AI visibility results vary significantly based on multiple factors, including:</p>
+			<ul>
+				<li><strong>Industry</strong> — some industries have more AI training data and citation sources than others</li>
+				<li><strong>Market and location</strong> — local vs. national visibility dynamics differ</li>
+				<li><strong>Content quality</strong> — the depth, accuracy, and structure of your existing online presence</li>
+				<li><strong>Competitive landscape</strong> — what competitors are doing in AI optimization</li>
+				<li><strong>AI model updates</strong> — platforms update their models and data regularly, which can change results</li>
+			</ul>
+			<p>No two businesses will achieve identical results, even with the same optimization strategy.</p>
+
+			<h4>Scores and Baselines</h4>
+			<p>The AI citation readiness scores presented in our audits and reports are based on real queries to live AI models at the time of assessment. These scores reflect a <strong>current baseline</strong>, not a guaranteed future outcome. AI models are updated frequently, and scores may fluctuate independently of any optimization work.</p>
+			<p>When we report that "the average business scores 3-4 out of 10," this is based on our internal testing across businesses in various markets. Individual results will differ.</p>
+		</div>
+	</StickySidebar>
+
+	<StickySidebar>
+		<div slot="sidebar">
+			<h3>Important Notes</h3>
+			<p>Additional disclaimers about our field and services.</p>
+		</div>
+		<div class="basic-text">
+			<h4>Emerging Field</h4>
+			<p>Generative Engine Optimization (GEO) is an emerging discipline. While our methodology is grounded in peer-reviewed research from Princeton University (published at ACM KDD 2024), best practices in this field are evolving rapidly. What works today may change as AI platforms update their models, training data, and ranking methodologies.</p>
+			<p>RankForward stays current with academic research, industry developments, and real-world testing. We update our methods accordingly and communicate changes to our clients.</p>
+
+			<h4>Not Legal, Financial, or Technical Advice</h4>
+			<p>RankForward provides marketing and strategy consulting only. Our services do not constitute legal advice, financial advice, or technical website development. We recommend consulting appropriate professionals for those needs.</p>
+
+			<h4>Third-Party Content</h4>
+			<p>Our reports may reference third-party websites, platforms, tools, and research. RankForward is not responsible for the accuracy, availability, or policies of third-party services. Links to external sites are provided for informational purposes only.</p>
+
+			<h4>Questions</h4>
+			<p>If you have questions about this disclaimer or our services, contact us at:</p>
+			<p><strong>Email:</strong> <a href="mailto:hello@rankforward.ai">hello@rankforward.ai</a></p>
+		</div>
+	</StickySidebar>
+</Layout>

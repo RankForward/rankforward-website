@@ -1,0 +1,155 @@
+---
+// Pricing Page — RankForward
+import Layout from '../layouts/Layout.astro'
+import Section from '../components/ui/Section.astro'
+import Row from '../components/ui/Row.astro'
+import Col from '../components/ui/Col.astro'
+import Button from '../components/ui/Button.astro'
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
+
+const SEO = {
+	title: 'RankForward | Pricing',
+	description: 'AI search optimization pricing. Free AI visibility score, GEO Audit ($500), Monthly Management ($1,500/mo), Full Service ($2,500/mo).'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero
+		title="Transparent Pricing for AI Search Optimization"
+		text="Every business starts with a free AI visibility score. From there, choose the level of support that matches your goals."
+		type="vertical"
+		titleSpan="8"
+	/>
+
+	<!-- What is GEO -->
+	<Section>
+		<Row>
+			<Col span="6">
+				<h2>What Is GEO?</h2>
+				<p class="text-lead">Generative Engine Optimization is the practice of making your business visible in AI-generated search answers.</p>
+			</Col>
+			<Col span="6" classes="self-end">
+				<p class="text-neutral-600 dark:text-neutral-400 mb-4">Unlike traditional SEO, which focuses on Google's blue links, GEO optimizes your content to be cited, quoted, and recommended by AI engines like ChatGPT, Perplexity, Gemini, and Claude.</p>
+				<p class="text-neutral-600 dark:text-neutral-400">Our methodology is grounded in peer-reviewed research from Princeton University (ACM KDD 2024), which demonstrated that systematic GEO optimization can improve AI citation visibility by up to 40%.</p>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- Why AI Search Matters -->
+	<Section type="alt" decoration="all">
+		<Row>
+			<Col span="12">
+				<h2 class="text-center mb-8">Why AI Search Optimization Matters</h2>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="4">
+				<div class="rounded-xl bg-white p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 h-full">
+					<p class="text-4xl font-bold font-headings mb-2">62%</p>
+					<p class="text-sm text-neutral-600 dark:text-neutral-400">of consumers use AI for purchase decisions (Bain & Company, 2025)</p>
+				</div>
+			</Col>
+			<Col span="4">
+				<div class="rounded-xl bg-white p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 h-full">
+					<p class="text-4xl font-bold font-headings mb-2">25%</p>
+					<p class="text-sm text-neutral-600 dark:text-neutral-400">projected drop in traditional search volume by 2026 (Gartner)</p>
+				</div>
+			</Col>
+			<Col span="4">
+				<div class="rounded-xl bg-white p-6 border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 h-full">
+					<p class="text-4xl font-bold font-headings mb-2">40%</p>
+					<p class="text-sm text-neutral-600 dark:text-neutral-400">visibility improvement possible with systematic GEO (Princeton KDD 2024)</p>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- Pricing Tiers -->
+	<Section classes="py-20! lg:py-28!">
+		<Row classes="mb-12">
+			<Col span="12">
+				<h2 class="text-center">Choose Your Plan</h2>
+			</Col>
+		</Row>
+		<Row>
+			<Col span="3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-6 h-full flex flex-col dark:bg-neutral-900 dark:border-neutral-700">
+					<h3 class="text-lg font-semibold mb-1">Free AI Score</h3>
+					<p class="text-3xl font-bold font-headings mb-4">$0</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-3 mb-8 flex-1">
+						<li>AI visibility score across ChatGPT, Perplexity, Claude, and Gemini</li>
+						<li>See who AI recommends instead of you</li>
+						<li>Competitive gap analysis</li>
+						<li>PDF report delivered within 24 hours</li>
+					</ul>
+					<Button type="link" link="/#free-score" size="sm" classes="w-full justify-center!">Get Free Score &rarr;</Button>
+				</div>
+			</Col>
+			<Col span="3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-6 h-full flex flex-col dark:bg-neutral-900 dark:border-neutral-700">
+					<h3 class="text-lg font-semibold mb-1">GEO Audit</h3>
+					<p class="text-3xl font-bold font-headings mb-1">$500</p>
+					<p class="text-xs text-neutral-500 mb-4">one-time</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-3 mb-8 flex-1">
+						<li>Everything in Free Score, plus:</li>
+						<li>Full audit with 20+ AI prompt test battery</li>
+						<li>Copy-paste-ready optimized business descriptions</li>
+						<li>Competitor citation source map</li>
+						<li>GEO methodology roadmap</li>
+						<li>Before/after comparison framework</li>
+						<li>Written report + 30-minute results call</li>
+					</ul>
+					<Button type="link" link="https://calendly.com/rankforward/30min" size="sm" classes="w-full justify-center!">Book a Call &rarr;</Button>
+				</div>
+			</Col>
+			<Col span="3">
+				<div class="rounded-xl border-2 border-blue-500 bg-white p-6 h-full flex flex-col relative dark:bg-neutral-900">
+					<span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
+					<h3 class="text-lg font-semibold mb-1">Monthly Management</h3>
+					<p class="text-3xl font-bold font-headings mb-1">$1,500</p>
+					<p class="text-xs text-neutral-500 mb-4">per month</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-3 mb-8 flex-1">
+						<li>Everything in GEO Audit, plus:</li>
+						<li>Monthly AI visibility monitoring across all engines</li>
+						<li>Ongoing content optimization recommendations</li>
+						<li>Citation building & management</li>
+						<li>Structured data maintenance</li>
+						<li>Monthly PDF progress reports with score tracking</li>
+					</ul>
+					<Button type="link" link="https://calendly.com/rankforward/30min" size="sm" classes="w-full justify-center!">Book a Call &rarr;</Button>
+				</div>
+			</Col>
+			<Col span="3">
+				<div class="rounded-xl border border-neutral-200 bg-white p-6 h-full flex flex-col dark:bg-neutral-900 dark:border-neutral-700">
+					<h3 class="text-lg font-semibold mb-1">Full Service</h3>
+					<p class="text-3xl font-bold font-headings mb-1">$2,500</p>
+					<p class="text-xs text-neutral-500 mb-4">per month</p>
+					<ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-3 mb-8 flex-1">
+						<li>Everything in Monthly Management, plus:</li>
+						<li>Done-for-you content updates (2-4 pieces/month)</li>
+						<li>Social media optimization for AI</li>
+						<li>Reddit & community seeding</li>
+						<li>Competitor displacement strategy</li>
+						<li>Dedicated account manager</li>
+					</ul>
+					<Button type="link" link="https://calendly.com/rankforward/30min" size="sm" classes="w-full justify-center!">Book a Call &rarr;</Button>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+
+	<!-- What's included note -->
+	<Section type="alt" decoration="all" classes="py-16!">
+		<Row>
+			<Col span="8" classes="mx-auto col-start-3">
+				<div class="text-center">
+					<h3>What's Not Included</h3>
+					<p class="text-neutral-600 dark:text-neutral-400 mt-4">RankForward provides AI search optimization strategy, content drafts, and reporting. Website development, web design, hosting, traditional SEO implementation, and technical website changes are not included. Implementation of our recommendations may require a separate web development partner.</p>
+					<div class="mt-8">
+						<Button type="link" link="/#free-score" size="lg">Start With a Free Score &rarr;</Button>
+					</div>
+				</div>
+			</Col>
+		</Row>
+	</Section>
+</Layout>

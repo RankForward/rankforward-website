@@ -1,0 +1,83 @@
+---
+// Privacy Policy Page — RankForward
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/blocks/hero/BasicHeroCTA.astro'
+import StickySidebar from '../components/blocks/basic/StickySidebar.astro'
+
+const SEO = {
+	title: 'RankForward | Privacy Policy',
+	description: 'RankForward privacy policy. How we collect, use, and protect your information.'
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title="Privacy Policy" text="Effective March 2026. This policy explains how we collect, use, and protect information when you use our website or services." />
+
+	<StickySidebar SectionType="alt" SectionDecoration="all">
+		<div slot="sidebar">
+			<h3>Who We Are</h3>
+			<p>About RankForward and what information we collect.</p>
+		</div>
+		<div class="basic-text">
+			<h4>Who We Are</h4>
+			<p>RankForward is an AI search optimization consulting business. This privacy policy explains how we collect, use, and protect information when you use our website or services.</p>
+
+			<h4>Information We Collect</h4>
+			<p>When you submit our contact form or request a free AI visibility score, we collect:</p>
+			<ul>
+				<li><strong>Name</strong> — so we can address you personally</li>
+				<li><strong>Email address</strong> — so we can deliver your report and communicate about our services</li>
+				<li><strong>Business name and website URL</strong> — so we can run your AI visibility audit</li>
+				<li><strong>Industry and market information</strong> — so we can provide relevant analysis</li>
+			</ul>
+			<p>We do not collect sensitive personal information such as financial data, Social Security numbers, or health information.</p>
+
+			<h4>How We Use Your Information</h4>
+			<p>We use the information you provide to:</p>
+			<ul>
+				<li>Deliver your free AI visibility score report</li>
+				<li>Communicate with you about our services and your results</li>
+				<li>Improve our tools and service offerings</li>
+				<li>Respond to your questions or requests</li>
+			</ul>
+		</div>
+	</StickySidebar>
+
+	<StickySidebar>
+		<div slot="sidebar">
+			<h3>Data Handling</h3>
+			<p>How we handle, share, and protect your data.</p>
+		</div>
+		<div class="basic-text">
+			<h4>We Do Not Sell Your Information</h4>
+			<p>RankForward does not sell, rent, or trade your personal information to third parties. We do not share your data with marketing partners or data brokers. Your information is used solely to deliver our services and communicate with you.</p>
+
+			<h4>Cookies and Analytics</h4>
+			<p>Our website may use basic analytics cookies to understand site traffic and improve user experience. These cookies collect anonymous usage data such as pages visited and time on site. We do not use cookies for targeted advertising or retargeting. You can disable cookies through your browser settings at any time.</p>
+
+			<h4>Data Security</h4>
+			<p>We take reasonable measures to protect the information you provide. Client reports and audit data are stored securely and accessed only by authorized RankForward team members.</p>
+
+			<h4>Third-Party Services</h4>
+			<p>In the course of delivering our services, we may query third-party AI platforms (such as OpenAI, Anthropic, and xAI) to assess your business's AI visibility. These queries contain only publicly available business information and are subject to each platform's own terms of service.</p>
+		</div>
+	</StickySidebar>
+
+	<StickySidebar SectionType="alt" SectionDecoration="all" classes="mb-[80px]">
+		<div slot="sidebar">
+			<h3>Your Rights</h3>
+			<p>Your data rights and how to contact us.</p>
+		</div>
+		<div class="basic-text">
+			<h4>Your Rights</h4>
+			<p>You may request access to, correction of, or deletion of your personal information at any time by contacting us. We will respond to your request within a reasonable timeframe.</p>
+
+			<h4>Changes to This Policy</h4>
+			<p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated effective date.</p>
+
+			<h4>Contact Us</h4>
+			<p>If you have questions about this privacy policy or how we handle your information, contact us at:</p>
+			<p><strong>Email:</strong> <a href="mailto:hello@rankforward.ai">hello@rankforward.ai</a></p>
+		</div>
+	</StickySidebar>
+</Layout>
