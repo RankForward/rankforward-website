@@ -1,67 +1,42 @@
 ---
-// Services Basic
-// ------------
-// Description: A services section with a title, a subtitle, a description and a grid of services
-// Properties:
-// - title: The title of the services section
-// - text: The subtitle of the services section
-// - description: The description of the services section
-
-// Components
-// - Layout
+// Services Basic — RankForward "How It Works"
 import Section from '../../ui/Section.astro'
 import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
-// - Blocks
-import TitleSection from '../basic/TitleSection.astro'
-// - UI
-import Service from '../../ui/cards/ServiceCard.astro'
+import Card from '../../ui/cards/Card.astro'
+
+const steps = [
+	{
+		step: '01',
+		title: 'Submit Your URL',
+		text: 'Enter your business website and we\'ll query ChatGPT, Perplexity, Gemini, and Claude to see if they recommend you.'
+	},
+	{
+		step: '02',
+		title: 'We Audit & Optimize',
+		text: 'Our team analyzes your AI visibility across all engines and builds a custom GEO optimization roadmap using Princeton-backed methodology.'
+	},
+	{
+		step: '03',
+		title: 'You Get Recommended',
+		text: 'We optimize your digital presence so AI engines cite your business when customers ask who to hire in your market.'
+	}
+]
 ---
 
-<TitleSection
-	title="Stuff we’re good at and love doing too."
-	text="Our services blend bold design, smart UX, and clean builds into experiences that feel good and perform even better. Custom, scalable, never boring."
-	classes="pb-15!"
-/>
 <Section classes="pt-0!">
 	<Row>
-		<Col span="4">
-			<Service
-				title="Design That Flows"
-				subtitle="Good design should feel invisible. We craft user experiences that just make sense and look awesome — no extra thinking required. From intuitive flows to pixel-perfect interactions, we make sure every tap, click, and scroll feels effortless."
-				link="/services"
-				image="/assets/services/service-01.webp"
-				classes="h-full"
-				cardBodyClasses="h-full lg:min-h-[440px] min-h-[220px] relative"
-			/>
-		</Col>
-		<Col span="8" classes="flex flex-col gap-7.5">
-			<div class="flex flex-col gap-7.5 lg:flex-row">
-				<Service
-					title="Brands That Stick."
-					subtitle="Logos, colors, type — we craft the DNA of your brand so it shows up sharp, scroll-stopping, and unmistakably you."
-					link="/services"
-					classes="h-full w-full"
-					cardBodyClasses="h-full min-h-[220px] relative"
-					image="/assets/services/service-02.webp"
-				/>
-				<Service
-					title="Code That Behaves."
-					subtitle="From quick-launch sites to fully custom builds, we make sure what you see is what actually works."
-					link="/services"
-					classes="h-full w-full"
-					cardBodyClasses="h-full min-h-[220px] relative"
-					image="/assets/services/service-03.webp"
-				/>
-			</div>
-			<Service
-				title="Motion That Moves You."
-				subtitle="Animation brings brands to life — literally. We use motion to grab attention, tell stories, and make every experience feel like magic."
-				link="/services"
-				classes="h-full"
-				cardBodyClasses="h-full min-h-[220px] relative"
-				image="/assets/services/service-04.webp"
-			/>
-		</Col>
+		{steps.map((s) => (
+			<Col span="4">
+				<Card
+					title={s.title}
+					subtitle={`Step ${s.step}`}
+					classes="h-full"
+					cardBodyClasses="h-full min-h-[220px]"
+				>
+					<p>{s.text}</p>
+				</Card>
+			</Col>
+		))}
 	</Row>
 </Section>

@@ -159,7 +159,7 @@
 	// Run once
 	initTheme()
 	// Re-run on Astro transitions
-	document.addEventListener('astro:page-loaded', initTheme)
+	document.addEventListener('astro:page-load', initTheme)
 	document.addEventListener('astro:after-swap', initTheme)
 </script>
 
@@ -254,8 +254,13 @@
 		initializeParallax()
 	}
 
-	document.addEventListener('DOMContentLoaded', init)
-	document.addEventListener('astro:page-loaded', init)
+	// Run on initial load and Astro page transitions
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init)
+	} else {
+		init()
+	}
+	document.addEventListener('astro:page-load', init)
 	document.addEventListener('astro:after-swap', init)
 </script>
 

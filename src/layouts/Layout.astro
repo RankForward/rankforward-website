@@ -50,7 +50,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-animation mode-auto">
+<html lang="en" class:list={[{ 'scroll-animation': configData.scrollAnimations }, `mode-${configData.mode}`]}>
 	<Header title={title} description={description} ogImage={ogImage} noindex={noindex} />
 	<body
 		class:list={[
