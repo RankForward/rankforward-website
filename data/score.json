@@ -1,0 +1,31 @@
+{
+  "history": [
+    {
+      "date": "2026-04-06",
+      "score": 3,
+      "label": "Partial AI Visibility"
+    }
+  ],
+  "score": 3,
+  "label": "Partial AI Visibility",
+  "date": "2026-04-06",
+  "next_update": "2026-04-08",
+  "score_based_on_N_models": 2,
+  "engines_used": [
+    "Grok",
+    "Perplexity"
+  ],
+  "engines_timed_out": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "chatgpt": "ChatGPT timed out on this update cycle. Will retry next update.",
+  "chatgpt_timed_out": true,
+  "claude": "Claude returned no response (API unavailable).",
+  "claude_timed_out": true,
+  "grok": "Grok explicitly states it has no information about RankForward.",
+  "grok_timed_out": false,
+  "perplexity": "Perplexity has partial knowledge of RankForward but missing key details.",
+  "perplexity_timed_out": false,
+  "verdict": "1 of 2 responding AI engines show awareness of RankForward. (ChatGPT, Claude updating shortly.)"
+}
