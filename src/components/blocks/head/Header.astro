@@ -58,4 +58,36 @@ const {
 	<meta name="generator" content={Astro.generator} />
 	<meta name="theme-color" content="#134e4a" />
 	<ClientRouter fallback="swap" />
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "RankForward",
+		"url": "https://rankforward.ai",
+		"logo": "https://rankforward.ai/logo.svg",
+		"description": "RankForward helps businesses get recommended by AI search engines like ChatGPT, Perplexity, Gemini, and Claude using methodology built on Princeton University GEO research.",
+		"foundingDate": "2026",
+		"founder": { "@type": "Person", "name": "JB Aten" },
+		"address": { "@type": "PostalAddress", "addressLocality": "Prescott", "addressRegion": "AZ", "addressCountry": "US" },
+		"contactPoint": { "@type": "ContactPoint", "email": "hello@rankforward.ai", "contactType": "sales", "url": "https://calendly.com/rankforward/30min" },
+		"sameAs": ["https://www.linkedin.com/in/rankforward", "https://clutch.co/profile/rankforward"]
+	})} />
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "ProfessionalService",
+		"name": "RankForward",
+		"description": "AI Search Optimization Agency — Generative Engine Optimization (GEO) services built on Princeton University research",
+		"url": "https://rankforward.ai",
+		"email": "hello@rankforward.ai",
+		"address": { "@type": "PostalAddress", "addressLocality": "Prescott", "addressRegion": "AZ", "addressCountry": "US" },
+		"geo": { "@type": "GeoCoordinates", "latitude": "34.5400", "longitude": "-112.4685" },
+		"priceRange": "$500 - $2500/mo",
+		"openingHours": "Mo-Fr 09:00-17:00",
+		"areaServed": { "@type": "Country", "name": "United States" }
+	})} />
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": "RankForward",
+		"url": "https://rankforward.ai"
+	})} />
 </head>

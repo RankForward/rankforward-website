@@ -14,6 +14,19 @@ const SEO = {
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Service",
+		"name": "AI Search Optimization",
+		"provider": { "@type": "Organization", "name": "RankForward" },
+		"description": "Generative Engine Optimization (GEO) services to get your business recommended by AI search engines",
+		"offers": [
+			{ "@type": "Offer", "name": "Free AI Score", "price": "0", "priceCurrency": "USD" },
+			{ "@type": "Offer", "name": "GEO Audit", "price": "500", "priceCurrency": "USD" },
+			{ "@type": "Offer", "name": "Monthly Management", "price": "1500", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+			{ "@type": "Offer", "name": "Full Service", "price": "2500", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } }
+		]
+	})} />
 	<Hero
 		title="Transparent Pricing for AI Search Optimization"
 		text="Every business starts with a free AI visibility score. From there, choose the level of support that matches your goals."

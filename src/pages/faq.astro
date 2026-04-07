@@ -53,6 +53,15 @@ const faqItems = [
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": faqItems.map(item => ({
+			"@type": "Question",
+			"name": item.q,
+			"acceptedAnswer": { "@type": "Answer", "text": item.a.replace(/<[^>]*>/g, '') }
+		}))
+	})} />
 	<Hero
 		title="Frequently Asked Questions"
 		text="Everything you need to know about AI search optimization and how RankForward can help your business get recommended."

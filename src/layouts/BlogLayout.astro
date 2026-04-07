@@ -26,6 +26,15 @@ export const formattedAuthorName = (author: string) =>
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
+	<script type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": frontmatter.title,
+		"datePublished": frontmatter.pubDate,
+		"author": { "@type": "Person", "name": "JB Aten" },
+		"publisher": { "@type": "Organization", "name": "RankForward", "url": "https://rankforward.ai" },
+		"description": frontmatter.description || frontmatter.subtitle || ""
+	})} />
 	<Section classes="pb-0! overflow-visible!">
 		<Row>
 			<Col span="12">
