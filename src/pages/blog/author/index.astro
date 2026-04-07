@@ -19,9 +19,9 @@ const allPosts = await getCollection('blog', ({ id }) => id)
 // Content
 // - SEO
 const SEO = {
-	title: 'Toki | Work Projects',
+	title: 'RankForward | AI Search Insights',
 	description:
-		"Explore Toki's latest work projects designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools."
+		'Research-backed strategies for getting your business recommended by ChatGPT, Perplexity, Gemini, and Claude.'
 }
 
 // Sort blog posts by publication date (newest first)
@@ -34,8 +34,8 @@ const columnMap = ['1', '3', '1', '2', '2', '3']
 
 <Layout title={SEO.title} description={SEO.description}>
 	<Hero
-		title="What we’re thinking about."
-		text="Notes from the studio on work, process, and creative problem-solving. No fluff, just ideas we wanted to share."
+		title="AI Search Insights"
+		text="Research-backed strategies for getting your business recommended by ChatGPT, Perplexity, Gemini, and Claude."
 	/>
 	<Section classes="pt-0!">
 		<Row classes="grid-cols-3! gap-y-15!">
