@@ -9,12 +9,17 @@
       "date": "2026-04-08",
       "score": 0,
       "label": "Not Known to AI"
+    },
+    {
+      "date": "2026-04-10",
+      "score": 4,
+      "label": "Partial AI Visibility"
     }
   ],
-  "score": 0,
-  "label": "Not Known to AI",
-  "date": "2026-04-08",
-  "next_update": "2026-04-10",
+  "score": 4,
+  "label": "Partial AI Visibility",
+  "date": "2026-04-10",
+  "next_update": "2026-04-12",
   "score_based_on_N_models": 2,
   "engines_used": [
     "Grok",
@@ -30,7 +35,7 @@
   "claude_timed_out": true,
   "grok": "Grok explicitly states it has no information about RankForward.",
   "grok_timed_out": false,
-  "perplexity": "Perplexity explicitly states it has no information about RankForward.",
+  "perplexity": "Perplexity has moderate knowledge of RankForward with some accurate details.",
   "perplexity_timed_out": false,
-  "verdict": "Zero AI engines have genuine public knowledge of RankForward. (ChatGPT, Claude updating shortly.)"
+  "verdict": "1 of 2 responding AI engines show awareness of RankForward. (ChatGPT, Claude updating shortly.)"
 }
