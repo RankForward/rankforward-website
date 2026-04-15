@@ -1,0 +1,321 @@
+---
+// Standalone Competitor-Curiosity Landing Page — rankforward.ai/competitor-check
+// Same form + backend as /score, different framing to test which angle converts.
+import Layout from '../layouts/Layout.astro'
+
+const SEO = {
+	title: 'See Which Competitors AI Recommends — Free Check',
+	description: 'Find out which competitors ChatGPT, Claude, Grok, and Perplexity recommend in your industry. Free report delivered in 24 hours.'
+}
+
+const industries = [
+	'Commercial Real Estate', 'Residential Real Estate', 'Home Services', 'Plumbing',
+	'HVAC', 'Roofing', 'Healthcare', 'Dental', 'Medical Practice', 'Veterinary',
+	'Automotive / Auto Dealer', 'Restaurant / Food', 'Professional Services', 'Legal',
+	'Accounting / Financial', 'Technology / SaaS', 'Retail', 'Construction',
+	'Fitness / Wellness', 'Other'
+]
+---
+
+<Layout title={SEO.title} description={SEO.description} navigation="none" footer="none">
+	<main class="score-page">
+		<div class="score-container">
+			<div class="score-brand">
+				<span class="brand-name">RANKFORWARD</span>
+				<span class="brand-tag">AI Search Optimization</span>
+			</div>
+
+			<h1 class="score-headline">See Which of Your Competitors<br/>AI Recommends — Free.</h1>
+			<p class="score-subhead">We ask ChatGPT, Claude, Grok, and Perplexity who the best businesses in your industry are. You get the exact list. No sales call.</p>
+
+			<ul class="score-bullets">
+				<li><strong>The 3-5 competitors AI names</strong> when customers ask who the best in your industry is.</li>
+				<li><strong>What AI says about them</strong> — the exact descriptions ChatGPT and Perplexity give to your competition.</li>
+				<li><strong>Where you stand</strong> — a visibility score across 4 engines and the 3 most impactful gaps to close.</li>
+			</ul>
+
+			<div class="score-form-wrap">
+				<form name="free-score-intake" method="POST" data-netlify="true" netlify-honeypot="website_confirm" id="scoreForm">
+					<input type="hidden" name="form-name" value="free-score-intake" />
+					<input type="hidden" name="source" value="competitor-check-landing" />
+					<div style="position:absolute;left:-9999px" aria-hidden="true">
+						<input type="text" name="website_confirm" tabindex="-1" autocomplete="off" />
+					</div>
+
+					<div class="form-grid">
+						<div>
+							<label for="firstName">First Name</label>
+							<input type="text" id="firstName" name="firstName" required placeholder="Your name" />
+						</div>
+						<div>
+							<label for="bizName">Business Name</label>
+							<input type="text" id="bizName" name="bizName" required placeholder="Your company" />
+						</div>
+					</div>
+
+					<div class="form-grid">
+						<div>
+							<label for="website">Website URL</label>
+							<input type="text" id="website" name="website" required placeholder="https://yourbusiness.com" />
+						</div>
+						<div>
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" required placeholder="you@company.com" />
+						</div>
+					</div>
+
+					<div class="form-grid">
+						<div>
+							<label for="industry">Industry</label>
+							<select id="industry" name="industry" required>
+								<option value="">Select your industry...</option>
+								{industries.map((ind) => (
+									<option value={ind}>{ind === 'Other' ? 'Other (specify below)' : ind}</option>
+								))}
+							</select>
+							<input type="text" id="industryOther" name="industryOther" placeholder="Specify your industry..." maxlength="50" class="other-field hidden" />
+						</div>
+						<div>
+							<label for="market">Primary Market / City</label>
+							<input type="text" id="market" name="market" required placeholder="e.g. Denver, CO" />
+						</div>
+					</div>
+
+					<button type="submit" class="score-submit">Show Me My Competitors &rarr;</button>
+					<p class="score-fine-print">Free. No credit card. Report within 24 hours.</p>
+				</form>
+
+				<div id="scoreFormSuccess" class="score-success hidden">
+					<h2>Your competitor report is being prepared.</h2>
+					<p>Check your inbox within 24 hours.</p>
+				</div>
+			</div>
+
+			<div class="score-proof">
+				<p class="proof-line">Based on <strong>Princeton University GEO research</strong> (ACM KDD 2024)</p>
+				<p class="proof-count">50+ businesses checked &middot; 4 AI engines per report</p>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	const industrySelect = document.getElementById('industry') as HTMLSelectElement
+	const industryOther = document.getElementById('industryOther') as HTMLInputElement
+	if (industrySelect && industryOther) {
+		industrySelect.addEventListener('change', () => {
+			if (industrySelect.value === 'Other') {
+				industryOther.classList.remove('hidden')
+				industryOther.required = true
+			} else {
+				industryOther.classList.add('hidden')
+				industryOther.required = false
+				industryOther.value = ''
+			}
+		})
+	}
+
+	const form = document.getElementById('scoreForm') as HTMLFormElement
+	const formSuccess = document.getElementById('scoreFormSuccess')
+	if (form && formSuccess) {
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault()
+			const formData = new FormData(form)
+			try {
+				await fetch('/', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+					body: new URLSearchParams(formData as any).toString()
+				})
+				form.classList.add('hidden')
+				formSuccess.classList.remove('hidden')
+			} catch (err) {
+				alert('Something went wrong. Please try again.')
+			}
+		})
+	}
+</script>
+
+<style>
+	.score-page {
+		min-height: 100vh;
+		background: #F8F9FB;
+		padding: 48px 20px 72px;
+		font-family: 'Inter', Arial, Helvetica, sans-serif;
+	}
+
+	.score-container {
+		max-width: 720px;
+		margin: 0 auto;
+		background: #FFFFFF;
+		border-radius: 16px;
+		padding: 56px 48px;
+		box-shadow: 0 1px 3px rgba(15, 43, 70, 0.04), 0 12px 40px rgba(15, 43, 70, 0.08);
+	}
+
+	.score-brand { text-align: center; margin-bottom: 36px; }
+	.brand-name {
+		display: block;
+		font-size: 20px;
+		font-weight: 700;
+		color: #0F2B46;
+		letter-spacing: 3px;
+	}
+	.brand-tag {
+		display: block;
+		margin-top: 4px;
+		font-size: 12px;
+		color: #6B7280;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+	}
+
+	.score-headline {
+		font-family: 'Outfit Variable', 'Outfit', Arial, Helvetica, sans-serif;
+		font-size: 38px;
+		line-height: 1.1;
+		color: #0F2B46;
+		text-align: center;
+		margin: 0 0 16px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.score-subhead {
+		text-align: center;
+		color: #4B5563;
+		font-size: 16px;
+		margin: 0 0 36px;
+		line-height: 1.55;
+	}
+
+	.score-bullets { list-style: none; padding: 0; margin: 0 0 40px; }
+	.score-bullets li {
+		position: relative;
+		padding: 14px 0 14px 36px;
+		color: #1F2937;
+		font-size: 16px;
+		line-height: 1.55;
+		border-bottom: 1px solid #F3F4F6;
+	}
+	.score-bullets li:last-child { border-bottom: none; }
+	.score-bullets li::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 20px;
+		width: 20px;
+		height: 20px;
+		background: #D4A853;
+		border-radius: 50%;
+	}
+	.score-bullets li::after {
+		content: "\2713";
+		position: absolute;
+		left: 4px;
+		top: 18px;
+		color: #FFFFFF;
+		font-size: 13px;
+		font-weight: 700;
+	}
+
+	.score-form-wrap {
+		background: #F8FAFC;
+		border: 1px solid #E5E7EB;
+		border-radius: 12px;
+		padding: 32px 28px;
+		margin-bottom: 32px;
+	}
+
+	.form-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+		margin-bottom: 16px;
+	}
+	@media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+
+	.score-form-wrap label {
+		display: block;
+		font-size: 13px;
+		font-weight: 600;
+		color: #374151;
+		margin-bottom: 6px;
+	}
+
+	.score-form-wrap input[type="text"],
+	.score-form-wrap input[type="email"],
+	.score-form-wrap select {
+		width: 100%;
+		padding: 12px 14px;
+		border: 1px solid #D1D5DB;
+		border-radius: 8px;
+		font-size: 15px;
+		background: #FFFFFF;
+		color: #111827;
+		font-family: inherit;
+		transition: border 0.15s, box-shadow 0.15s;
+	}
+	.score-form-wrap input:focus,
+	.score-form-wrap select:focus {
+		outline: none;
+		border-color: #0F2B46;
+		box-shadow: 0 0 0 3px rgba(15, 43, 70, 0.12);
+	}
+
+	.other-field { margin-top: 8px; }
+	.hidden { display: none; }
+
+	.score-submit {
+		width: 100%;
+		margin-top: 12px;
+		padding: 16px 24px;
+		background: #D4A853;
+		color: #0F2B46;
+		border: none;
+		border-radius: 10px;
+		font-size: 17px;
+		font-weight: 700;
+		cursor: pointer;
+		transition: background 0.15s, transform 0.1s;
+		font-family: inherit;
+	}
+	.score-submit:hover { background: #C89A42; }
+	.score-submit:active { transform: translateY(1px); }
+
+	.score-fine-print {
+		text-align: center;
+		margin: 12px 0 0;
+		font-size: 12px;
+		color: #6B7280;
+	}
+
+	.score-success { text-align: center; padding: 32px 16px; }
+	.score-success h2 {
+		color: #0F2B46;
+		font-size: 24px;
+		margin: 0 0 8px;
+	}
+	.score-success p { color: #4B5563; margin: 0; }
+
+	.score-proof {
+		text-align: center;
+		padding-top: 24px;
+		border-top: 1px solid #F3F4F6;
+	}
+	.proof-line {
+		margin: 0 0 6px;
+		font-size: 14px;
+		color: #374151;
+	}
+	.proof-count {
+		margin: 0;
+		font-size: 13px;
+		color: #6B7280;
+	}
+
+	@media (max-width: 560px) {
+		.score-container { padding: 36px 24px; }
+		.score-headline { font-size: 28px; }
+	}
+</style>
