@@ -24,12 +24,17 @@
       "date": "2026-04-14",
       "score": 2,
       "label": "Minimal AI Awareness"
+    },
+    {
+      "date": "2026-04-16",
+      "score": 2,
+      "label": "Minimal AI Awareness"
     }
   ],
   "score": 2,
   "label": "Minimal AI Awareness",
-  "date": "2026-04-14",
-  "next_update": "2026-04-16",
+  "date": "2026-04-16",
+  "next_update": "2026-04-18",
   "score_based_on_N_models": 4,
   "engines_used": [
     "ChatGPT",
