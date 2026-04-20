@@ -34,12 +34,17 @@
       "date": "2026-04-18",
       "score": 2,
       "label": "Minimal AI Awareness"
+    },
+    {
+      "date": "2026-04-20",
+      "score": 2,
+      "label": "Minimal AI Awareness"
     }
   ],
   "score": 2,
   "label": "Minimal AI Awareness",
-  "date": "2026-04-18",
-  "next_update": "2026-04-20",
+  "date": "2026-04-20",
+  "next_update": "2026-04-22",
   "score_based_on_N_models": 4,
   "engines_used": [
     "ChatGPT",
@@ -48,13 +53,13 @@
     "Perplexity"
   ],
   "engines_timed_out": [],
-  "chatgpt": "ChatGPT has minimal awareness of RankForward with limited accuracy.",
+  "chatgpt": "ChatGPT explicitly states it has no information about RankForward.",
   "chatgpt_timed_out": false,
   "claude": "Claude explicitly states it has no information about RankForward.",
   "claude_timed_out": false,
-  "grok": "Grok explicitly states it has no information about RankForward.",
+  "grok": "Grok only knows RankForward from local project context, not public data.",
   "grok_timed_out": false,
-  "perplexity": "Perplexity has partial knowledge of RankForward but missing key details.",
+  "perplexity": "Perplexity has moderate knowledge of RankForward with some accurate details.",
   "perplexity_timed_out": false,
-  "verdict": "2 of 4 responding AI engines show awareness of RankForward."
+  "verdict": "1 of 4 responding AI engines show awareness of RankForward."
 }
