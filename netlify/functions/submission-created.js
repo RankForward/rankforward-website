@@ -1,3 +1,10 @@
+// INTENTIONAL: client-intake is the paying-client onboarding path. Unlike
+// free-score-intake (high-volume, fully automated), client-intake is gated
+// by manual JB review. Admin email embeds a paste-ready audit + CrowdReply
+// onboarding heredoc — design seam is the human, not a webhook. Do NOT
+// wire a DO webhook POST here without revisiting the strategic intent.
+// See tracker v12.3 §7 leave-alone (audit B3) and roadmap aggregator-tier
+// posture for context.
 async function handleIntakeForm(data, RESEND_KEY) {
   const contactName = data.contact_name || data.contactName || "";
   const email = data.email || "";
